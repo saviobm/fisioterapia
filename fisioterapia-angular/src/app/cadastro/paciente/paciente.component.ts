@@ -41,9 +41,9 @@ export class PacienteComponent implements AfterViewInit {
           // Flip flag to show that loading has finished.
           this.isLoadingResults = false;
           this.isRateLimitReached = false;
-          this.resultsLength = data[0].total_count;
+          this.resultsLength = data.totalCount;
 
-          return data[0].items;
+          return data.items;
         }),
         catchError(() => {
           this.isLoadingResults = false;

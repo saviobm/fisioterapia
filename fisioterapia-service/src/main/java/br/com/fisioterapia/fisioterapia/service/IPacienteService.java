@@ -1,11 +1,5 @@
 package br.com.fisioterapia.fisioterapia.service;
 
-import java.util.List;
-
-import br.com.fisioterapia.fisioterapia.modelo.Paciente;
-
-public interface IPacienteService {
+public interface IPacienteService extends IFisioterapiaService {
 	
-	List<Paciente> listarPacientes();
-
 }
