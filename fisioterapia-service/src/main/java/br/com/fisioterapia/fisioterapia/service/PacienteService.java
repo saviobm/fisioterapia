@@ -3,7 +3,6 @@ package br.com.fisioterapia.fisioterapia.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import br.com.fisioterapia.fisioterapia.dto.ConsultaDTO;
@@ -11,7 +10,7 @@ import br.com.fisioterapia.fisioterapia.modelo.Paciente;
 import br.com.fisioterapia.fisioterapia.repository.PacienteRepository;
 
 @Service
-public class PacienteService implements IPacienteService {
+public class PacienteService extends FisioterapiaService implements IPacienteService {
 	
     @Autowired
     private PacienteRepository pacienteRepository;
@@ -25,8 +24,4 @@ public class PacienteService implements IPacienteService {
     	return dtoRetorno;
     }
 
-	private PageRequest criarPageRequest(String direction, Integer pageIndex) {
-		return PageRequest.of(pageIndex, 5, Sort.by(Sort.Direction.valueOf(direction.toUpperCase()), "nome"));
-	}
-    
 }
