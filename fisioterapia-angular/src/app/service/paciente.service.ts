@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { FisioterapiaService } from './fisioterapia.service';
 import { Injectable } from '@angular/core';
-import { Paciente } from '../model/paciente';
 import { Observable } from 'rxjs';
+import { SortDirection } from '@angular/material';
+import { Paciente } from '../model/paciente';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +16,13 @@ export class PacienteService extends FisioterapiaService {
     super();
   }
 
-  listarPacientes(): Observable<Paciente[]> {
-    return this.http.get<Paciente[]>(this.url + '/listarPacientes');
+  listarPacientes(active: string, direction: SortDirection, pageIndex: number): Observable<ConsultaApi[]> {
+    return this.http.get<ConsultaApi[]>(this.url + '/listarPacientes');
   }
 
+}
+
+export interface ConsultaApi {
+  items: Paciente[];
+  total_count: number;
 }

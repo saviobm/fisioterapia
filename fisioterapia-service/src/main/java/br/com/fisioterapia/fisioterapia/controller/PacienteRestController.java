@@ -22,7 +22,7 @@ public class PacienteRestController {
 	
 	@RequestMapping(path = "/listarPacientes", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
 	public List<Paciente> listarPacientes() {
-		return (List<Paciente>)pacienteService.getRepository().findAll();
+		return pacienteService.listarPacientes();
 	}
 
 }

@@ -1,8 +1,9 @@
-import { Observable } from 'rxjs';
-import { PacienteService } from './../../service/paciente.service';
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
+import {HttpClient} from '@angular/common/http';
+import {Component, ViewChild, AfterViewInit} from '@angular/core';
+import {MatPaginator, MatSort} from '@angular/material';
+import {merge, Observable, of as observableOf} from 'rxjs';
+import {catchError, map, startWith, switchMap} from 'rxjs/operators';
+import { PacienteService } from 'src/app/service/paciente.service';
 import { Paciente } from 'src/app/model/paciente';
 
 @Component({
@@ -10,14 +11,47 @@ import { Paciente } from 'src/app/model/paciente';
   templateUrl: './paciente.component.html',
   styleUrls: ['./paciente.component.css']
 })
-export class PacienteComponent implements OnInit {
+export class PacienteComponent implements AfterViewInit {
 
-  constructor(private route: ActivatedRoute, private location: Location, private pacienteService: PacienteService) { }
+  constructor(private pacienteService: PacienteService) { }
 
-  listaPaciente: Observable<Paciente[]>;
+  displayedColumns: string[] = ['id', 'nome'];
 
-  ngOnInit() {
-    this.listaPaciente = this.pacienteService.listarPacientes();
+  resultsLength = 0;
+  isLoadingResults = true;
+  isRateLimitReached = false;
+
+  listaPaciente: Paciente[] = [];
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+
+  ngAfterViewInit() {
+    // If the user changes the sort order, reset back to the first page.
+    this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
+
+    merge(this.sort.sortChange, this.paginator.page)
+      .pipe(
+        startWith({}),
+        switchMap(() => {
+          this.isLoadingResults = true;
+          return this.pacienteService!.listarPacientes(this.sort.active, this.sort.direction, this.paginator.pageIndex);
+        }),
+        map(data => {
+          // Flip flag to show that loading has finished.
+          this.isLoadingResults = false;
+          this.isRateLimitReached = false;
+          this.resultsLength = data[0].total_count;
+
+          return data[0].items;
+        }),
+        catchError(() => {
+          this.isLoadingResults = false;
+          // Catch if the GitHub API has reached its rate limit. Return empty data.
+          this.isRateLimitReached = true;
+          return observableOf([]);
+        })
+      ).subscribe(data => this.listaPaciente = data);
   }
 
 }
