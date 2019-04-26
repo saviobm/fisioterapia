@@ -37,11 +37,15 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { PesquisaPacienteComponent } from './cadastro/paciente/form/pesquisa-paciente/pesquisa-paciente.component';
+import { CadastroPacienteComponent } from './cadastro/paciente/form/cadastro-paciente/cadastro-paciente.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PacienteComponent
+    PacienteComponent,
+    PesquisaPacienteComponent,
+    CadastroPacienteComponent
   ],
   imports: [
     BrowserModule,
