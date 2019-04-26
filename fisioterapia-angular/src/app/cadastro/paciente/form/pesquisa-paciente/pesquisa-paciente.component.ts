@@ -1,3 +1,4 @@
+import { Consulta } from './../../../../model/consulta';
 import {HttpClient} from '@angular/common/http';
 import {Component, ViewChild, AfterViewInit} from '@angular/core';
 import {MatPaginator, MatSort} from '@angular/material';
@@ -5,6 +6,7 @@ import {merge, Observable, of as observableOf} from 'rxjs';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import { PacienteService } from 'src/app/service/paciente.service';
 import { Paciente } from 'src/app/model/paciente';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-pesquisa-paciente',
@@ -20,6 +22,8 @@ export class PesquisaPacienteComponent implements AfterViewInit {
   resultsLength = 0;
   isLoadingResults = true;
   isRateLimitReached = false;
+
+  paciente: Paciente;
 
   listaPaciente: Paciente[] = [];
 
@@ -58,4 +62,17 @@ export class PesquisaPacienteComponent implements AfterViewInit {
     return { background: index % 2 ? '#fafafa' : 'white' };
   }
 
+  onSubmit(f: NgForm) {
+    console.log(f.value);  // { first: '', last: '' }
+    console.log(f.valid);  // false
+    findByNomeContaining();
+  }
+
+  findByNomeContaining(): Promise<Consulta[]> {
+    return fetch(this.pacienteService.listarPacientesFindByNomeContaining())
+    .then(res => this.listaPaciente = res.json())
+    .catch(err => {
+       throw new Error(err.message);
+     });
+  }
 }

@@ -1,5 +1,7 @@
 package br.com.fisioterapia.fisioterapia.repository;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -11,5 +13,6 @@ public interface PacienteRepository extends PagingAndSortingRepository<Paciente,
 	
 	Iterable<Paciente> findAll(Sort sort);
 	Page<Paciente> findAll(Pageable pageable);
+	List<Paciente> findByNomeContaining(String nome);
 
 }

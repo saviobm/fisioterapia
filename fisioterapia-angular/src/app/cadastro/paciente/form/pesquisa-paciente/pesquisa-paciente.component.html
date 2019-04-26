@@ -1,3 +1,45 @@
+<div>
+  <ngForm #formConsultaPaciente="ngForm" (ngSubmit)="onSubmit(f)">
+    <input #inputNomePaciente="ngModel" [(ngModel)]="paciente.nome" type="text" class="form-control" id="inputNome" name="inputNome" placeholder="Nome" required>
+    <button>Pesquisar</button>
+  </ngForm>
+</div>
+
+
+<!--<div class="col-md-3">
+  <label for="inputCpf" [ngClass]="{'text-danger': !cpf.valid && cpf.touched}">CPF</label>
+  <div class="form-group">
+    <p-inputMask [(ngModel)]="pessoaFisica.documentoPrincipal"
+    #input
+    #cpf="ngModel"
+    (onComplete)="carregarPessoaFisica()"
+    (onBlur)="onBlurCpf($event)"
+    [disabled]="pessoaFisica.id || naoPossuiDocumento"
+    type="text"
+    styleClass="form-control"
+    inputId="inputCpf"
+    name="inputCpf"
+    placeholder="CPF"
+    mask="999.999.999-99"></p-inputMask>
+    <span class="fa fa-search calendario form-control-feedback" aria-hidden="true"></span>
+  </div>
+</div>
+
+<div class="col-md-6">
+  <div class="form-group">
+    <label for="inputNome">Nome</label>
+    <input #nome="ngModel" [(ngModel)]="pessoaFisica.nome" type="text" class="form-control" id="inputNome" name="inputNome" placeholder="Nome" required>
+  </div>
+</div>
+
+<div class="col-md-6">
+  <div class="form-group">
+    <label for="inputNomeMae">Nome da mãe</label>
+    <input #nomeMae="ngModel" [(ngModel)]="pessoaFisica.nomeMae" type="text" class="form-control" id="inputNomeMae" name="inputNomeMae" placeholder="Nome da mãe">
+  </div>
+</div>-->
+
+
 <div class="example-container mat-elevation-z8">
   <div class="example-loading-shade" *ngIf="isLoadingResults || isRateLimitReached">
     <mat-spinner *ngIf="isLoadingResults"></mat-spinner>

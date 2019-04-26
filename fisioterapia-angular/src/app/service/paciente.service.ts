@@ -20,4 +20,8 @@ export class PacienteService extends FisioterapiaService {
     return this.http.get<Consulta>(this.url + '/listarPacientes/' + direction + '/' + pageIndex);
   }
 
+  listarPacientesFindByNomeContaining(): Observable<Consulta> {
+    return this.http.get<Consulta>(this.url + '/listarPacientes/NomeContaining');
+  }
+
 }

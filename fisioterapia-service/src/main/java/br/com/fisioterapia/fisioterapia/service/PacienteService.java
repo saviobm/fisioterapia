@@ -1,5 +1,7 @@
 package br.com.fisioterapia.fisioterapia.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -21,6 +23,14 @@ public class PacienteService extends FisioterapiaService implements IPacienteSer
     	Page<Paciente> resultado = pacienteRepository.findAll(pageRequest);
     	dtoRetorno.setItems(resultado.getContent());
     	dtoRetorno.setTotalCount(resultado.getTotalElements());
+    	return dtoRetorno;
+    }
+    
+    public ConsultaDTO findByNomeContaining(String nome) {
+    	List<Paciente> resultado = pacienteRepository.findByNomeContaining(nome);
+    	ConsultaDTO dtoRetorno = new ConsultaDTO();
+    	dtoRetorno.setItems(resultado);
+    	dtoRetorno.setTotalCount(Long.valueOf(resultado.size()));
     	return dtoRetorno;
     }
 
