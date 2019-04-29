@@ -1,12 +1,13 @@
 package br.com.fisioterapia.fisioterapia.modelo;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -41,12 +42,8 @@ public class Paciente extends Fisioterapia {
 	@Column(name = "cpf", length = 11, nullable = false)
 	private String cpf;
 	
-	@ManyToOne
-	@JoinColumn(columnDefinition = "id_endereco", referencedColumnName = "id")
-	private Endereco endereco;
-	
-	@Column(name = "in_ativo")
-	private Boolean ativo;
+	@OneToMany(mappedBy = "paciente")	
+	private List<Endereco> listaEndereco;
 
 	/**
 	 * @return the id
@@ -147,31 +144,17 @@ public class Paciente extends Fisioterapia {
 	}
 
 	/**
-	 * @return the endereco
+	 * @return the listaEndereco
 	 */
-	public Endereco getEndereco() {
-		return endereco;
+	public List<Endereco> getListaEndereco() {
+		return listaEndereco;
 	}
 
 	/**
-	 * @param endereco the endereco to set
+	 * @param listaEndereco the listaEndereco to set
 	 */
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
+	public void setListaEndereco(List<Endereco> listaEndereco) {
+		this.listaEndereco = listaEndereco;
 	}
-
-	/**
-	 * @return the ativo
-	 */
-	public Boolean getAtivo() {
-		return ativo;
-	}
-
-	/**
-	 * @param ativo the ativo to set
-	 */
-	public void setAtivo(Boolean ativo) {
-		this.ativo = ativo;
-	}
-
+	
 }

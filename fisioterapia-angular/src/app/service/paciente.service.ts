@@ -33,4 +33,17 @@ export class PacienteService extends FisioterapiaService {
     return this.http.post<Consulta>(this.url + '/findByNomeContaining', paciente);
   }
 
+  salvar(paciente: Paciente): any {
+    this.http.put(this.url + '/salvar', paciente).pipe(
+      map(res => {
+        return res;
+      }),
+      catchError(() => {
+        console.log("Erro ao incluir um paciente.");
+        return null;
+      })
+    )
+
+  };
+
 }

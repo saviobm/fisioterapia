@@ -35,6 +35,10 @@ public class Endereco extends Fisioterapia {
 	@ManyToOne
 	@JoinColumn(columnDefinition = "id_cidade", referencedColumnName = "id")
 	private Cidade cidade;
+	
+	@ManyToOne
+	@JoinColumn(columnDefinition = "id_paciente", referencedColumnName = "id")
+	private Paciente paciente;
 
 	/**
 	 * @return the id
@@ -104,6 +108,20 @@ public class Endereco extends Fisioterapia {
 	 */
 	public void setCidade(Cidade cidade) {
 		this.cidade = cidade;
+	}
+
+	/**
+	 * @return the paciente
+	 */
+	public Paciente getPaciente() {
+		return paciente;
+	}
+
+	/**
+	 * @param paciente the paciente to set
+	 */
+	public void setPaciente(Paciente paciente) {
+		this.paciente = paciente;
 	}
 
 }
