@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fisioterapia.fisioterapia.dto.ConsultaDTO;
-import br.com.fisioterapia.fisioterapia.dto.PacienteDTO;
+import br.com.fisioterapia.fisioterapia.modelo.Paciente;
 import br.com.fisioterapia.fisioterapia.service.PacienteService;
 
 @RestController
@@ -27,8 +27,8 @@ public class PacienteRestController {
 	}
 	
 	@RequestMapping(path = "/findByNomeContaining", consumes = MediaType.APPLICATION_JSON_VALUE,  produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
-	public ConsultaDTO listarPacientes(@RequestBody PacienteDTO filtroDTO) {
-		return pacienteService.findByNomeContaining(filtroDTO.getNome());
+	public ConsultaDTO listarPacientes(@RequestBody Paciente paciente) {
+		return pacienteService.findByNomeContaining(paciente.getNome());
 	}
 
 }
