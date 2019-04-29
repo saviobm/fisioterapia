@@ -1,4 +1,3 @@
-export interface Paciente {
-  id: number;
-  nome: string;
+export class Paciente {
+  constructor(public id: number, public nome: string) {}
 }

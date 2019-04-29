@@ -1,8 +1,8 @@
 <div>
-  <ngForm #formConsultaPaciente="ngForm" (ngSubmit)="onSubmit(f)">
-    <input #inputNomePaciente="ngModel" [(ngModel)]="paciente.nome" type="text" class="form-control" id="inputNome" name="inputNome" placeholder="Nome" required>
-    <button>Pesquisar</button>
-  </ngForm>
+  <ng-form #formConsultaPaciente="ngForm" (ngSubmit)="onSubmit(formConsultaPaciente)">
+    <input [(ngModel)]="paciente.nome" name="nome" placeholder="Nome" required>
+    <button (click)="onSubmit(formConsultaPaciente)">Pesquisar</button>
+  </ng-form>
 </div>
 
 

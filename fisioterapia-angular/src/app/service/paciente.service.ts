@@ -1,9 +1,18 @@
+import { Paciente } from './../model/paciente';
+import { map, catchError } from 'rxjs/operators';
 import { Consulta } from './../model/consulta';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FisioterapiaService } from './fisioterapia.service';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { SortDirection } from '@angular/material';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json',
+    'Access-Control-Allow-Origin': '*'
+  })
+};
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +29,8 @@ export class PacienteService extends FisioterapiaService {
     return this.http.get<Consulta>(this.url + '/listarPacientes/' + direction + '/' + pageIndex);
   }
 
-  listarPacientesFindByNomeContaining(): Observable<Consulta> {
-    return this.http.get<Consulta>(this.url + '/listarPacientes/NomeContaining');
+  findByNomeContaining(paciente: Paciente): Observable<Consulta> {
+    return this.http.post<Consulta>(this.url + '/findByNomeContaining', paciente);
   }
 
 }
