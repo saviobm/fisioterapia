@@ -1,2 +1,35 @@
+<ng-form #pacienteForm="ngForm">
+  <div class="form-group">
+    <div class="form-row">
+      <div class="col">
+        <label for="nome">Nome</label>
+        <input id="nome" name="nome" class="form-control form-control-sm" required minlength="4" appForbiddenName="" [(ngModel)]="paciente.nome" #nome="ngModel" placeHolder="Insira um Nome">
+        <!--<small id="ajudaNome" class="form-text text-muted">Insira um nome.</small>-->
+      </div>
+      <div class="col">
+          <label for="comboEstadoCivil">Estado Civil</label>
+          <div class="form-group">
+              <select class="form-control form-control-sm" required name="comboEstadoCivil" id="comboEstadoCivil">
+                  <option value="">Selecione</option>
+                  <option [(value)]="estadoCivil" *ngFor="let estadoCivil of listaEstadoCivil">{{ estadoCivil }}</option>
+              </select>
+            </div>
+      </div>
+      <div class="col"></div>
+    </div>
+    <div class="form-row">
+    </div>
+    <button type="submit" (clock)="salvar(this.pacienteForm);" class="btn btn-primary">Salvar</button>
+  </div>
+</ng-form>
 
-
+<div *ngIf="nome.invalid && (nome.dirty || nome.touched)" class="alert alert-danger">
+  <div *ngIf="nome.errors.required">
+    Nome é obrigatório.
+  </div>
+  <div *ngIf="nome.errors.minlength">
+    Nome mínixo de 4 caracteres.
+  </div>
+  <div *ngIf="nome.errors.forbiddenName">
+  </div>
+</div>

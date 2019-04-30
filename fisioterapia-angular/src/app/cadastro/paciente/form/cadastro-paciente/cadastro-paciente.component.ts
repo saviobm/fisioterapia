@@ -1,7 +1,9 @@
+import { map } from 'rxjs/operators';
+import { PacienteService } from './../../../../service/paciente.service';
 import { Paciente } from './../../../../model/paciente';
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { PacienteService } from 'src/app/service/paciente.service';
+import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
+import { EnumService } from 'src/app/service/enum.service';
 
 @Component({
   selector: 'app-cadastro-paciente',
@@ -12,13 +14,37 @@ export class CadastroPacienteComponent implements OnInit {
 
   paciente: Paciente = new Paciente(0, '');
 
-  constructor(private pacienteService: PacienteService) { }
+  pacienteForm: FormGroup;
+
+  listaEstadoCivil: string[] = [];
+
+  constructor(private pacienteService: PacienteService, private enumService: EnumService) { }
 
   ngOnInit() {
+    /*4this.pacienteForm = new FormGroup({
+      'nome': new FormControl(this.paciente.nome, [
+        Validators.required,
+        Validators.minLength(4),
+        forbiddenNameValidator(/paciente/i) // <-- Here's how you pass in the custom validator.
+      ])
+    });*/
+    this.preencherCombos();
   }
 
-  onSubmit(f: NgForm): void {
+  salvar(f: NgForm): void {
     this.pacienteService.salvar(this.paciente);
+  }
+
+  preencherCombos(): void {
+    /*this.enumService.recuperarEnumsEstadoCivil().pipe(
+      map(data => {
+        this.listaEstadoCivil = data;
+        return data;
+      })
+    );*/
+      this.enumService.recuperarEnumsEstadoCivil().subscribe(data => {
+        this.listaEstadoCivil = data;
+      });
   }
 
 }
