@@ -1,7 +1,8 @@
 package br.com.fisioterapia.fisioterapia.service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,8 @@ public class CidadeService extends FisioterapiaService {
 	}
 
 	public List<Cidade> findAll() {
-		return cidadeRepository.findAll();		
+		final Iterable<Cidade> source = cidadeRepository.findAll();
+		return StreamSupport.stream(source.spliterator(), false).collect(Collectors.toList());
 	}
 
 }
