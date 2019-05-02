@@ -1,9 +1,10 @@
+import { map, startWith } from 'rxjs/operators';
 import { Paciente } from './../../../../model/paciente';
 import { Sexo } from './../../../../model/sexo';
 import { PacienteService } from './../../../../service/paciente.service';
 import { Cidade } from './../../../../model/cidade';
 import { Component, OnInit } from '@angular/core';
-import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
+import { NgForm, FormGroup, FormControl, FormsModule, NgControl } from '@angular/forms';
 import { EnumService } from 'src/app/service/enum.service';
 import { CidadeService } from 'src/app/service/cidade.service';
 
@@ -21,6 +22,8 @@ export class CadastroPacienteComponent implements OnInit {
   listaEstadoCivil: string[] = [];
 
   listaCidade: Cidade[] = [];
+
+  cidadeCtrl: FormControl = new FormControl();
 
   listaSexo: Sexo[] = [ new Sexo('MASC', 'Masculino'), new Sexo('FEM', 'Feminino') ];
 
@@ -52,6 +55,22 @@ export class CadastroPacienteComponent implements OnInit {
     this.enumService.recuperarEnumsEstadoCivil().subscribe(data => {
       this.listaEstadoCivil = data;
     });
+
+    // carrega a lista de cidades
+    this.cidadeService.findAll().subscribe(data => {
+      this.listaCidade = data;
+    });
+
+    // carrega a lista de cidades
+    this.cidadeCtrl.valueChanges.pipe(
+        startWith(''),
+        map(cidade => cidade ? this._filterCidade(cidade) : this.listaCidade.slice())
+      );
+  }
+
+  private _filterCidade(value: string): Cidade[] {
+    const filterValue = value.toLowerCase();
+    return this.listaCidade.filter(cidade => cidade.nome.toLowerCase().indexOf(filterValue) === 0);
   }
 
   listarCidades(): void {

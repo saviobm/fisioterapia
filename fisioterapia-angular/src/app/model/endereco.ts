@@ -1,11 +1,13 @@
+import { Paciente } from './paciente';
 import { Cidade } from './cidade';
 export class Endereco {
   id: number;
-  endereco: string;
+  descricaoEndereco: string;
   cep: string;
   complemento: string;
   cidade: Cidade = new Cidade();
   ativo: boolean;
-
+  paciente: Paciente;
   constructor() {}
+
 }

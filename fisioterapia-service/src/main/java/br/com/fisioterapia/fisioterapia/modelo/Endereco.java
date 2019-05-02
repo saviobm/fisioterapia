@@ -40,6 +40,9 @@ public class Endereco extends Fisioterapia {
 	@JoinColumn(columnDefinition = "paciente_id", referencedColumnName = "id")
 	private Paciente paciente;
 
+	@Column(name = "ativo")
+	private Boolean ativo;
+
 	/**
 	 * @return the id
 	 */
@@ -124,4 +127,18 @@ public class Endereco extends Fisioterapia {
 		this.paciente = paciente;
 	}
 
+	/**
+	 * @return the ativo
+	 */
+	public Boolean getAtivo() {
+		return ativo;
+	}
+
+	/**
+	 * @param ativo the ativo to set
+	 */
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
+	}
+	
 }

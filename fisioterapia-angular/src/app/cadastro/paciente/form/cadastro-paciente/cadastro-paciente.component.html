@@ -45,7 +45,7 @@
       <div class="col">
         <label for="endereco">Endereço</label>
         <div class="form-group">
-            <input id="endereco" name="endereco" class="form-control form-control-sm" required [(ngModel)]="paciente.endereco.endereco" #endereco="ngModel" placeHolder="Insira um endereço">
+            <input id="endereco" name="endereco" class="form-control form-control-sm" required [(ngModel)]="paciente.endereco.descricaoEndereco" #endereco="ngModel" placeHolder="Insira um endereço">
         </div>
       </div>
       <div class="col">
@@ -55,11 +55,19 @@
           </div>
       </div>
       <div class="col">
-          <label for="cidade">Cidade</label>
+          <!--<label for="cidade">Cidade</label>
           <div class="form-group">
             <input id="cidade" name="cidade" class="form-control form-control-sm" required [(ngModel)]="paciente.endereco.cidade.nome" #cidade="ngModel" maxlength="50" minlength="4" placeHolder="Insira uma cidade para pesquisa">
             <button class="btn btn-primary" (click)="listarCidades()">Pesquisar</button>
-          </div>
+          </div>-->
+          <mat-form-field>
+            <input matInput placeholder="Cidade" aria-label="Cidade" [matAutocomplete]="auto" [formControl]="cidadeCtrl">
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let cidade of listaCidade" [value]="cidade.nome">
+                <span>{{ cidade.nome}}</span> | <small>Estado: {{ cidade.estado.sgEstado }}</small>
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
       </div>
     </div>
   </div>

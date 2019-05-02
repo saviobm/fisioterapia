@@ -31,8 +31,8 @@ public class Estado extends Fisioterapia {
 	@Column(name = "ds_nome")
 	private String nome;
 	
-	@OneToMany(mappedBy = "estado", fetch = FetchType.LAZY)
-	private List<Cidade> listaCidade;
+	/*@OneToMany(mappedBy = "estado", fetch = FetchType.LAZY)
+	private List<Cidade> listaCidade;*/
 
 	/**
 	 * @return the id
@@ -76,18 +76,18 @@ public class Estado extends Fisioterapia {
 		this.nome = nome;
 	}
 
-	/**
+/*	*//**
 	 * @return the listaCidade
-	 */
+	 *//*
 	public List<Cidade> getListaCidade() {
 		return listaCidade;
 	}
 
-	/**
+	*//**
 	 * @param listaCidade the listaCidade to set
-	 */
+	 *//*
 	public void setListaCidade(List<Cidade> listaCidade) {
 		this.listaCidade = listaCidade;
-	}
+	}*/
 	
 }

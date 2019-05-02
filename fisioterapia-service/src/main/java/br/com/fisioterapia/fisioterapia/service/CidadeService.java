@@ -1,5 +1,6 @@
 package br.com.fisioterapia.fisioterapia.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,10 @@ public class CidadeService extends FisioterapiaService {
 	
 	public List<Cidade> findByNomeContaining(String nome) {
 		return cidadeRepository.findByNomeContaining(nome);
+	}
+
+	public List<Cidade> findAll() {
+		return cidadeRepository.findAll();		
 	}
 
 }

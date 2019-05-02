@@ -22,8 +22,13 @@ public class CidadeRestController {
 	private CidadeService cidadeService;
 	
 	@RequestMapping(path = "/findByNomeContaining", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
-	public List<Cidade> listaCidades(@RequestBody Cidade cidade) {
+	public List<Cidade> listarCidades(@RequestBody Cidade cidade) {
 		return cidadeService.findByNomeContaining(cidade.getNome());
+	}
+	
+	@RequestMapping(path = "/findAll", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
+	public List<Cidade> findAll() {
+		return cidadeService.findAll();
 	}
 
 }
