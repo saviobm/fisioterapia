@@ -27,6 +27,9 @@ public class Paciente extends Fisioterapia {
 	@Column(name = "ds_nome", length = 200, nullable = false)
 	private String nome;
 	
+	@Column(name = "idade")
+	private Integer idade;
+	
 	@Column(name = "sg_estado_civil", length = 3, nullable = false)
 	private String estadoCivil;
 	
@@ -71,6 +74,20 @@ public class Paciente extends Fisioterapia {
 	 */
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	/**
+	 * @return the idade
+	 */
+	public Integer getIdade() {
+		return idade;
+	}
+
+	/**
+	 * @param idade the idade to set
+	 */
+	public void setIdade(Integer idade) {
+		this.idade = idade;
 	}
 
 	/**
@@ -156,5 +173,5 @@ public class Paciente extends Fisioterapia {
 	public void setListaEndereco(List<Endereco> listaEndereco) {
 		this.listaEndereco = listaEndereco;
 	}
-	
+
 }

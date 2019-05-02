@@ -8,7 +8,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import br.com.fisioterapia.fisioterapia.dto.ConsultaDTO;
+import br.com.fisioterapia.fisioterapia.modelo.Cidade;
 import br.com.fisioterapia.fisioterapia.modelo.Paciente;
+import br.com.fisioterapia.fisioterapia.repository.CidadeRepository;
 import br.com.fisioterapia.fisioterapia.repository.PacienteRepository;
 
 @Service
@@ -16,6 +18,9 @@ public class PacienteService extends FisioterapiaService implements IPacienteSer
 	
     @Autowired
     private PacienteRepository pacienteRepository;
+    
+    @Autowired
+    private CidadeRepository cidadeRepository;
 
     public ConsultaDTO listar(String direction, Integer pageIndex) {
     	PageRequest pageRequest = criarPageRequest(direction, pageIndex);

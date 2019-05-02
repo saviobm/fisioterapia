@@ -23,7 +23,7 @@ export class PesquisaPacienteComponent implements AfterViewInit {
   isLoadingResults = true;
   isRateLimitReached = false;
 
-  paciente: Paciente = new Paciente(0, '');
+  paciente: Paciente = new Paciente();
 
   listaPaciente: Paciente[] = [];
 

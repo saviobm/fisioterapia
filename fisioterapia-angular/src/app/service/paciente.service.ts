@@ -1,3 +1,4 @@
+import { Cidade } from './../model/cidade';
 import { Paciente } from './../model/paciente';
 import { map, catchError } from 'rxjs/operators';
 import { Consulta } from './../model/consulta';

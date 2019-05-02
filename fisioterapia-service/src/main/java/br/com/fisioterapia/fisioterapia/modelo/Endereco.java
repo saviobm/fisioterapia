@@ -33,11 +33,11 @@ public class Endereco extends Fisioterapia {
 	private String complemento;
 	
 	@ManyToOne
-	@JoinColumn(columnDefinition = "id_cidade", referencedColumnName = "id")
+	@JoinColumn(columnDefinition = "cidade_id", referencedColumnName = "id")
 	private Cidade cidade;
 	
 	@ManyToOne
-	@JoinColumn(columnDefinition = "id_paciente", referencedColumnName = "id")
+	@JoinColumn(columnDefinition = "paciente_id", referencedColumnName = "id")
 	private Paciente paciente;
 
 	/**

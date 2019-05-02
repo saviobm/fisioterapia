@@ -8,8 +8,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatSpinner, MatHeaderRowDef, MatRowDef, MatPaginator, MatTable, MatOption, MatFormField, MatPseudoCheckbox,
    MatProgressSpinnerModule, MatPaginatorModule, MatSortModule, MatTableModule } from '@angular/material';
 import { CommonModule } from '@angular/common';
-import { CdkConnectedOverlay, CdkOverlayOrigin } from '@angular/cdk/overlay';
-
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatCheckboxModule} from '@angular/material';
 import {MatButtonModule} from '@angular/material';

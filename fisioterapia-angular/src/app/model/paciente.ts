@@ -1,3 +1,14 @@
+import { Sexo } from './sexo';
+import { Endereco } from './endereco';
 export class Paciente {
-  constructor(public id: number, public nome: string) {}
+
+  id: number;
+  nome: string;
+  idade: number;
+  estadoCivil: string;
+  sexo: Sexo;
+  ocupacao: string;
+  endereco: Endereco = new Endereco();
+  
+  constructor() {}
 }

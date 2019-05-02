@@ -7,20 +7,63 @@
         <!--<small id="ajudaNome" class="form-text text-muted">Insira um nome.</small>-->
       </div>
       <div class="col">
-          <label for="comboEstadoCivil">Estado Civil</label>
+          <label for="idade">Idade</label>
           <div class="form-group">
-              <select class="form-control form-control-sm" required name="comboEstadoCivil" id="comboEstadoCivil">
-                  <option value="">Selecione</option>
-                  <option [(value)]="estadoCivil" *ngFor="let estadoCivil of listaEstadoCivil">{{ estadoCivil }}</option>
-              </select>
-            </div>
+              <input id="idade" name="idade" class="form-control form-control-sm" required minlength="1" appForbiddenName="" [(ngModel)]="paciente.idade" #idade="ngModel" placeHolder="Insira uma idade">
+          </div>
       </div>
-      <div class="col"></div>
     </div>
     <div class="form-row">
+      <div class="col">
+          <label for="comboEstadoCivil">Estado Civil</label>
+          <div class="form-group">
+              <select class="form-control form-control-sm" required name="comboEstadoCivil" id="comboEstadoCivil" [(ngModel)]="paciente.estadoCivil">
+                <option [(value)]="estadoCivil" *ngFor="let estadoCivil of listaEstadoCivil">{{ estadoCivil }}</option>
+              </select>
+          </div>
+      </div>
+      <div class="col">
+          <label for="sexo">Sexo</label>
+          <div class="form-group">
+            <select class="form-control form-control-sm" required name="comboSexo" id="comboSexo" [(ngModel)]="paciente.sexo">
+              <option [(value)]="sexo" *ngFor="let sexo of listaSexo">{{ sexo.descricao }}</option>
+            </select>
+          </div>
+      </div>
+      <div class="col">
+        <label for="ocupacao">Ocupação</label>
+        <input id="ocupacao" name="ocupacao" class="form-control form-control-sm" required [(ngModel)]="paciente.ocupacao" #ocupacao="ngModel" placeHolder="Insira uma ocupação">
+      </div>
     </div>
-    <button type="submit" (clock)="salvar(this.pacienteForm);" class="btn btn-primary">Salvar</button>
+    <div class="form-row">
+      <div class="col">
+        <label for="cep">Cep</label>
+        <div class="form-group">
+            <input id="cep" name="cep" class="form-control form-control-sm" required [(ngModel)]="paciente.endereco.cep" #cep="ngModel" maxlength="10" placeHolder="Insira um CEP">
+        </div>
+      </div>
+      <div class="col">
+        <label for="endereco">Endereço</label>
+        <div class="form-group">
+            <input id="endereco" name="endereco" class="form-control form-control-sm" required [(ngModel)]="paciente.endereco.endereco" #endereco="ngModel" placeHolder="Insira um endereço">
+        </div>
+      </div>
+      <div class="col">
+          <label for="complemento">Complemento</label>
+          <div class="form-group">
+              <input id="complemento" name="complemento" class="form-control form-control-sm" required [(ngModel)]="paciente.endereco.complemento" #complemento="ngModel" maxlength="50" placeHolder="Insira um complemento">
+          </div>
+      </div>
+      <div class="col">
+          <label for="cidade">Cidade</label>
+          <div class="form-group">
+            <input id="cidade" name="cidade" class="form-control form-control-sm" required [(ngModel)]="paciente.endereco.cidade.nome" #cidade="ngModel" maxlength="50" minlength="4" placeHolder="Insira uma cidade para pesquisa">
+            <button class="btn btn-primary" (click)="listarCidades()">Pesquisar</button>
+          </div>
+      </div>
+    </div>
   </div>
+  <button type="submit" (clock)="salvar(this.pacienteForm);" class="btn btn-primary">Salvar</button>
 </ng-form>
 
 <div *ngIf="nome.invalid && (nome.dirty || nome.touched)" class="alert alert-danger">

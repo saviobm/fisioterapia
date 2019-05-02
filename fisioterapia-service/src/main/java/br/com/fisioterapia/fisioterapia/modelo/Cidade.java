@@ -30,8 +30,8 @@ public class Cidade extends Fisioterapia {
 	@Column(name = "ds_nome")
 	private String nome;
 	
-	@ManyToOne
-	@JoinColumn(columnDefinition = "id_estado", referencedColumnName = "id")
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "estado_id", columnDefinition = "estado_id", referencedColumnName = "id", insertable = false, updatable = false)
 	private Estado estado;
 	
 	@OneToMany(mappedBy = "cidade", fetch = FetchType.LAZY)
