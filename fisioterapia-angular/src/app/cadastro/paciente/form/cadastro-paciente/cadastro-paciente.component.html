@@ -60,14 +60,17 @@
             <input id="cidade" name="cidade" class="form-control form-control-sm" required [(ngModel)]="paciente.endereco.cidade.nome" #cidade="ngModel" maxlength="50" minlength="4" placeHolder="Insira uma cidade para pesquisa">
             <button class="btn btn-primary" (click)="listarCidades()">Pesquisar</button>
           </div>-->
-          <mat-form-field>
-            <input matInput placeholder="Cidade" aria-label="Cidade" [matAutocomplete]="auto" [formControl]="cidadeCtrl">
-            <mat-autocomplete #auto="matAutocomplete">
-              <mat-option *ngFor="let cidade of listaCidade" [value]="cidade.nome">
-                <span>{{ cidade.nome}}</span> | <small>Estado: {{ cidade.estado.sgEstado }}</small>
-              </mat-option>
-            </mat-autocomplete>
-          </mat-form-field>
+          <label for="autoCompleteCidade">Cidade</label>
+          <div class="form-group">
+            <mat-form-field>
+              <input matInput class="form-control form-control-sm" placeHolder="Insira uma Cidade" aria-label="Number" [matAutocomplete]="autoCompleteCidade" [formControl]="cidadeCtrl" [(ngModel)]="paciente.endereco.cidade">
+              <mat-autocomplete #autoCompleteCidade="matAutocomplete">
+                <mat-option *ngFor="let cidade of listaCidade" [value]="cidade.nome">
+                  <span>{{ cidade.nome}}</span> | <small>Estado: {{ cidade.estado.sgEstado }}</small>
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
       </div>
     </div>
   </div>
@@ -84,3 +87,29 @@
   <div *ngIf="nome.errors.forbiddenName">
   </div>
 </div>
+
+
+
+
+<!--<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <input type="text" placeholder="Assignee" aria-label="Assignee" matInput [formControl]="myControl" [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+      <mat-option *ngFor="let cidade of listaCidade" [value]="cidade.nome">
+        {{cidade.nome}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>-->
+
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <input type="text" placeholder="Insira uma cidade" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+        {{option}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
+
