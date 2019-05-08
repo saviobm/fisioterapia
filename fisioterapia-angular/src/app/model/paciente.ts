@@ -9,6 +9,8 @@ export class Paciente {
   sexo: Sexo;
   ocupacao: string;
   endereco: Endereco = new Endereco();
-  
+  telefone: string;
+  cpf: string;
+
   constructor() {}
 }

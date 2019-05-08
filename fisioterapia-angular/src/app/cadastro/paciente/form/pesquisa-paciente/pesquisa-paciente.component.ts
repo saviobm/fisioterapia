@@ -46,7 +46,6 @@ export class PesquisaPacienteComponent implements AfterViewInit {
           this.isLoadingResults = false;
           this.isRateLimitReached = false;
           this.resultsLength = data.totalCount;
-
           return data.items;
         }),
         catchError(() => {
@@ -64,13 +63,18 @@ export class PesquisaPacienteComponent implements AfterViewInit {
 
   onSubmit(f: NgForm) {
     this.findByNomeContaining().subscribe(data => {
-      this.isLoadingResults = true;
-      this.listaPaciente = data.items;
-      this.resultsLength = data.totalCount;
+      this.preencherLista(data);
     });
   }
 
   findByNomeContaining(): Observable<Consulta> {
     return this.pacienteService.findByNomeContaining(this.paciente);
+  }
+
+  preencherLista(data: Consulta): void {
+    this.isLoadingResults = false;
+    this.isRateLimitReached = false;
+    this.listaPaciente = data.items;
+    this.resultsLength = data.totalCount;
   }
 }

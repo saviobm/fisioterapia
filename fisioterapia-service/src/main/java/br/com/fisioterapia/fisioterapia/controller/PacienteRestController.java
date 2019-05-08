@@ -2,6 +2,7 @@ package br.com.fisioterapia.fisioterapia.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,7 +29,10 @@ public class PacienteRestController {
 	
 	@RequestMapping(path = "/findByNomeContaining", consumes = MediaType.APPLICATION_JSON_VALUE,  produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
 	public ConsultaDTO listarPacientes(@RequestBody Paciente paciente) {
-		return pacienteService.findByNomeContaining(paciente.getNome());
+		if (!StringUtils.isEmpty(paciente.getNome())) {
+			return pacienteService.findByNomeContaining(paciente.getNome());
+		}
+		return pacienteService.findAll();
 	}
 
 }

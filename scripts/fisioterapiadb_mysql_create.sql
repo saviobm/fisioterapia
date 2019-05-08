@@ -36,9 +36,18 @@ CREATE TABLE estado (
 	PRIMARY KEY (id)
 );
 
+CREATE TABLE avaliacao (
+	id INT NOT NULL AUTO_INCREMENT,
+	paciente_id INT NOT NULL,
+	data_avaliacao DATETIME NOT NULL,
+	PRIMARY KEY (id)
+);
+
 ALTER TABLE endereco ADD CONSTRAINT endereco_fk0 FOREIGN KEY (cidade_id) REFERENCES cidade(id);
 
 ALTER TABLE endereco ADD CONSTRAINT endereco_fk1 FOREIGN KEY (paciente_id) REFERENCES paciente(id);
 
 ALTER TABLE cidade ADD CONSTRAINT cidade_fk0 FOREIGN KEY (estado_id) REFERENCES estado(id);
+
+ALTER TABLE avaliacao ADD CONSTRAINT avaliacao_fk0 FOREIGN KEY (paciente_id) REFERENCES paciente(id);
 

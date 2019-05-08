@@ -1,6 +1,8 @@
 package br.com.fisioterapia.fisioterapia.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -8,9 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import br.com.fisioterapia.fisioterapia.dto.ConsultaDTO;
-import br.com.fisioterapia.fisioterapia.modelo.Cidade;
 import br.com.fisioterapia.fisioterapia.modelo.Paciente;
-import br.com.fisioterapia.fisioterapia.repository.CidadeRepository;
 import br.com.fisioterapia.fisioterapia.repository.PacienteRepository;
 
 @Service
@@ -19,9 +19,6 @@ public class PacienteService extends FisioterapiaService implements IPacienteSer
     @Autowired
     private PacienteRepository pacienteRepository;
     
-    @Autowired
-    private CidadeRepository cidadeRepository;
-
     public ConsultaDTO listar(String direction, Integer pageIndex) {
     	PageRequest pageRequest = criarPageRequest(direction, pageIndex);
     	ConsultaDTO dtoRetorno = new ConsultaDTO();
@@ -36,6 +33,15 @@ public class PacienteService extends FisioterapiaService implements IPacienteSer
     	ConsultaDTO dtoRetorno = new ConsultaDTO();
     	dtoRetorno.setItems(resultado);
     	dtoRetorno.setTotalCount(Long.valueOf(resultado.size()));
+    	return dtoRetorno;
+    }
+    
+    public ConsultaDTO findAll() {
+    	final Iterable<Paciente> source = pacienteRepository.findAll();
+		List<Paciente> listaRetorno = StreamSupport.stream(source.spliterator(), false).collect(Collectors.toList());
+    	ConsultaDTO dtoRetorno = new ConsultaDTO();
+    	dtoRetorno.setItems(listaRetorno);
+    	dtoRetorno.setTotalCount(Long.valueOf(listaRetorno.size()));
     	return dtoRetorno;
     }
 

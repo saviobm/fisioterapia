@@ -1,8 +1,16 @@
 <div>
   <ng-form #formConsultaPaciente="ngForm" (ngSubmit)="onSubmit(formConsultaPaciente)">
-    <input [(ngModel)]="paciente.nome" name="nome" placeholder="Nome" required>
-    <button (click)="onSubmit(formConsultaPaciente)">Pesquisar</button>
-    <img src="../../../../images/add.gif" routerLink="/form-cadastro-paciente" class="img-thumbnail" alt="Adiciona Paciente">
+    <div class="form-group">
+      <div class="form-row">
+        <div class="col">
+            <input [(ngModel)]="paciente.nome" name="nome" placeholder="Nome" required class="form-control form-control-sm">
+        </div>
+        <div class="col">
+          <button (click)="onSubmit(formConsultaPaciente)" class="btn btn-primary btn-sm">Pesquisar</button>
+          <img src="../../../../images/add.gif" routerLink="/form-cadastro-paciente" class="img-thumbnail" alt="Adiciona Paciente">
+        </div>
+      </div>
+    </div>
   </ng-form>
 </div>
 

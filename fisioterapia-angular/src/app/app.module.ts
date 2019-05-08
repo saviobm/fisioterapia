@@ -1,12 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import {NgxMaskModule, IConfig} from 'ngx-mask';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PacienteComponent } from './cadastro/paciente/paciente.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSpinner, MatHeaderRowDef, MatRowDef, MatPaginator, MatTable, MatOption, MatFormField, MatPseudoCheckbox,
-   MatProgressSpinnerModule, MatPaginatorModule, MatSortModule, MatTableModule } from '@angular/material';
+   MatProgressSpinnerModule, MatPaginatorModule, MatSortModule, MatTableModule, MatNativeDateModule } from '@angular/material';
 import { CommonModule } from '@angular/common';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatCheckboxModule} from '@angular/material';
@@ -38,13 +39,17 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { PesquisaPacienteComponent } from './cadastro/paciente/form/pesquisa-paciente/pesquisa-paciente.component';
 import { CadastroPacienteComponent } from './cadastro/paciente/form/cadastro-paciente/cadastro-paciente.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AvaliacaoComponent } from './cadastro/avaliacao/avaliacao.component';
+
+export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
 @NgModule({
   declarations: [
     AppComponent,
     PacienteComponent,
     PesquisaPacienteComponent,
-    CadastroPacienteComponent
+    CadastroPacienteComponent,
+    AvaliacaoComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +57,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     HttpClientModule,
     CommonModule,
-    BrowserModule,
     MatCheckboxModule,
     MatButtonModule,
     MatInputModule,
@@ -85,7 +89,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatPaginatorModule,
     FormsModule,
     ReactiveFormsModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatNativeDateModule,
+    NgxMaskModule.forRoot(options)
   ],
   providers: [],
   bootstrap: [AppComponent]

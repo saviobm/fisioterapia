@@ -7,6 +7,12 @@
         <!--<small id="ajudaNome" class="form-text text-muted">Insira um nome.</small>-->
       </div>
       <div class="col">
+        <label for="cpf">CPF</label>
+        <div class="form-group">
+            <input id="cpf" name="cpf" class="form-control form-control-sm" required minlength="14" appForbiddenName="" [(ngModel)]="paciente.cpf" #cpf="ngModel" placeHolder="Insira um CPF" mask="000.000.000-00">
+        </div>
+      </div>
+      <div class="col">
           <label for="idade">Idade</label>
           <div class="form-group">
               <input id="idade" name="idade" class="form-control form-control-sm" required minlength="1" appForbiddenName="" [(ngModel)]="paciente.idade" #idade="ngModel" placeHolder="Insira uma idade">
@@ -39,7 +45,7 @@
       <div class="col">
         <label for="cep">Cep</label>
         <div class="form-group">
-            <input id="cep" name="cep" class="form-control form-control-sm" required [(ngModel)]="paciente.endereco.cep" #cep="ngModel" maxlength="10" placeHolder="Insira um CEP">
+            <input id="cep" name="cep" class="form-control form-control-sm" required [(ngModel)]="paciente.endereco.cep" #cep="ngModel" maxlength="9" placeHolder="Insira um CEP" mask="00000-000">
         </div>
       </div>
       <div class="col">
@@ -63,7 +69,7 @@
           <label for="autoCompleteCidade">Cidade</label>
           <div class="form-group">
             <mat-form-field>
-              <input matInput class="form-control form-control-sm" placeHolder="Insira uma Cidade" aria-label="Number" [matAutocomplete]="autoCompleteCidade" [formControl]="cidadeCtrl" [(ngModel)]="paciente.endereco.cidade">
+              <input matInput class="form-control form-control-sm" placeHolder="Insira uma Cidade" aria-label="Number" [matAutocomplete]="autoCompleteCidade" [formControl]="cidadeCtrl" [(ngModel)]="paciente.endereco.cidade" name="cidade">
               <mat-autocomplete #autoCompleteCidade="matAutocomplete">
                 <mat-option *ngFor="let cidade of listaCidade" [value]="cidade.nome">
                   <span>{{ cidade.nome}}</span> | <small>Estado: {{ cidade.estado.sgEstado }}</small>
@@ -72,6 +78,14 @@
             </mat-form-field>
           </div>
       </div>
+    </div>
+    <div class="form-row">      
+      <div class="col sm-4">
+        <label for="telefone">Telefone</label>
+        <div class="form-group">
+            <input id="telefone" name="telefone" class="form-control form-control-sm" required [(ngModel)]="paciente.telefone" #cep="ngModel" maxlength="15" placeHolder="Insira um telefone" mask="(00) 00000-0000">
+        </div>
+      </div>      
     </div>
   </div>
   <button type="submit" (clock)="salvar(this.pacienteForm);" class="btn btn-primary">Salvar</button>
@@ -87,29 +101,3 @@
   <div *ngIf="nome.errors.forbiddenName">
   </div>
 </div>
-
-
-
-
-<!--<form class="example-form">
-  <mat-form-field class="example-full-width">
-    <input type="text" placeholder="Assignee" aria-label="Assignee" matInput [formControl]="myControl" [matAutocomplete]="auto">
-    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-      <mat-option *ngFor="let cidade of listaCidade" [value]="cidade.nome">
-        {{cidade.nome}}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
-</form>-->
-
-<form class="example-form">
-  <mat-form-field class="example-full-width">
-    <input type="text" placeholder="Insira uma cidade" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
-    <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-        {{option}}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
-</form>
-
