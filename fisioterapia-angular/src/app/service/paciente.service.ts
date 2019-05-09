@@ -1,17 +1,17 @@
+import { Router } from '@angular/router';
 import { Paciente } from './../model/paciente';
-import { map, catchError } from 'rxjs/operators';
 import { Consulta } from './../model/consulta';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FisioterapiaService } from './fisioterapia.service';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { SortDirection } from '@angular/material';
+import { Injectable, Inject, Component } from '@angular/core';
+import { Observable, throwError } from 'rxjs';
+import { SortDirection, MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json',
-    'Access-Control-Allow-Origin': '*'
   })
+  //'Access-Control-Allow-Origin': '*'
 };
 
 @Injectable({
@@ -21,7 +21,7 @@ export class PacienteService extends FisioterapiaService {
 
   url: string = this.prefixUrl + '/paciente';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     super();
   }
 
@@ -34,16 +34,10 @@ export class PacienteService extends FisioterapiaService {
   }
 
   salvar(paciente: Paciente): any {
-    this.http.put(this.url + '/salvar', paciente).subscribe(
-      map(res => {
-        return res;
-      }),
-      catchError(() => {
-        console.log("Erro ao incluir um paciente.");
-        return null;
-      })
-    )
-
+    this.http.put<Paciente>(this.url + '/salvar', paciente).subscribe(data => {
+            this.router.navigate(['/cadastro-paciente']);
+            return data;
+          });
   };
 
 }
