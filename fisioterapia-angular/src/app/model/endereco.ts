@@ -7,7 +7,5 @@ export class Endereco {
   complemento: string;
   cidade: Cidade = new Cidade();
   ativo: boolean;
-  paciente: Paciente;
   constructor() {}
-
 }

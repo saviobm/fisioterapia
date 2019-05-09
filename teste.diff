@@ -1,0 +1,387 @@
+commit 3f9e06f7d919b8dbabb1020741053f758de709dc
+Author: savio.maciel <savio.maciel@tse.jus.br>
+Date:   Thu May 9 07:55:33 2019 -0300
+
+    acertando erro retorno lista cidade
+
+diff --git a/fisioterapia-angular/src/app/cadastro/paciente/form/cadastro-paciente/cadastro-paciente.component.html b/fisioterapia-angular/src/app/cadastro/paciente/form/cadastro-paciente/cadastro-paciente.component.html
+index c90f543..b09cf1a 100644
+--- a/fisioterapia-angular/src/app/cadastro/paciente/form/cadastro-paciente/cadastro-paciente.component.html
++++ b/fisioterapia-angular/src/app/cadastro/paciente/form/cadastro-paciente/cadastro-paciente.component.html
+@@ -32,7 +32,7 @@
+           <label for="sexo">Sexo</label>
+           <div class="form-group">
+             <select class="form-control form-control-sm" required name="comboSexo" id="comboSexo" [(ngModel)]="paciente.sexo">
+-              <option [(value)]="sexo" *ngFor="let sexo of listaSexo">{{ sexo.descricao }}</option>
++              <option [(value)]="sexo.sigla" *ngFor="let sexo of listaSexo">{{ sexo.descricao }}</option>
+             </select>
+           </div>
+       </div>
+@@ -45,50 +45,44 @@
+       <div class="col">
+         <label for="cep">Cep</label>
+         <div class="form-group">
+-            <input id="cep" name="cep" class="form-control form-control-sm" required [(ngModel)]="paciente.endereco.cep" #cep="ngModel" maxlength="9" placeHolder="Insira um CEP" mask="00000-000">
++            <input id="cep" name="cep" class="form-control form-control-sm" required [(ngModel)]="endereco.cep" #cep="ngModel" maxlength="9" placeHolder="Insira um CEP" mask="00000-000">
+         </div>
+       </div>
+       <div class="col">
+         <label for="endereco">Endereço</label>
+         <div class="form-group">
+-            <input id="endereco" name="endereco" class="form-control form-control-sm" required [(ngModel)]="paciente.endereco.descricaoEndereco" #endereco="ngModel" placeHolder="Insira um endereço">
++            <input id="descricaoEndereco" name="descricaoEndereco" class="form-control form-control-sm" required [(ngModel)]="endereco.descricaoEndereco" #descricaoEndereco="ngModel" placeHolder="Insira um endereço">
+         </div>
+       </div>
+       <div class="col">
+           <label for="complemento">Complemento</label>
+           <div class="form-group">
+-              <input id="complemento" name="complemento" class="form-control form-control-sm" required [(ngModel)]="paciente.endereco.complemento" #complemento="ngModel" maxlength="50" placeHolder="Insira um complemento">
++              <input id="complemento" name="complemento" class="form-control form-control-sm" required [(ngModel)]="endereco.complemento" #complemento="ngModel" maxlength="50" placeHolder="Insira um complemento">
+           </div>
+       </div>
+       <div class="col">
+-          <!--<label for="cidade">Cidade</label>
+-          <div class="form-group">
+-            <input id="cidade" name="cidade" class="form-control form-control-sm" required [(ngModel)]="paciente.endereco.cidade.nome" #cidade="ngModel" maxlength="50" minlength="4" placeHolder="Insira uma cidade para pesquisa">
+-            <button class="btn btn-primary" (click)="listarCidades()">Pesquisar</button>
+-          </div>-->
+-          <label for="autoCompleteCidade">Cidade</label>
+           <div class="form-group">
+             <mat-form-field>
+-              <input matInput class="form-control form-control-sm" placeHolder="Insira uma Cidade" aria-label="Number" [matAutocomplete]="autoCompleteCidade" [formControl]="cidadeCtrl" [(ngModel)]="paciente.endereco.cidade" name="cidade">
+-              <mat-autocomplete #autoCompleteCidade="matAutocomplete">
+-                <mat-option *ngFor="let cidade of listaCidade" [value]="cidade.nome">
+-                  <span>{{ cidade.nome}}</span> | <small>Estado: {{ cidade.estado.sgEstado }}</small>
++              <input type="text" placeholder="Insira uma cidade" aria-label="Cidade" matInput [formControl]="myControl" [matAutocomplete]="auto" [(ngModel)]="endereco.cidade">
++              <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
++                <mat-option *ngFor="let cidade of listaCidade" [value]="cidade">
++                  {{ cidade.nome }} <span>| Estado: {{ cidade.estado.nome }}</span>
+                 </mat-option>
+               </mat-autocomplete>
+             </mat-form-field>
+           </div>
+       </div>
+     </div>
+-    <div class="form-row">      
++    <div class="form-row">
+       <div class="col sm-4">
+         <label for="telefone">Telefone</label>
+         <div class="form-group">
+             <input id="telefone" name="telefone" class="form-control form-control-sm" required [(ngModel)]="paciente.telefone" #cep="ngModel" maxlength="15" placeHolder="Insira um telefone" mask="(00) 00000-0000">
+         </div>
+-      </div>      
++      </div>
+     </div>
+   </div>
+-  <button type="submit" (clock)="salvar(this.pacienteForm);" class="btn btn-primary">Salvar</button>
++  <button type="submit" (click)="salvar(this.pacienteForm);" class="btn btn-primary btn-sm">Salvar</button>
+ </ng-form>
+ 
+ <div *ngIf="nome.invalid && (nome.dirty || nome.touched)" class="alert alert-danger">
+diff --git a/fisioterapia-angular/src/app/cadastro/paciente/form/cadastro-paciente/cadastro-paciente.component.ts b/fisioterapia-angular/src/app/cadastro/paciente/form/cadastro-paciente/cadastro-paciente.component.ts
+index 3a7d41b..3a60a27 100644
+--- a/fisioterapia-angular/src/app/cadastro/paciente/form/cadastro-paciente/cadastro-paciente.component.ts
++++ b/fisioterapia-angular/src/app/cadastro/paciente/form/cadastro-paciente/cadastro-paciente.component.ts
+@@ -1,3 +1,4 @@
++import { Endereco } from './../../../../model/endereco';
+ import { map, startWith } from 'rxjs/operators';
+ import { Paciente } from './../../../../model/paciente';
+ import { Sexo } from './../../../../model/sexo';
+@@ -24,29 +25,28 @@ export class CadastroPacienteComponent implements OnInit {
+ 
+   listaCidade: Cidade[];
+ 
+-  filteredOptionsCidade: Observable<Cidade[]>;
++  filteredOptions: Observable<Cidade[]>;
+ 
+-  options: string[] = ['One', 'Two', 'Three'];
+-  filteredOptions: Observable<string[]>;
++  public endereco: Endereco = new Endereco();
+ 
+   myControl = new FormControl();
+ 
+-  cidadeCtrl: FormControl = new FormControl();
+-
+-  listaSexo: Sexo[] = [ new Sexo('MASC', 'Masculino'), new Sexo('FEM', 'Feminino') ];
++  listaSexo: Sexo[] = [ new Sexo('M', 'Masculino'), new Sexo('F', 'Feminino') ];
+ 
+   constructor(private pacienteService: PacienteService, private enumService: EnumService, private cidadeService: CidadeService) { }
+ 
+   ngOnInit() {
+     this.preencherCombos();
+-      this.filteredOptions = this.myControl.valueChanges
++    this.filteredOptions = this.myControl.valueChanges
+       .pipe(
+-        startWith(''),
+-        map(value => this._filter(value))
++        startWith<string | Cidade>(''),
++        map(value => typeof value === 'string' ? value : value.nome),
++        map(name => name ? this._filter(name) : this.listaCidade.slice())
+       );
+   }
+ 
+   salvar(f: NgForm): void {
++    this.paciente.listaEndereco.push(this.endereco);
+     this.pacienteService.salvar(this.paciente);
+   }
+ 
+@@ -60,38 +60,15 @@ export class CadastroPacienteComponent implements OnInit {
+     this.cidadeService.findAll().subscribe(data => {
+       this.listaCidade = data;
+     });
+-
+-    // carrega a lista de cidades
+-    this.cidadeCtrl.valueChanges.pipe(
+-        startWith(''),
+-        map(cidade => cidade ? this._filterCidade(cidade) : this.listaCidade.slice())
+-      );
+   }
+ 
+-  /*private _filterCidade(value: string): Cidade[] {
++  private _filter(value: string): Cidade[] {
+     const filterValue = value.toLowerCase();
+-    return this.listaCidade.filter(cidade => cidade.nome.toLowerCase().indexOf(filterValue) === 0);
+-  }*/
+-
+-  /*listarCidades(): void {
+-    // carrega a lista de cidades
+-    this.cidadeService.findByNomeContaining(this.paciente.endereco.cidade).subscribe(data => {
+-      this.listaCidade = data;
+-    });
+-  }*/
++    return this.listaCidade.filter(option => option.nome.toLowerCase().includes(filterValue));
++  }
+ 
+   displayFn(cidade?: Cidade): string | undefined {
+     return cidade ? cidade.nome : undefined;
+   }
+ 
+-  private _filterCidade(nome: string): Cidade[] {
+-    const filterValue = nome.toLowerCase();
+-    return this.listaCidade.filter(option => option.nome.toLowerCase().indexOf(filterValue) === 0);
+-  }
+-
+-  private _filter(value: string): string[] {
+-    const filterValue = value.toLowerCase();
+-    return this.options.filter(option => option.toLowerCase().includes(filterValue));
+-  }
+-
+ }
+diff --git a/fisioterapia-angular/src/app/model/paciente.ts b/fisioterapia-angular/src/app/model/paciente.ts
+index 410ca23..fcac08d 100644
+--- a/fisioterapia-angular/src/app/model/paciente.ts
++++ b/fisioterapia-angular/src/app/model/paciente.ts
+@@ -6,11 +6,11 @@ export class Paciente {
+   nome: string;
+   idade: number;
+   estadoCivil: string;
+-  sexo: Sexo;
++  sexo: string;
+   ocupacao: string;
+-  endereco: Endereco = new Endereco();
++  listaEndereco: Endereco[] = [];
+   telefone: string;
+   cpf: string;
+-
++  ativo: boolean;
+   constructor() {}
+ }
+diff --git a/fisioterapia-angular/src/app/service/paciente.service.ts b/fisioterapia-angular/src/app/service/paciente.service.ts
+index 4d29d48..be05e7f 100644
+--- a/fisioterapia-angular/src/app/service/paciente.service.ts
++++ b/fisioterapia-angular/src/app/service/paciente.service.ts
+@@ -1,4 +1,3 @@
+-import { Cidade } from './../model/cidade';
+ import { Paciente } from './../model/paciente';
+ import { map, catchError } from 'rxjs/operators';
+ import { Consulta } from './../model/consulta';
+@@ -35,7 +34,7 @@ export class PacienteService extends FisioterapiaService {
+   }
+ 
+   salvar(paciente: Paciente): any {
+-    this.http.put(this.url + '/salvar', paciente).pipe(
++    this.http.put(this.url + '/salvar', paciente).subscribe(
+       map(res => {
+         return res;
+       }),
+diff --git a/fisioterapia-service/src/main/java/br/com/fisioterapia/fisioterapia/controller/PacienteRestController.java b/fisioterapia-service/src/main/java/br/com/fisioterapia/fisioterapia/controller/PacienteRestController.java
+index 5c01a7f..285199e 100644
+--- a/fisioterapia-service/src/main/java/br/com/fisioterapia/fisioterapia/controller/PacienteRestController.java
++++ b/fisioterapia-service/src/main/java/br/com/fisioterapia/fisioterapia/controller/PacienteRestController.java
+@@ -34,5 +34,10 @@ public class PacienteRestController {
+ 		}
+ 		return pacienteService.findAll();
+ 	}
++	
++	@RequestMapping(path = "/salvar", consumes = MediaType.APPLICATION_JSON_VALUE,  produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.PUT)
++	public Paciente salvar(@RequestBody Paciente paciente) {
++		return pacienteService.salvar(paciente);
++	}
+ 
+ }
+diff --git a/fisioterapia-service/src/main/java/br/com/fisioterapia/fisioterapia/enums/EstadoCivilEnum.java b/fisioterapia-service/src/main/java/br/com/fisioterapia/fisioterapia/enums/EstadoCivilEnum.java
+index a2dfd64..4d90eee 100644
+--- a/fisioterapia-service/src/main/java/br/com/fisioterapia/fisioterapia/enums/EstadoCivilEnum.java
++++ b/fisioterapia-service/src/main/java/br/com/fisioterapia/fisioterapia/enums/EstadoCivilEnum.java
+@@ -3,16 +3,21 @@ package br.com.fisioterapia.fisioterapia.enums;
+ import java.util.ArrayList;
+ import java.util.List;
+ 
++import org.springframework.util.StringUtils;
++
+ public enum EstadoCivilEnum {
+ 	
+-	SOL("Solteiro"),
+-	CAS("Casado"),
+-	DIV("Divorciado"),
+-	VIU("Viúvo(a)");
++	SOL("Solteiro", "SOL"),
++	CAS("Casado", "CAS"),
++	DIV("Divorciado", "DIV"),
++	VIU("Viúvo(a)", "VIU");
++	
++	private String descricaoEstadoCivil;
+ 	
+ 	private String sgEstadoCivil;
+ 	
+-	EstadoCivilEnum(String sgEstadoCivil) {
++	EstadoCivilEnum(String descricaoEstadoCivil, String sgEstadoCivil) {
++		this.descricaoEstadoCivil = descricaoEstadoCivil;
+ 		this.sgEstadoCivil = sgEstadoCivil;
+ 	}
+ 
+@@ -23,12 +28,30 @@ public enum EstadoCivilEnum {
+ 		return sgEstadoCivil;
+ 	}
+ 	
++	/**
++	 * @return the descricaoEstadoCivil
++	 */
++	public String getDescricaoEstadoCivil() {
++		return descricaoEstadoCivil;
++	}
++
+ 	public static List<String> getValues() {
+ 		List<String> listaRetorno = new ArrayList<>();
+ 		for (EstadoCivilEnum item : values()) {
+-			listaRetorno.add(item.getSgEstadoCivil());
++			listaRetorno.add(item.getDescricaoEstadoCivil());
+ 		}
+ 		return listaRetorno;
+ 	}
+ 	
++	public static EstadoCivilEnum findByDescricaoEstadoCivil(String descricaoEstadoCivil) {
++		if (!StringUtils.isEmpty(descricaoEstadoCivil)) {
++			for (EstadoCivilEnum item : values()) {
++				if (item.getDescricaoEstadoCivil().equalsIgnoreCase(descricaoEstadoCivil)) {
++					return item;
++				}
++			}
++		}
++		return null;
++	}
++	
+ }
+diff --git a/fisioterapia-service/src/main/java/br/com/fisioterapia/fisioterapia/modelo/Endereco.java b/fisioterapia-service/src/main/java/br/com/fisioterapia/fisioterapia/modelo/Endereco.java
+index 5f32954..75a7dfc 100644
+--- a/fisioterapia-service/src/main/java/br/com/fisioterapia/fisioterapia/modelo/Endereco.java
++++ b/fisioterapia-service/src/main/java/br/com/fisioterapia/fisioterapia/modelo/Endereco.java
+@@ -1,5 +1,6 @@
+ package br.com.fisioterapia.fisioterapia.modelo;
+ 
++import javax.persistence.CascadeType;
+ import javax.persistence.Column;
+ import javax.persistence.Entity;
+ import javax.persistence.GeneratedValue;
+@@ -40,8 +41,8 @@ public class Endereco extends Fisioterapia {
+ 	@JoinColumn(columnDefinition = "paciente_id", referencedColumnName = "id")
+ 	private Paciente paciente;
+ 
+-	@Column(name = "ativo")
+-	private Boolean ativo;
++	@Column(name = "in_ativo")
++	private Boolean ativo = Boolean.TRUE;
+ 
+ 	/**
+ 	 * @return the id
+diff --git a/fisioterapia-service/src/main/java/br/com/fisioterapia/fisioterapia/modelo/Paciente.java b/fisioterapia-service/src/main/java/br/com/fisioterapia/fisioterapia/modelo/Paciente.java
+index 009f696..f4f677a 100644
+--- a/fisioterapia-service/src/main/java/br/com/fisioterapia/fisioterapia/modelo/Paciente.java
++++ b/fisioterapia-service/src/main/java/br/com/fisioterapia/fisioterapia/modelo/Paciente.java
+@@ -4,12 +4,16 @@ import java.util.List;
+ 
+ import javax.persistence.Column;
+ import javax.persistence.Entity;
++import javax.persistence.FetchType;
+ import javax.persistence.GeneratedValue;
+ import javax.persistence.GenerationType;
+ import javax.persistence.Id;
+ import javax.persistence.OneToMany;
+ import javax.persistence.Table;
+ 
++import org.hibernate.annotations.Cascade;
++import org.hibernate.annotations.CascadeType;
++
+ @Entity
+ @Table(name = "paciente")
+ public class Paciente extends Fisioterapia {
+@@ -45,8 +49,12 @@ public class Paciente extends Fisioterapia {
+ 	@Column(name = "cpf", length = 11, nullable = false)
+ 	private String cpf;
+ 	
+-	@OneToMany(mappedBy = "paciente")	
++	@OneToMany(mappedBy = "paciente", fetch = FetchType.LAZY)
++	@Cascade(CascadeType.ALL)
+ 	private List<Endereco> listaEndereco;
++	
++	@Column(name = "in_ativo")
++	private Boolean ativo = Boolean.TRUE;
+ 
+ 	/**
+ 	 * @return the id
+@@ -174,4 +182,18 @@ public class Paciente extends Fisioterapia {
+ 		this.listaEndereco = listaEndereco;
+ 	}
+ 
++	/**
++	 * @return the ativo
++	 */
++	public Boolean getAtivo() {
++		return ativo;
++	}
++
++	/**
++	 * @param ativo the ativo to set
++	 */
++	public void setAtivo(Boolean ativo) {
++		this.ativo = ativo;
++	}
++	
+ }
+diff --git a/fisioterapia-service/src/main/java/br/com/fisioterapia/fisioterapia/service/PacienteService.java b/fisioterapia-service/src/main/java/br/com/fisioterapia/fisioterapia/service/PacienteService.java
+index 8e72318..b24c148 100644
+--- a/fisioterapia-service/src/main/java/br/com/fisioterapia/fisioterapia/service/PacienteService.java
++++ b/fisioterapia-service/src/main/java/br/com/fisioterapia/fisioterapia/service/PacienteService.java
+@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
+ import org.springframework.stereotype.Service;
+ 
+ import br.com.fisioterapia.fisioterapia.dto.ConsultaDTO;
++import br.com.fisioterapia.fisioterapia.enums.EstadoCivilEnum;
+ import br.com.fisioterapia.fisioterapia.modelo.Paciente;
+ import br.com.fisioterapia.fisioterapia.repository.PacienteRepository;
+ 
+@@ -45,4 +46,14 @@ public class PacienteService extends FisioterapiaService implements IPacienteSer
+     	return dtoRetorno;
+     }
+ 
++	public Paciente salvar(Paciente paciente) {
++		preencherEnums(paciente);
++		return pacienteRepository.save(paciente);
++	}
++
++	private void preencherEnums(Paciente paciente) {
++		EstadoCivilEnum estadoCivilEnum = EstadoCivilEnum.findByDescricaoEstadoCivil(paciente.getEstadoCivil());
++		paciente.setEstadoCivil(estadoCivilEnum.getSgEstadoCivil());
++	}
++
+ }

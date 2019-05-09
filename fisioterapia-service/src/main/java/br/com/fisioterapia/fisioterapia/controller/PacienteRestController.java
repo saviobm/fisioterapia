@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fisioterapia.fisioterapia.dto.ConsultaDTO;
+import br.com.fisioterapia.fisioterapia.dto.PacienteDTO;
 import br.com.fisioterapia.fisioterapia.modelo.Paciente;
 import br.com.fisioterapia.fisioterapia.service.PacienteService;
 
@@ -36,7 +37,7 @@ public class PacienteRestController {
 	}
 	
 	@RequestMapping(path = "/salvar", consumes = MediaType.APPLICATION_JSON_VALUE,  produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.PUT)
-	public Paciente salvar(@RequestBody Paciente paciente) {
+	public PacienteDTO salvar(@RequestBody Paciente paciente) {
 		return pacienteService.salvar(paciente);
 	}
 

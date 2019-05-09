@@ -3,8 +3,6 @@ package br.com.fisioterapia.fisioterapia.dto;
 import java.io.Serializable;
 import java.util.List;
 
-import br.com.fisioterapia.fisioterapia.modelo.Fisioterapia;
-
 public class ConsultaDTO implements Serializable {
 	
 	/**
@@ -14,7 +12,7 @@ public class ConsultaDTO implements Serializable {
 
 	private Long totalCount;
 	
-	private List<? extends Fisioterapia> items;
+	private List<? extends FisioterapiaDTO> items;
 
 	/**
 	 * @return the totalCount
@@ -33,14 +31,14 @@ public class ConsultaDTO implements Serializable {
 	/**
 	 * @return the items
 	 */
-	public List<? extends Fisioterapia> getItems() {
+	public List<? extends FisioterapiaDTO> getItems() {
 		return items;
 	}
 
 	/**
 	 * @param items the items to set
 	 */
-	public void setItems(List<? extends Fisioterapia> items) {
+	public void setItems(List<? extends FisioterapiaDTO> items) {
 		this.items = items;
 	}
 

@@ -1,4 +1,3 @@
-import { Sexo } from './sexo';
 import { Endereco } from './endereco';
 export class Paciente {
 
@@ -8,9 +7,9 @@ export class Paciente {
   estadoCivil: string;
   sexo: string;
   ocupacao: string;
-  listaEndereco: Endereco[] = [];
   telefone: string;
   cpf: string;
+  listaEndereco: Endereco[] = [];
   ativo: boolean;
   constructor() {}
 }

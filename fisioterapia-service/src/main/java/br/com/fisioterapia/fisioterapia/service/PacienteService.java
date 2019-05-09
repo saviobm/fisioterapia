@@ -1,16 +1,24 @@
 package br.com.fisioterapia.fisioterapia.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
+import br.com.fisioterapia.fisioterapia.dto.CidadeDTO;
 import br.com.fisioterapia.fisioterapia.dto.ConsultaDTO;
+import br.com.fisioterapia.fisioterapia.dto.EnderecoDTO;
+import br.com.fisioterapia.fisioterapia.dto.FisioterapiaDTO;
+import br.com.fisioterapia.fisioterapia.dto.PacienteDTO;
 import br.com.fisioterapia.fisioterapia.enums.EstadoCivilEnum;
+import br.com.fisioterapia.fisioterapia.modelo.Endereco;
 import br.com.fisioterapia.fisioterapia.modelo.Paciente;
 import br.com.fisioterapia.fisioterapia.repository.PacienteRepository;
 
@@ -24,15 +32,49 @@ public class PacienteService extends FisioterapiaService implements IPacienteSer
     	PageRequest pageRequest = criarPageRequest(direction, pageIndex);
     	ConsultaDTO dtoRetorno = new ConsultaDTO();
     	Page<Paciente> resultado = pacienteRepository.findAll(pageRequest);
-    	dtoRetorno.setItems(resultado.getContent());
+    	dtoRetorno.setItems(convertListaPacienteDTO(resultado.getContent()));
     	dtoRetorno.setTotalCount(resultado.getTotalElements());
     	return dtoRetorno;
     }
-    
-    public ConsultaDTO findByNomeContaining(String nome) {
+
+	private List<? extends FisioterapiaDTO> convertListaPacienteDTO(List<Paciente> listaPaciente) {
+		List<PacienteDTO> listaRetorno = new ArrayList<>();
+		if (!CollectionUtils.isEmpty(listaPaciente)) {
+			for (Paciente paciente : listaPaciente) {
+				listaRetorno.add(convertPacienteDTO(paciente));
+			}
+		}
+		return listaRetorno;
+	}
+
+	/**
+	 * @param listaRetorno
+	 * @param paciente
+	 */
+	private PacienteDTO convertPacienteDTO(Paciente paciente) {
+		PacienteDTO pacienteDTO = new PacienteDTO();
+		if (paciente != null && !CollectionUtils.isEmpty(paciente.getListaEndereco())) {
+			List<EnderecoDTO> listaEndereco = new ArrayList<>();
+			EnderecoDTO enderecoDTO = null;
+			CidadeDTO cidadeDTO = null;
+			for (Endereco endereco : paciente.getListaEndereco()) {
+				enderecoDTO = new EnderecoDTO();
+				cidadeDTO = new CidadeDTO();
+				BeanUtils.copyProperties(endereco.getCidade(), cidadeDTO);
+				BeanUtils.copyProperties(endereco, enderecoDTO);
+				enderecoDTO.setCidade(cidadeDTO);
+				listaEndereco.add(enderecoDTO);
+			}
+			pacienteDTO.setListaEnderecoDTO(listaEndereco);
+		}
+		BeanUtils.copyProperties(paciente, pacienteDTO);
+		return pacienteDTO;
+	}
+
+	public ConsultaDTO findByNomeContaining(String nome) {
     	List<Paciente> resultado = pacienteRepository.findByNomeContaining(nome);
     	ConsultaDTO dtoRetorno = new ConsultaDTO();
-    	dtoRetorno.setItems(resultado);
+    	dtoRetorno.setItems(convertListaPacienteDTO(resultado));
     	dtoRetorno.setTotalCount(Long.valueOf(resultado.size()));
     	return dtoRetorno;
     }
@@ -41,14 +83,23 @@ public class PacienteService extends FisioterapiaService implements IPacienteSer
     	final Iterable<Paciente> source = pacienteRepository.findAll();
 		List<Paciente> listaRetorno = StreamSupport.stream(source.spliterator(), false).collect(Collectors.toList());
     	ConsultaDTO dtoRetorno = new ConsultaDTO();
-    	dtoRetorno.setItems(listaRetorno);
+    	dtoRetorno.setItems(convertListaPacienteDTO(listaRetorno));
     	dtoRetorno.setTotalCount(Long.valueOf(listaRetorno.size()));
     	return dtoRetorno;
     }
 
-	public Paciente salvar(Paciente paciente) {
+	public PacienteDTO salvar(Paciente paciente) {
 		preencherEnums(paciente);
-		return pacienteRepository.save(paciente);
+		preencherPacienteEndereco(paciente);		
+		return convertPacienteDTO(pacienteRepository.save(paciente));
+	}
+
+	private void preencherPacienteEndereco(Paciente paciente) {
+		if (paciente != null && !CollectionUtils.isEmpty(paciente.getListaEndereco())) {
+			for (Endereco endereco : paciente.getListaEndereco()) {
+				endereco.setPaciente(paciente);
+			}
+		}
 	}
 
 	private void preencherEnums(Paciente paciente) {

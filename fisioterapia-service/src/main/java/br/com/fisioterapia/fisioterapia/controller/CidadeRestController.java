@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.fisioterapia.fisioterapia.dto.CidadeDTO;
 import br.com.fisioterapia.fisioterapia.modelo.Cidade;
 import br.com.fisioterapia.fisioterapia.service.CidadeService;
 
@@ -22,12 +23,12 @@ public class CidadeRestController {
 	private CidadeService cidadeService;
 	
 	@RequestMapping(path = "/findByNomeContaining", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
-	public List<Cidade> listarCidades(@RequestBody Cidade cidade) {
+	public List<CidadeDTO> listarCidades(@RequestBody Cidade cidade) {
 		return cidadeService.findByNomeContaining(cidade.getNome());
 	}
 	
 	@RequestMapping(path = "/findAll", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
-	public List<Cidade> findAll() {
+	public List<CidadeDTO> findAll() {
 		return cidadeService.findAll();
 	}
 

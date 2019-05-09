@@ -1,16 +1,12 @@
 package br.com.fisioterapia.fisioterapia.modelo;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -34,9 +30,6 @@ public class Cidade extends Fisioterapia {
 	@JoinColumn(name = "estado_id", columnDefinition = "estado_id", referencedColumnName = "id", insertable = false, updatable = false)
 	private Estado estado;
 	
-	/*@OneToMany(mappedBy = "cidade", fetch = FetchType.LAZY)
-	private List<Endereco> listaEndereco;*/
-
 	/**
 	 * @return the id
 	 */
@@ -78,19 +71,5 @@ public class Cidade extends Fisioterapia {
 	public void setEstado(Estado estado) {
 		this.estado = estado;
 	}
-
-/*	*//**
-	 * @return the listaEndereco
-	 *//*
-	public List<Endereco> getListaEndereco() {
-		return listaEndereco;
-	}
-
-	*//**
-	 * @param listaEndereco the listaEndereco to set
-	 *//*
-	public void setListaEndereco(List<Endereco> listaEndereco) {
-		this.listaEndereco = listaEndereco;
-	}*/
 	
 }

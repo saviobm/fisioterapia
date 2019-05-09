@@ -1,8 +1,8 @@
 package br.com.fisioterapia.fisioterapia.modelo;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -37,7 +37,7 @@ public class Endereco extends Fisioterapia {
 	@JoinColumn(columnDefinition = "cidade_id", referencedColumnName = "id")
 	private Cidade cidade;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(columnDefinition = "paciente_id", referencedColumnName = "id")
 	private Paciente paciente;
 
