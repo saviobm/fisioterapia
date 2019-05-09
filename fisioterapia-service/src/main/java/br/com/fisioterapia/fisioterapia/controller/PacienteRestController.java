@@ -34,5 +34,10 @@ public class PacienteRestController {
 		}
 		return pacienteService.findAll();
 	}
+	
+	@RequestMapping(path = "/salvar", consumes = MediaType.APPLICATION_JSON_VALUE,  produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.PUT)
+	public Paciente salvar(@RequestBody Paciente paciente) {
+		return pacienteService.salvar(paciente);
+	}
 
 }

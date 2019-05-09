@@ -1,5 +1,6 @@
 package br.com.fisioterapia.fisioterapia.modelo;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -40,8 +41,8 @@ public class Endereco extends Fisioterapia {
 	@JoinColumn(columnDefinition = "paciente_id", referencedColumnName = "id")
 	private Paciente paciente;
 
-	@Column(name = "ativo")
-	private Boolean ativo;
+	@Column(name = "in_ativo")
+	private Boolean ativo = Boolean.TRUE;
 
 	/**
 	 * @return the id

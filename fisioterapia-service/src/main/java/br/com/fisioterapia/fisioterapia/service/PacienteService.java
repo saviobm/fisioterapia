@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import br.com.fisioterapia.fisioterapia.dto.ConsultaDTO;
+import br.com.fisioterapia.fisioterapia.enums.EstadoCivilEnum;
 import br.com.fisioterapia.fisioterapia.modelo.Paciente;
 import br.com.fisioterapia.fisioterapia.repository.PacienteRepository;
 
@@ -44,5 +45,15 @@ public class PacienteService extends FisioterapiaService implements IPacienteSer
     	dtoRetorno.setTotalCount(Long.valueOf(listaRetorno.size()));
     	return dtoRetorno;
     }
+
+	public Paciente salvar(Paciente paciente) {
+		preencherEnums(paciente);
+		return pacienteRepository.save(paciente);
+	}
+
+	private void preencherEnums(Paciente paciente) {
+		EstadoCivilEnum estadoCivilEnum = EstadoCivilEnum.findByDescricaoEstadoCivil(paciente.getEstadoCivil());
+		paciente.setEstadoCivil(estadoCivilEnum.getSgEstadoCivil());
+	}
 
 }

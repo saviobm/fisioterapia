@@ -6,11 +6,11 @@ export class Paciente {
   nome: string;
   idade: number;
   estadoCivil: string;
-  sexo: Sexo;
+  sexo: string;
   ocupacao: string;
-  endereco: Endereco = new Endereco();
+  listaEndereco: Endereco[] = [];
   telefone: string;
   cpf: string;
-
+  ativo: boolean;
   constructor() {}
 }

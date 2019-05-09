@@ -4,11 +4,15 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 @Entity
 @Table(name = "paciente")
@@ -45,8 +49,12 @@ public class Paciente extends Fisioterapia {
 	@Column(name = "cpf", length = 11, nullable = false)
 	private String cpf;
 	
-	@OneToMany(mappedBy = "paciente")	
+	@OneToMany(mappedBy = "paciente", fetch = FetchType.LAZY)
+	@Cascade(CascadeType.ALL)
 	private List<Endereco> listaEndereco;
+	
+	@Column(name = "in_ativo")
+	private Boolean ativo = Boolean.TRUE;
 
 	/**
 	 * @return the id
@@ -174,4 +182,18 @@ public class Paciente extends Fisioterapia {
 		this.listaEndereco = listaEndereco;
 	}
 
+	/**
+	 * @return the ativo
+	 */
+	public Boolean getAtivo() {
+		return ativo;
+	}
+
+	/**
+	 * @param ativo the ativo to set
+	 */
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
+	}
+	
 }

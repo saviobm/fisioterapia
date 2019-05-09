@@ -32,7 +32,7 @@
           <label for="sexo">Sexo</label>
           <div class="form-group">
             <select class="form-control form-control-sm" required name="comboSexo" id="comboSexo" [(ngModel)]="paciente.sexo">
-              <option [(value)]="sexo" *ngFor="let sexo of listaSexo">{{ sexo.descricao }}</option>
+              <option [(value)]="sexo.sigla" *ngFor="let sexo of listaSexo">{{ sexo.descricao }}</option>
             </select>
           </div>
       </div>
@@ -45,50 +45,44 @@
       <div class="col">
         <label for="cep">Cep</label>
         <div class="form-group">
-            <input id="cep" name="cep" class="form-control form-control-sm" required [(ngModel)]="paciente.endereco.cep" #cep="ngModel" maxlength="9" placeHolder="Insira um CEP" mask="00000-000">
+            <input id="cep" name="cep" class="form-control form-control-sm" required [(ngModel)]="endereco.cep" #cep="ngModel" maxlength="9" placeHolder="Insira um CEP" mask="00000-000">
         </div>
       </div>
       <div class="col">
         <label for="endereco">Endereço</label>
         <div class="form-group">
-            <input id="endereco" name="endereco" class="form-control form-control-sm" required [(ngModel)]="paciente.endereco.descricaoEndereco" #endereco="ngModel" placeHolder="Insira um endereço">
+            <input id="descricaoEndereco" name="descricaoEndereco" class="form-control form-control-sm" required [(ngModel)]="endereco.descricaoEndereco" #descricaoEndereco="ngModel" placeHolder="Insira um endereço">
         </div>
       </div>
       <div class="col">
           <label for="complemento">Complemento</label>
           <div class="form-group">
-              <input id="complemento" name="complemento" class="form-control form-control-sm" required [(ngModel)]="paciente.endereco.complemento" #complemento="ngModel" maxlength="50" placeHolder="Insira um complemento">
+              <input id="complemento" name="complemento" class="form-control form-control-sm" required [(ngModel)]="endereco.complemento" #complemento="ngModel" maxlength="50" placeHolder="Insira um complemento">
           </div>
       </div>
       <div class="col">
-          <!--<label for="cidade">Cidade</label>
-          <div class="form-group">
-            <input id="cidade" name="cidade" class="form-control form-control-sm" required [(ngModel)]="paciente.endereco.cidade.nome" #cidade="ngModel" maxlength="50" minlength="4" placeHolder="Insira uma cidade para pesquisa">
-            <button class="btn btn-primary" (click)="listarCidades()">Pesquisar</button>
-          </div>-->
-          <label for="autoCompleteCidade">Cidade</label>
           <div class="form-group">
             <mat-form-field>
-              <input matInput class="form-control form-control-sm" placeHolder="Insira uma Cidade" aria-label="Number" [matAutocomplete]="autoCompleteCidade" [formControl]="cidadeCtrl" [(ngModel)]="paciente.endereco.cidade" name="cidade">
-              <mat-autocomplete #autoCompleteCidade="matAutocomplete">
-                <mat-option *ngFor="let cidade of listaCidade" [value]="cidade.nome">
-                  <span>{{ cidade.nome}}</span> | <small>Estado: {{ cidade.estado.sgEstado }}</small>
+              <input type="text" placeholder="Insira uma cidade" aria-label="Cidade" matInput [formControl]="myControl" [matAutocomplete]="auto" [(ngModel)]="endereco.cidade">
+              <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                <mat-option *ngFor="let cidade of listaCidade" [value]="cidade">
+                  {{ cidade.nome }} <span>| Estado: {{ cidade.estado.nome }}</span>
                 </mat-option>
               </mat-autocomplete>
             </mat-form-field>
           </div>
       </div>
     </div>
-    <div class="form-row">      
+    <div class="form-row">
       <div class="col sm-4">
         <label for="telefone">Telefone</label>
         <div class="form-group">
             <input id="telefone" name="telefone" class="form-control form-control-sm" required [(ngModel)]="paciente.telefone" #cep="ngModel" maxlength="15" placeHolder="Insira um telefone" mask="(00) 00000-0000">
         </div>
-      </div>      
+      </div>
     </div>
   </div>
-  <button type="submit" (clock)="salvar(this.pacienteForm);" class="btn btn-primary">Salvar</button>
+  <button type="submit" (click)="salvar(this.pacienteForm);" class="btn btn-primary btn-sm">Salvar</button>
 </ng-form>
 
 <div *ngIf="nome.invalid && (nome.dirty || nome.touched)" class="alert alert-danger">

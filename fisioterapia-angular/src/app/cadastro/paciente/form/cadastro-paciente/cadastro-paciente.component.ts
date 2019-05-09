@@ -1,3 +1,4 @@
+import { Endereco } from './../../../../model/endereco';
 import { map, startWith } from 'rxjs/operators';
 import { Paciente } from './../../../../model/paciente';
 import { Sexo } from './../../../../model/sexo';
@@ -24,29 +25,28 @@ export class CadastroPacienteComponent implements OnInit {
 
   listaCidade: Cidade[];
 
-  filteredOptionsCidade: Observable<Cidade[]>;
+  filteredOptions: Observable<Cidade[]>;
 
-  options: string[] = ['One', 'Two', 'Three'];
-  filteredOptions: Observable<string[]>;
+  public endereco: Endereco = new Endereco();
 
   myControl = new FormControl();
 
-  cidadeCtrl: FormControl = new FormControl();
-
-  listaSexo: Sexo[] = [ new Sexo('MASC', 'Masculino'), new Sexo('FEM', 'Feminino') ];
+  listaSexo: Sexo[] = [ new Sexo('M', 'Masculino'), new Sexo('F', 'Feminino') ];
 
   constructor(private pacienteService: PacienteService, private enumService: EnumService, private cidadeService: CidadeService) { }
 
   ngOnInit() {
     this.preencherCombos();
-      this.filteredOptions = this.myControl.valueChanges
+    this.filteredOptions = this.myControl.valueChanges
       .pipe(
-        startWith(''),
-        map(value => this._filter(value))
+        startWith<string | Cidade>(''),
+        map(value => typeof value === 'string' ? value : value.nome),
+        map(name => name ? this._filter(name) : this.listaCidade.slice())
       );
   }
 
   salvar(f: NgForm): void {
+    this.paciente.listaEndereco.push(this.endereco);
     this.pacienteService.salvar(this.paciente);
   }
 
@@ -60,38 +60,15 @@ export class CadastroPacienteComponent implements OnInit {
     this.cidadeService.findAll().subscribe(data => {
       this.listaCidade = data;
     });
-
-    // carrega a lista de cidades
-    this.cidadeCtrl.valueChanges.pipe(
-        startWith(''),
-        map(cidade => cidade ? this._filterCidade(cidade) : this.listaCidade.slice())
-      );
   }
 
-  /*private _filterCidade(value: string): Cidade[] {
+  private _filter(value: string): Cidade[] {
     const filterValue = value.toLowerCase();
-    return this.listaCidade.filter(cidade => cidade.nome.toLowerCase().indexOf(filterValue) === 0);
-  }*/
-
-  /*listarCidades(): void {
-    // carrega a lista de cidades
-    this.cidadeService.findByNomeContaining(this.paciente.endereco.cidade).subscribe(data => {
-      this.listaCidade = data;
-    });
-  }*/
+    return this.listaCidade.filter(option => option.nome.toLowerCase().includes(filterValue));
+  }
 
   displayFn(cidade?: Cidade): string | undefined {
     return cidade ? cidade.nome : undefined;
-  }
-
-  private _filterCidade(nome: string): Cidade[] {
-    const filterValue = nome.toLowerCase();
-    return this.listaCidade.filter(option => option.nome.toLowerCase().indexOf(filterValue) === 0);
-  }
-
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-    return this.options.filter(option => option.toLowerCase().includes(filterValue));
   }
 
 }

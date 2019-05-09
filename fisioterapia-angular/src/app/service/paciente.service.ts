@@ -1,4 +1,3 @@
-import { Cidade } from './../model/cidade';
 import { Paciente } from './../model/paciente';
 import { map, catchError } from 'rxjs/operators';
 import { Consulta } from './../model/consulta';
@@ -35,7 +34,7 @@ export class PacienteService extends FisioterapiaService {
   }
 
   salvar(paciente: Paciente): any {
-    this.http.put(this.url + '/salvar', paciente).pipe(
+    this.http.put(this.url + '/salvar', paciente).subscribe(
       map(res => {
         return res;
       }),
