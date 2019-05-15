@@ -58,12 +58,7 @@ export class CadastroPacienteComponent implements OnInit {
   salvar(f: NgForm): void {
     this.paciente.listaEndereco.push(this.endereco);
     this.pacienteService.salvar(this.paciente).subscribe(data => {
-      /*const mensagem: Mensagem = new Mensagem();
-      mensagem.titulo = 'Teste';
-      mensagem.mensagem = 'Paciente cadastrado com sucesso.';
-      this.openDialog(mensagem);*/
       const message: Message = new Message();
-      message.title = 'Mensagem de sucesso';
       message.message = 'Paciente cadastrado com sucesso.';
       this.openDialog(message);
     });
@@ -81,16 +76,6 @@ export class CadastroPacienteComponent implements OnInit {
       }
     });
   }
-
-  /*openDialog(mensagem: Mensagem): void {
-    const dialogRef = this.dialog.open(MensagemComponent, {
-      width: '250px',
-      data : { titulo: mensagem.titulo, mensagem: mensagem.mensagem },
-      mensagem : { mensagem }
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });*/
 
   preencherCombos(): void {
     // carrega a lista de estado civil
@@ -116,17 +101,5 @@ export class CadastroPacienteComponent implements OnInit {
   redirecionarPesquisaPaciente(): void {
     this.router.navigate(['/cadastro-paciente']);
   }
-
-  /*openDialog(mensagem: Mensagem): void {
-    const dialogRef = this.dialog.open(MensagemComponent, {
-      width: '250px',
-      data: { titulo: mensagem.titulo, mensagem: mensagem.mensagem}
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      this.redirecionarPesquisaPaciente();
-    });
-  }*/
-
-
 
 }
