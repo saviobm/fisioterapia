@@ -21,7 +21,7 @@ export class PacienteService extends FisioterapiaService {
 
   url: string = this.prefixUrl + '/paciente';
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient) {
     super();
   }
 
@@ -33,11 +33,8 @@ export class PacienteService extends FisioterapiaService {
     return this.http.post<Consulta>(this.url + '/findByNomeContaining', paciente);
   }
 
-  salvar(paciente: Paciente): any {
-    this.http.put<Paciente>(this.url + '/salvar', paciente).subscribe(data => {
-            this.router.navigate(['/cadastro-paciente']);
-            return data;
-          });
-  };
+  salvar(paciente: Paciente): Observable<Paciente> {
+    return this.http.put<Paciente>(this.url + '/salvar', paciente);
+  }
 
 }

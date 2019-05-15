@@ -40,6 +40,7 @@ import { PesquisaPacienteComponent } from './cadastro/paciente/form/pesquisa-pac
 import { CadastroPacienteComponent } from './cadastro/paciente/form/cadastro-paciente/cadastro-paciente.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AvaliacaoComponent } from './cadastro/avaliacao/avaliacao.component';
+import { MensagemComponent } from './mensagem/mensagem.component';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
@@ -49,7 +50,8 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     PacienteComponent,
     PesquisaPacienteComponent,
     CadastroPacienteComponent,
-    AvaliacaoComponent
+    AvaliacaoComponent,
+    MensagemComponent
   ],
   imports: [
     BrowserModule,
@@ -91,7 +93,11 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     ReactiveFormsModule,
     MatFormFieldModule,
     MatNativeDateModule,
+    MatDialogModule,
     NgxMaskModule.forRoot(options)
+  ],
+  entryComponents: [
+    MensagemComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
