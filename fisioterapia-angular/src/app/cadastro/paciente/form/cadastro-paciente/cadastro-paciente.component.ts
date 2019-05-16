@@ -56,9 +56,9 @@ export class CadastroPacienteComponent implements OnInit {
     // recuperando o paciente_id
     this.route
       .queryParamMap
-      .pipe(map(params => {
+      .subscribe(params => {
         this.paciente.id = parseInt(params.get('paciente_id')) || 0;
-      }));
+      });
     this.recuperarPaciente();
   }
 

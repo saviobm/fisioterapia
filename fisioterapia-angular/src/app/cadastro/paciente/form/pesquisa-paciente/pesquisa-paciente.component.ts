@@ -6,7 +6,7 @@ import {merge, Observable, of as observableOf} from 'rxjs';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import { PacienteService } from 'src/app/service/paciente.service';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-pesquisa-paciente',
@@ -79,7 +79,12 @@ export class PesquisaPacienteComponent implements AfterViewInit {
   }
 
   editar(paciente: Paciente): void {
-    this.router.navigate(['/form-cadastro-paciente'], { queryParams: { 'paciente_id': paciente.id } });
+    const navigationExtras: NavigationExtras = {
+      queryParams: {
+        'paciente_id': paciente.id
+      }
+    };
+    this.router.navigate(['/form-cadastro-paciente'], navigationExtras);
   }
 
 }
