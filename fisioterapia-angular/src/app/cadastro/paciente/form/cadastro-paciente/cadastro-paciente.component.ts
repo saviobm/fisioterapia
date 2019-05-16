@@ -1,6 +1,6 @@
 import { Message } from './../../../../model/message';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Endereco } from './../../../../model/endereco';
 import { map, startWith } from 'rxjs/operators';
 import { Paciente } from './../../../../model/paciente';
@@ -43,7 +43,7 @@ export class CadastroPacienteComponent implements OnInit {
   listaSexo: Sexo[] = [ new Sexo('M', 'Masculino'), new Sexo('F', 'Feminino') ];
 
   constructor(private pacienteService: PacienteService, private enumService: EnumService, private cidadeService: CidadeService,
-    private router: Router, public dialog: MatDialog) { }
+    private router: Router, public dialog: MatDialog, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.preencherCombos();
@@ -53,6 +53,20 @@ export class CadastroPacienteComponent implements OnInit {
         map(value => typeof value === 'string' ? value : value.nome),
         map(name => name ? this._filter(name) : this.listaCidade.slice())
       );
+    // recuperando o paciente_id
+    this.route
+      .queryParamMap
+      .pipe(map(params => {
+        this.paciente.id = parseInt(params.get('paciente_id')) || 0;
+      }));
+    this.recuperarPaciente();
+  }
+
+  recuperarPaciente() {
+    if (this.paciente && this.paciente.id) {
+      // recupera o paciente
+      this.pacienteService.findById(this.paciente);
+    }
   }
 
   salvar(f: NgForm): void {

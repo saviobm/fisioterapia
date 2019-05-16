@@ -40,5 +40,11 @@ public class PacienteRestController {
 	public PacienteDTO salvar(@RequestBody Paciente paciente) {
 		return pacienteService.salvar(paciente);
 	}
+	
+	
+	@RequestMapping(path = "/findById", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
+	public PacienteDTO findById(@RequestBody Paciente paciente) {
+		return pacienteService.findById(paciente);
+	}
 
 }

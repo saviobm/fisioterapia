@@ -2,6 +2,7 @@ package br.com.fisioterapia.fisioterapia.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -86,6 +87,14 @@ public class PacienteService extends FisioterapiaService implements IPacienteSer
     	dtoRetorno.setItems(convertListaPacienteDTO(listaRetorno));
     	dtoRetorno.setTotalCount(Long.valueOf(listaRetorno.size()));
     	return dtoRetorno;
+    }
+    
+    public PacienteDTO findById(Paciente paciente) {
+    	Optional<Paciente> optionalPaciente = pacienteRepository.findById(paciente.getId());
+    	if (optionalPaciente.isPresent()) {
+    		paciente = optionalPaciente.get();
+    	}
+    	return convertPacienteDTO(paciente);
     }
 
 	public PacienteDTO salvar(Paciente paciente) {

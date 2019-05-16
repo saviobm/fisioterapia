@@ -37,4 +37,8 @@ export class PacienteService extends FisioterapiaService {
     return this.http.put<Paciente>(this.url + '/salvar', paciente);
   }
 
+  findById(paciente: Paciente): Observable<Paciente> {
+    return this.http.post<Paciente>(this.url + 'findById', paciente);
+  }
+
 }
