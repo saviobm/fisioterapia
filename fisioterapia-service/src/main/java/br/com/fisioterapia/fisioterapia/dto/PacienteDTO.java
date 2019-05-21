@@ -18,7 +18,7 @@ public class PacienteDTO extends FisioterapiaDTO implements Serializable {
 	private String ocupacao;
 	private String telefone;
 	private String cpf;
-	private transient List<EnderecoDTO> listaEnderecoDTO;
+	private transient List<EnderecoDTO> listaEndereco;
 	private Boolean ativo = Boolean.TRUE;
 
 	/**
@@ -118,16 +118,16 @@ public class PacienteDTO extends FisioterapiaDTO implements Serializable {
 		this.cpf = cpf;
 	}
 	/**
-	 * @return the listaEnderecoDTO
+	 * @return the listaEndereco
 	 */
-	public List<EnderecoDTO> getListaEnderecoDTO() {
-		return listaEnderecoDTO;
+	public List<EnderecoDTO> getListaEndereco() {
+		return listaEndereco;
 	}
 	/**
-	 * @param listaEnderecoDTO the listaEnderecoDTO to set
+	 * @param listaEndereco the listaEndereco to set
 	 */
-	public void setListaEnderecoDTO(List<EnderecoDTO> listaEnderecoDTO) {
-		this.listaEnderecoDTO = listaEnderecoDTO;
+	public void setListaEndereco(List<EnderecoDTO> listaEndereco) {
+		this.listaEndereco = listaEndereco;
 	}
 	/**
 	 * @return the ativo

@@ -54,6 +54,7 @@ public class PacienteService extends FisioterapiaService implements IPacienteSer
 	 */
 	private PacienteDTO convertPacienteDTO(Paciente paciente) {
 		PacienteDTO pacienteDTO = new PacienteDTO();
+		BeanUtils.copyProperties(paciente, pacienteDTO);
 		if (paciente != null && !CollectionUtils.isEmpty(paciente.getListaEndereco())) {
 			List<EnderecoDTO> listaEndereco = new ArrayList<>();
 			EnderecoDTO enderecoDTO = null;
@@ -66,9 +67,8 @@ public class PacienteService extends FisioterapiaService implements IPacienteSer
 				enderecoDTO.setCidade(cidadeDTO);
 				listaEndereco.add(enderecoDTO);
 			}
-			pacienteDTO.setListaEnderecoDTO(listaEndereco);
+			pacienteDTO.setListaEndereco(listaEndereco);
 		}
-		BeanUtils.copyProperties(paciente, pacienteDTO);
 		return pacienteDTO;
 	}
 

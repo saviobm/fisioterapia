@@ -65,7 +65,20 @@ export class CadastroPacienteComponent implements OnInit {
   recuperarPaciente() {
     if (this.paciente && this.paciente.id) {
       // recupera o paciente
-      this.pacienteService.findById(this.paciente);
+      this.pacienteService.findById(this.paciente).subscribe(paciente => {
+        this.paciente = paciente;
+        this.preencherEndereco();
+      });
+    }
+  }
+
+  preencherEndereco(): void {
+    if (this.paciente.listaEndereco) {
+      for (const element of this.paciente.listaEndereco) {
+        if (element.ativo) {
+          this.endereco = element;
+        }
+      }
     }
   }
 
