@@ -13,6 +13,7 @@ import { EnumService } from 'src/app/service/enum.service';
 import { CidadeService } from 'src/app/service/cidade.service';
 import { Observable } from 'rxjs';
 import { MensagemComponent } from 'src/app/mensagem/mensagem.component';
+import { Enum } from 'src/app/model/enum';
 
 export class Mensagem {
   titulo: string;
@@ -30,7 +31,7 @@ export class CadastroPacienteComponent implements OnInit {
 
   pacienteForm: FormGroup;
 
-  listaEstadoCivil: string[] = [];
+  listaEstadoCivil: Enum[] = [];
 
   listaCidade: Cidade[];
 
@@ -83,6 +84,7 @@ export class CadastroPacienteComponent implements OnInit {
   }
 
   salvar(f: NgForm): void {
+    this.paciente.listaEndereco = [];
     this.paciente.listaEndereco.push(this.endereco);
     this.pacienteService.salvar(this.paciente).subscribe(data => {
       const message: Message = new Message();

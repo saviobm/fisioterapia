@@ -15,7 +15,7 @@
       <div class="col">
           <label for="idade">Idade</label>
           <div class="form-group">
-              <input id="idade" name="idade" class="form-control form-control-sm" required minlength="1" appForbiddenName="" [(ngModel)]="paciente.idade" #idade="ngModel" placeHolder="Insira uma idade">
+              <input id="idade" name="idade" class="form-control form-control-sm" required minlength="1" appForbiddenName="" [(ngModel)]="paciente.idade" #idade="ngModel" placeHolder="Insira uma idade" maxlength="3" mask="000">
           </div>
       </div>
     </div>
@@ -24,7 +24,7 @@
           <label for="comboEstadoCivil">Estado Civil</label>
           <div class="form-group">
               <select class="form-control form-control-sm" required name="comboEstadoCivil" id="comboEstadoCivil" [(ngModel)]="paciente.estadoCivil">
-                <option [(value)]="estadoCivil" *ngFor="let estadoCivil of listaEstadoCivil">{{ estadoCivil }}</option>
+                <option [(value)]="estadoCivil.sigla" *ngFor="let estadoCivil of listaEstadoCivil">{{ estadoCivil.descricao }}</option>
               </select>
           </div>
       </div>

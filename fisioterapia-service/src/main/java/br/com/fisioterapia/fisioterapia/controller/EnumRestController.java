@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.fisioterapia.fisioterapia.dto.EnumDTO;
 import br.com.fisioterapia.fisioterapia.enums.EstadoCivilEnum;
 
 @CrossOrigin(origins = "http://localhost:4201")
@@ -16,7 +17,7 @@ import br.com.fisioterapia.fisioterapia.enums.EstadoCivilEnum;
 public class EnumRestController {
 	
 	@RequestMapping(path = "/estadoCivil", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
-	public List<String> recuperarEstadoCivil() {
+	public List<EnumDTO> recuperarEstadoCivil() {
 		return EstadoCivilEnum.getValues();
 	}
 

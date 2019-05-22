@@ -16,6 +16,7 @@ import org.springframework.util.CollectionUtils;
 import br.com.fisioterapia.fisioterapia.dto.CidadeDTO;
 import br.com.fisioterapia.fisioterapia.dto.ConsultaDTO;
 import br.com.fisioterapia.fisioterapia.dto.EnderecoDTO;
+import br.com.fisioterapia.fisioterapia.dto.EstadoDTO;
 import br.com.fisioterapia.fisioterapia.dto.FisioterapiaDTO;
 import br.com.fisioterapia.fisioterapia.dto.PacienteDTO;
 import br.com.fisioterapia.fisioterapia.enums.EstadoCivilEnum;
@@ -59,11 +60,15 @@ public class PacienteService extends FisioterapiaService implements IPacienteSer
 			List<EnderecoDTO> listaEndereco = new ArrayList<>();
 			EnderecoDTO enderecoDTO = null;
 			CidadeDTO cidadeDTO = null;
+			EstadoDTO estadoDTO = null;
 			for (Endereco endereco : paciente.getListaEndereco()) {
 				enderecoDTO = new EnderecoDTO();
 				cidadeDTO = new CidadeDTO();
+				estadoDTO = new EstadoDTO();
 				BeanUtils.copyProperties(endereco.getCidade(), cidadeDTO);
 				BeanUtils.copyProperties(endereco, enderecoDTO);
+				BeanUtils.copyProperties(endereco.getCidade().getEstado(), estadoDTO);
+				cidadeDTO.setEstado(estadoDTO);
 				enderecoDTO.setCidade(cidadeDTO);
 				listaEndereco.add(enderecoDTO);
 			}
@@ -112,8 +117,8 @@ public class PacienteService extends FisioterapiaService implements IPacienteSer
 	}
 
 	private void preencherEnums(Paciente paciente) {
-		EstadoCivilEnum estadoCivilEnum = EstadoCivilEnum.findByDescricaoEstadoCivil(paciente.getEstadoCivil());
-		paciente.setEstadoCivil(estadoCivilEnum.getSgEstadoCivil());
+		EstadoCivilEnum estadoCivilEnum = EstadoCivilEnum.findBySiglaEstadoCivil(paciente.getEstadoCivil());
+		paciente.setEstadoCivil(estadoCivilEnum.getSigla());
 	}
 
 }
