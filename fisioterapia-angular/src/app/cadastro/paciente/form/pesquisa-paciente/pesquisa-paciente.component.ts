@@ -1,7 +1,10 @@
+import { MensagemComponent } from './../../../../mensagem/mensagem.component';
+import { Message } from './../../../../model/message';
+import { FisioterapiaUtil } from './../../../../util/FisioterapiaUtil';
 import { Paciente } from './../../../../model/paciente';
 import { Consulta } from './../../../../model/consulta';
 import {Component, ViewChild, AfterViewInit} from '@angular/core';
-import {MatPaginator, MatSort} from '@angular/material';
+import { MatPaginator, MatSort, MatDialog } from '@angular/material';
 import {merge, Observable, of as observableOf} from 'rxjs';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import { PacienteService } from 'src/app/service/paciente.service';
@@ -13,11 +16,13 @@ import { Router, NavigationExtras } from '@angular/router';
   templateUrl: './pesquisa-paciente.component.html',
   styleUrls: ['./pesquisa-paciente.component.css']
 })
-export class PesquisaPacienteComponent implements AfterViewInit {
+export class PesquisaPacienteComponent extends FisioterapiaUtil implements AfterViewInit {
 
-  constructor(private pacienteService: PacienteService, private router: Router) { }
+  constructor(private pacienteService: PacienteService, private router: Router, public dialog: MatDialog) {
+    super();
+  }
 
-  displayedColumns: string[] = ['id', 'nome'];
+  displayedColumns: string[] = ['id', 'nome', 'acao'];
 
   resultsLength = 0;
   isLoadingResults = true;
@@ -85,6 +90,29 @@ export class PesquisaPacienteComponent implements AfterViewInit {
       }
     };
     this.router.navigate(['/form-cadastro-paciente'], navigationExtras);
+  }
+
+  excluir(paciente: Paciente): void {
+    this.pacienteService.excluir(paciente).subscribe(result => {
+      if (result) {
+        const message: Message = new Message();
+        message.title = 'Exclusão';
+        message.message = 'Paciente excluso com sucesso.';
+        this.openDialog(message);
+      }
+    });
+  }
+
+  openDialog(message: Message): void {
+    const dialogRef = this.dialog.open(MensagemComponent, {
+      height: '400px',
+      width: '600px',
+      data: message
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+      }
+    });
   }
 
 }

@@ -46,5 +46,10 @@ public class PacienteRestController {
 	public PacienteDTO findById(@RequestBody Paciente paciente) {
 		return pacienteService.findById(paciente);
 	}
+	
+	@RequestMapping(path = "/excluir/{idPaciente}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.DELETE)
+	public Boolean excluir(@PathVariable("idPaciente") Long idPaciente) {
+		return Boolean.FALSE;
+	}
 
 }

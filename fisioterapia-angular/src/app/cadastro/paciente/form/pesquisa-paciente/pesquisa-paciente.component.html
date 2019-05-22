@@ -2,12 +2,15 @@
   <ng-form #formConsultaPaciente="ngForm" (ngSubmit)="onSubmit(formConsultaPaciente)">
     <div class="form-group">
       <div class="form-row">
-        <div class="col">
+        <div class="col-sm-2">
             <input [(ngModel)]="paciente.nome" name="nome" placeholder="Nome" required class="form-control form-control-sm">
         </div>
-        <div class="col">
-          <button (click)="onSubmit(formConsultaPaciente)" class="btn btn-primary btn-sm">Pesquisar</button>
-          <img src="../../../../images/add.gif" routerLink="/form-cadastro-paciente" class="img-thumbnail" alt="Adiciona Paciente">
+        <div class="col-sm-1">
+          <button mat-button (click)="onSubmit(formConsultaPaciente)" class="btn btn-primary btn-sm">Pesquisar</button>
+        </div>
+        <div class="col-sm-1">
+          <button mat-button routerLink="/form-cadastro-paciente" src="assets/img/add.gif" class="btn btn-primary btn-sm">Cadastrar</button>
+          <!--<img src="assets/img/add.gif" class="rounded" alt="Adiciona Paciente" routerLink="/form-cadastro-paciente">-->
         </div>
       </div>
     </div>
@@ -34,8 +37,13 @@
 
       <ng-container matColumnDef="nome">
         <th mat-header-cell *matHeaderCellDef>Nome</th>
+        <td mat-cell *matCellDef="let row"> {{row.nome}}</td>
+      </ng-container>
+      <ng-container matColumnDef="acao">
+        <th mat-header-cell *matHeaderCellDef>Ações</th>
         <td mat-cell *matCellDef="let row">
-          <a (click)="editar(row);"> {{row.nome}} </a>
+          <img src="assets/img/edit.gif" (click)="editar(row);" class="rounded" alt="Editar Paciente" routerLink="/form-cadastro-paciente">
+          <img src="assets/img/close.gif" (click)="excluir(row);" class="rounded" alt="Excluir Paciente">
         </td>
       </ng-container>
 

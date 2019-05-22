@@ -1,3 +1,4 @@
+import { FisioterapiaUtil } from './../../../../util/FisioterapiaUtil';
 import { Message } from './../../../../model/message';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -25,7 +26,7 @@ export class Mensagem {
   templateUrl: './cadastro-paciente.component.html',
   styleUrls: ['./cadastro-paciente.component.css']
 })
-export class CadastroPacienteComponent implements OnInit {
+export class CadastroPacienteComponent extends FisioterapiaUtil implements OnInit {
 
   paciente: Paciente = new Paciente();
 
@@ -44,7 +45,9 @@ export class CadastroPacienteComponent implements OnInit {
   listaSexo: Sexo[] = [ new Sexo('M', 'Masculino'), new Sexo('F', 'Feminino') ];
 
   constructor(private pacienteService: PacienteService, private enumService: EnumService, private cidadeService: CidadeService,
-    private router: Router, public dialog: MatDialog, private route: ActivatedRoute) { }
+    private router: Router, public dialog: MatDialog, private route: ActivatedRoute) {
+      super();
+    }
 
   ngOnInit() {
     this.preencherCombos();
