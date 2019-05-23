@@ -121,4 +121,14 @@ public class PacienteService extends FisioterapiaService implements IPacienteSer
 		paciente.setEstadoCivil(estadoCivilEnum.getSigla());
 	}
 
+	public Boolean delete(Long idPaciente) {
+		Optional<Paciente> resultado = pacienteRepository.findById(idPaciente);
+		if (resultado.isPresent()) {
+			Paciente paciente = resultado.get();
+			pacienteRepository.delete(paciente);
+			return Boolean.TRUE;
+		}
+		return Boolean.FALSE;
+	}
+
 }

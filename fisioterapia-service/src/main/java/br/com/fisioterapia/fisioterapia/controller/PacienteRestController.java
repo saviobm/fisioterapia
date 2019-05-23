@@ -49,7 +49,7 @@ public class PacienteRestController {
 	
 	@RequestMapping(path = "/excluir/{idPaciente}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.DELETE)
 	public Boolean excluir(@PathVariable("idPaciente") Long idPaciente) {
-		return Boolean.FALSE;
+		return pacienteService.delete(idPaciente);
 	}
 
 }

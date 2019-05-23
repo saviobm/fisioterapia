@@ -1,28 +1,34 @@
+import { NgxMaskModule } from 'ngx-mask';
 import { MensagemComponent } from './../../../../mensagem/mensagem.component';
 import { Message } from './../../../../model/message';
-import { FisioterapiaUtil } from './../../../../util/FisioterapiaUtil';
 import { Paciente } from './../../../../model/paciente';
 import { Consulta } from './../../../../model/consulta';
-import {Component, ViewChild, AfterViewInit} from '@angular/core';
-import { MatPaginator, MatSort, MatDialog } from '@angular/material';
+import { Component, ViewChild, AfterViewInit, OnInit } from '@angular/core';
+import { MatPaginator, MatSort, MatDialog, MatIconRegistry } from '@angular/material';
 import {merge, Observable, of as observableOf} from 'rxjs';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import { PacienteService } from 'src/app/service/paciente.service';
 import { NgForm } from '@angular/forms';
 import { Router, NavigationExtras } from '@angular/router';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-pesquisa-paciente',
   templateUrl: './pesquisa-paciente.component.html',
   styleUrls: ['./pesquisa-paciente.component.css']
 })
-export class PesquisaPacienteComponent extends FisioterapiaUtil implements AfterViewInit {
+export class PesquisaPacienteComponent implements AfterViewInit, OnInit {
 
-  constructor(private pacienteService: PacienteService, private router: Router, public dialog: MatDialog) {
-    super();
+  constructor(private pacienteService: PacienteService, private router: Router, public dialog: MatDialog, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
+    iconRegistry.addSvgIcon(
+      'fisioterapia-edit',
+      sanitizer.bypassSecurityTrustResourceUrl('../../../../../assets/img/edit.gif'));
+    iconRegistry.addSvgIcon(
+      'fisioterapia-delete',
+        sanitizer.bypassSecurityTrustResourceUrl('assets/img/close.gif'));
   }
 
-  displayedColumns: string[] = ['id', 'nome', 'acao'];
+  displayedColumns: string[] = ['cpf', 'nome', 'acao'];
 
   resultsLength = 0;
   isLoadingResults = true;
@@ -34,6 +40,8 @@ export class PesquisaPacienteComponent extends FisioterapiaUtil implements After
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+
+  ngOnInit() { }
 
   ngAfterViewInit() {
     // If the user changes the sort order, reset back to the first page.
@@ -97,7 +105,7 @@ export class PesquisaPacienteComponent extends FisioterapiaUtil implements After
       if (result) {
         const message: Message = new Message();
         message.title = 'Exclusão';
-        message.message = 'Paciente excluso com sucesso.';
+        message.message = 'Paciente deletado com sucesso.';
         this.openDialog(message);
       }
     });
@@ -111,6 +119,7 @@ export class PesquisaPacienteComponent extends FisioterapiaUtil implements After
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+        this.router.navigate(['/cadastro-paciente']);
       }
     });
   }

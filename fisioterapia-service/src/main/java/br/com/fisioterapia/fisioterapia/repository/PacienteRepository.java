@@ -17,5 +17,6 @@ public interface PacienteRepository extends PagingAndSortingRepository<Paciente,
 	Page<Paciente> findAll(Pageable pageable);
 	List<Paciente> findByNomeContaining(String nome);
 	Optional<Paciente> findById(Long primaryKey);
+	void delete(Paciente paciente);
 
 }
