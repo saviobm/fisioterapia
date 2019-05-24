@@ -42,3 +42,8 @@ table {
 .mat-column-created {
   max-width: 124px;
 }
+
+
+.mat-row-backgroud-color {
+  background-color: #b3fff0;
+}

@@ -41,6 +41,10 @@ export class PesquisaPacienteComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
+  arrayClassRow: string[] = [];
+
+  pacienteSelecionado: Paciente = new Paciente();
+
   ngOnInit() { }
 
   ngAfterViewInit() {
@@ -122,6 +126,16 @@ export class PesquisaPacienteComponent implements AfterViewInit, OnInit {
         this.router.navigate(['/cadastro-paciente']);
       }
     });
+  }
+
+  selecionarPaciente(paciente: Paciente, index: number): void {
+    this.pacienteSelecionado = paciente;
+    if (this.arrayClassRow[index] && this.arrayClassRow[index] === 'mat-row-backgroud-color') {
+      this.arrayClassRow[index] = '';
+    } else {
+      this.arrayClassRow = [];
+      this.arrayClassRow[index] = 'mat-row-backgroud-color';
+    }
   }
 
 }
