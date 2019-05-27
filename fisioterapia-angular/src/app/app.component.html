@@ -1,5 +1,8 @@
-<nav>
-  <a routerLink="/cadastro-paciente">Paciente</a>
-</nav>
+<button mat-button [matMenuTriggerFor]="menusPaciente">Paciente</button>
+
+<mat-menu #menusPaciente="matMenu">
+  <button mat-menu-item routerLink='/form-cadastro-paciente'>Cadastrar</button>
+  <button mat-menu-item routerLink='/form-pesquisa-paciente'>Pesquisar</button>
+</mat-menu>
 
 <router-outlet></router-outlet>

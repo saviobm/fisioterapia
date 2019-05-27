@@ -1,11 +1,11 @@
 import { CadastroPacienteComponent } from './cadastro/paciente/form/cadastro-paciente/cadastro-paciente.component';
-import { PacienteComponent } from './cadastro/paciente/paciente.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { PesquisaPacienteComponent } from './cadastro/paciente/form/pesquisa-paciente/pesquisa-paciente.component';
 
 const routes: Routes = [
-  { path: 'cadastro-paciente', component: PacienteComponent },
-  { path: 'form-cadastro-paciente', component: CadastroPacienteComponent }
+  { path: 'form-cadastro-paciente', component: CadastroPacienteComponent },
+  { path: 'form-pesquisa-paciente', component: PesquisaPacienteComponent }
 ];
 
 @NgModule({

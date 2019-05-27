@@ -28,7 +28,7 @@ export class PesquisaPacienteComponent implements AfterViewInit, OnInit {
         sanitizer.bypassSecurityTrustResourceUrl('assets/img/close.gif'));
   }
 
-  displayedColumns: string[] = ['cpf', 'nome', 'acao'];
+  displayedColumns: string[] = ['cpf', 'nome'];
 
   resultsLength = 0;
   isLoadingResults = true;
@@ -95,24 +95,48 @@ export class PesquisaPacienteComponent implements AfterViewInit, OnInit {
     this.resultsLength = data.totalCount;
   }
 
-  editar(paciente: Paciente): void {
-    const navigationExtras: NavigationExtras = {
-      queryParams: {
-        'paciente_id': paciente.id
-      }
-    };
-    this.router.navigate(['/form-cadastro-paciente'], navigationExtras);
+  editar(): void {
+    if (this.pacienteSelecionado != null && this.pacienteSelecionado.id != null) {
+      const navigationExtras: NavigationExtras = {
+        queryParams: {
+          'paciente_id': this.pacienteSelecionado.id
+        }
+      };
+      this.router.navigate(['/form-cadastro-paciente'], navigationExtras);
+    } else {
+      this.lancarMsgSelecao();
+    }
   }
 
-  excluir(paciente: Paciente): void {
-    this.pacienteService.excluir(paciente).subscribe(result => {
-      if (result) {
-        const message: Message = new Message();
-        message.title = 'Exclusão';
-        message.message = 'Paciente deletado com sucesso.';
-        this.openDialog(message);
-      }
-    });
+  lancarMsgSelecao(): void {
+    const message: Message = new Message();
+    message.title = '';
+    message.message = 'Selecione um paciente antes da ação.';
+    this.openDialog(message);
+  }
+
+  excluir(): void {
+    if (this.pacienteSelecionado != null && this.pacienteSelecionado.id != null) {
+      this.pacienteService.excluir(this.pacienteSelecionado).subscribe(result => {
+        if (result) {
+          const message: Message = new Message();
+          message.title = 'Exclusão';
+          message.message = 'Paciente deletado com sucesso.';
+          const dialogRef = this.dialog.open(MensagemComponent, {
+            height: '400px',
+            width: '600px',
+            data: message
+          });
+          dialogRef.afterClosed().subscribe(result1 => {
+            if (result1) {
+              this.onSubmit(null);
+            }
+          });
+        }
+      });
+    } else {
+      this.lancarMsgSelecao();
+    }
   }
 
   openDialog(message: Message): void {
@@ -123,7 +147,7 @@ export class PesquisaPacienteComponent implements AfterViewInit, OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.router.navigate(['/cadastro-paciente']);
+       // this.router.navigate(['/form-cadastro-paciente']);
       }
     });
   }

@@ -131,7 +131,7 @@ export class CadastroPacienteComponent extends FisioterapiaUtil implements OnIni
   }
 
   redirecionarPesquisaPaciente(): void {
-    this.router.navigate(['/cadastro-paciente']);
+    this.router.navigate(['/form-pesquisa-paciente']);
   }
 
 }

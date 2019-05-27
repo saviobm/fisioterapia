@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import {NgxMaskModule, IConfig} from 'ngx-mask';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PacienteComponent } from './cadastro/paciente/paciente.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSpinner, MatHeaderRowDef, MatRowDef, MatPaginator, MatTable, MatOption, MatFormField, MatPseudoCheckbox,
    MatProgressSpinnerModule, MatPaginatorModule, MatSortModule, MatTableModule, MatNativeDateModule } from '@angular/material';
@@ -47,7 +46,6 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 @NgModule({
   declarations: [
     AppComponent,
-    PacienteComponent,
     PesquisaPacienteComponent,
     CadastroPacienteComponent,
     AvaliacaoComponent,
