@@ -4,7 +4,7 @@ export class Avaliacao {
 
   id: number;
   dataAvaliacao: Date;
-  paciente: Paciente;
+  paciente: Paciente = new Paciente();
 
   constructor() { }
 

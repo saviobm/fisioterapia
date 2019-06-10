@@ -31,6 +31,29 @@ public class Avaliacao extends Fisioterapia {
 	@ManyToOne
 	@JoinColumn(columnDefinition = "paciente_id", referencedColumnName = "id")
 	private Paciente paciente;
+	
+	@ManyToOne
+	@JoinColumn(columnDefinition = "patologia_id", referencedColumnName = "id")
+	private Patologia patologia;
+	
+	@Column(name = "cid")
+	private String cid;
+	
+	@Column(name = "desc_uso_medicamentos")
+	private String descricaoUsoMedicamentos;
+	
+	@Column(name = "desc_princ_queixas")
+	private String descricaoPrincipaisQueixas;
+	
+	@Column(name = "hma")
+	private String descricaoHMA;
+	
+	@ManyToOne
+	@JoinColumn(columnDefinition = "mini_mental_id", referencedColumnName = "id")
+	private MiniMental miniMental;
+	
+	@Column(name = "desc_aspecto_secrecao")
+	private String descricaoAspectoSecrecao;
 
 	/**
 	 * @return the id
@@ -73,5 +96,104 @@ public class Avaliacao extends Fisioterapia {
 	public void setPaciente(Paciente paciente) {
 		this.paciente = paciente;
 	}
+
+	/**
+	 * @return the patologia
+	 */
+	public Patologia getPatologia() {
+		return patologia;
+	}
+
+	/**
+	 * @param patologia the patologia to set
+	 */
+	public void setPatologia(Patologia patologia) {
+		this.patologia = patologia;
+	}
+
+	/**
+	 * @return the cid
+	 */
+	public String getCid() {
+		return cid;
+	}
+
+	/**
+	 * @param cid the cid to set
+	 */
+	public void setCid(String cid) {
+		this.cid = cid;
+	}
+
+	/**
+	 * @return the descricaoUsoMedicamentos
+	 */
+	public String getDescricaoUsoMedicamentos() {
+		return descricaoUsoMedicamentos;
+	}
+
+	/**
+	 * @param descricaoUsoMedicamentos the descricaoUsoMedicamentos to set
+	 */
+	public void setDescricaoUsoMedicamentos(String descricaoUsoMedicamentos) {
+		this.descricaoUsoMedicamentos = descricaoUsoMedicamentos;
+	}
+
+	/**
+	 * @return the descricaoPrincipaisQueixas
+	 */
+	public String getDescricaoPrincipaisQueixas() {
+		return descricaoPrincipaisQueixas;
+	}
+
+	/**
+	 * @param descricaoPrincipaisQueixas the descricaoPrincipaisQueixas to set
+	 */
+	public void setDescricaoPrincipaisQueixas(String descricaoPrincipaisQueixas) {
+		this.descricaoPrincipaisQueixas = descricaoPrincipaisQueixas;
+	}
+
+	/**
+	 * @return the descricaoHMA
+	 */
+	public String getDescricaoHMA() {
+		return descricaoHMA;
+	}
+
+	/**
+	 * @param descricaoHMA the descricaoHMA to set
+	 */
+	public void setDescricaoHMA(String descricaoHMA) {
+		this.descricaoHMA = descricaoHMA;
+	}
+
+	/**
+	 * @return the miniMental
+	 */
+	public MiniMental getMiniMental() {
+		return miniMental;
+	}
+
+	/**
+	 * @param miniMental the miniMental to set
+	 */
+	public void setMiniMental(MiniMental miniMental) {
+		this.miniMental = miniMental;
+	}
+
+	/**
+	 * @return the descricaoAspectoSecrecao
+	 */
+	public String getDescricaoAspectoSecrecao() {
+		return descricaoAspectoSecrecao;
+	}
+
+	/**
+	 * @param descricaoAspectoSecrecao the descricaoAspectoSecrecao to set
+	 */
+	public void setDescricaoAspectoSecrecao(String descricaoAspectoSecrecao) {
+		this.descricaoAspectoSecrecao = descricaoAspectoSecrecao;
+	}
 	
 }
+	

@@ -1,8 +1,15 @@
 <button mat-button [matMenuTriggerFor]="menusPaciente">Paciente</button>
 
 <mat-menu #menusPaciente="matMenu">
-  <button mat-menu-item routerLink='/form-cadastro-paciente'>Cadastrar</button>
   <button mat-menu-item routerLink='/form-pesquisa-paciente'>Pesquisar</button>
+  <button mat-menu-item routerLink='/form-cadastro-paciente'>Cadastrar</button>
+</mat-menu>
+
+<button mat-button [matMenuTriggerFor]="menusAvaliacao">Avaliação</button>
+
+<mat-menu #menusAvaliacao="matMenu">
+  <button mat-menu-item routerLink='/form-pesquisa-avaliacao'>Pesquisar</button>
+  <button mat-menu-item routerLink='/form-cadastro-avaliacao'>Cadastrar</button>
 </mat-menu>
 
 <router-outlet></router-outlet>

@@ -36,6 +36,14 @@ public class PacienteRestController {
 		return pacienteService.findAll();
 	}
 	
+	@RequestMapping(path = "/pesquisarPaciente", consumes = MediaType.APPLICATION_JSON_VALUE,  produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
+	public ConsultaDTO pesquisarPaciente(@RequestBody Paciente paciente) {	
+		if (paciente != null) {
+			return pacienteService.pesquisarPaciente(paciente);
+		}
+		return null;
+	}
+	
 	@RequestMapping(path = "/salvar", consumes = MediaType.APPLICATION_JSON_VALUE,  produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.PUT)
 	public PacienteDTO salvar(@RequestBody Paciente paciente) {
 		return pacienteService.salvar(paciente);

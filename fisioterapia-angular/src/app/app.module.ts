@@ -38,8 +38,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { PesquisaPacienteComponent } from './cadastro/paciente/form/pesquisa-paciente/pesquisa-paciente.component';
 import { CadastroPacienteComponent } from './cadastro/paciente/form/cadastro-paciente/cadastro-paciente.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AvaliacaoComponent } from './cadastro/avaliacao/avaliacao.component';
 import { MensagemComponent } from './mensagem/mensagem.component';
+import { CadastroAvaliacaoComponent } from './cadastro/avaliacao/form/cadastro-avaliacao/cadastro-avaliacao.component';
+import { PesquisaAvaliacaoComponent } from './cadastro/avaliacao/form/pesquisa-avaliacao/pesquisa-avaliacao.component';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
@@ -48,8 +49,9 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     AppComponent,
     PesquisaPacienteComponent,
     CadastroPacienteComponent,
-    AvaliacaoComponent,
-    MensagemComponent
+    MensagemComponent,
+    CadastroAvaliacaoComponent,
+    PesquisaAvaliacaoComponent
   ],
   imports: [
     BrowserModule,

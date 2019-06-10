@@ -45,4 +45,8 @@ export class PacienteService extends FisioterapiaService {
     return this.http.delete<boolean>(this.url + '/excluir/' + paciente.id);
   }
 
+  pesquisarPaciente(paciente: Paciente):  Observable<Consulta> {
+    return this.http.post<Consulta>(this.url + '/pesquisarPaciente', paciente);
+  }
+
 }

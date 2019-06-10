@@ -6,12 +6,17 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
 import br.com.fisioterapia.fisioterapia.dto.CidadeDTO;
 import br.com.fisioterapia.fisioterapia.dto.ConsultaDTO;
@@ -23,12 +28,16 @@ import br.com.fisioterapia.fisioterapia.enums.EstadoCivilEnum;
 import br.com.fisioterapia.fisioterapia.modelo.Endereco;
 import br.com.fisioterapia.fisioterapia.modelo.Paciente;
 import br.com.fisioterapia.fisioterapia.repository.PacienteRepository;
+import br.com.fisioterapia.fisioterapia.util.FisioterapiaUtil;
 
 @Service
 public class PacienteService extends FisioterapiaService implements IPacienteService {
 	
     @Autowired
     private PacienteRepository pacienteRepository;
+    
+    @PersistenceContext
+    private EntityManager entityManager;
     
     public ConsultaDTO listar(String direction, Integer pageIndex) {
     	PageRequest pageRequest = criarPageRequest(direction, pageIndex);
@@ -129,6 +138,45 @@ public class PacienteService extends FisioterapiaService implements IPacienteSer
 			return Boolean.TRUE;
 		}
 		return Boolean.FALSE;
+	}
+
+	@SuppressWarnings("unchecked")
+	public ConsultaDTO pesquisarPaciente(Paciente paciente) {
+		StringBuilder sb = new StringBuilder();
+		sb.append(" from Paciente where 1 = 1");
+		if (!StringUtils.isEmpty(paciente.getCpf())) {
+			sb.append(" and cpf = :cpf");
+		}
+		Query query = getEntityManager().createQuery(sb.toString());
+		if (!StringUtils.isEmpty(paciente.getCpf())) {
+			query.setParameter("cpf", FisioterapiaUtil.retirarMascaraCpf(paciente.getCpf()));
+		}
+		List<Paciente> listaRetultado = (List<Paciente>)query.getResultList();
+		if (!listaRetultado.isEmpty()) {
+			return preencherConsultaDTO(listaRetultado);
+		}
+		return null;
+	}
+
+	/**
+	 * @return the entityManager
+	 */
+	public EntityManager getEntityManager() {
+		return entityManager;
+	}
+
+	/**
+	 * @param entityManager the entityManager to set
+	 */
+	public void setEntityManager(EntityManager entityManager) {
+		this.entityManager = entityManager;
+	}
+	
+	private ConsultaDTO preencherConsultaDTO(List<Paciente> listaPaciente) {
+		ConsultaDTO dtoRetorno = new ConsultaDTO();
+		dtoRetorno.setItems(convertListaPacienteDTO(listaPaciente));
+    	dtoRetorno.setTotalCount(Long.valueOf(listaPaciente.size()));
+    	return dtoRetorno;
 	}
 
 }
