@@ -39,6 +39,9 @@ public class Avaliacao extends Fisioterapia {
 	@Column(name = "cid")
 	private String cid;
 	
+	@Column(name = "desc_ocupacao")
+	private String descricaoOcupacao;
+	
 	@Column(name = "desc_uso_medicamentos")
 	private String descricaoUsoMedicamentos;
 	
@@ -126,6 +129,20 @@ public class Avaliacao extends Fisioterapia {
 	}
 
 	/**
+	 * @return the descricaoOcupacao
+	 */
+	public String getDescricaoOcupacao() {
+		return descricaoOcupacao;
+	}
+
+	/**
+	 * @param descricaoOcupacao the descricaoOcupacao to set
+	 */
+	public void setDescricaoOcupacao(String descricaoOcupacao) {
+		this.descricaoOcupacao = descricaoOcupacao;
+	}
+
+	/**
 	 * @return the descricaoUsoMedicamentos
 	 */
 	public String getDescricaoUsoMedicamentos() {
@@ -194,6 +211,6 @@ public class Avaliacao extends Fisioterapia {
 	public void setDescricaoAspectoSecrecao(String descricaoAspectoSecrecao) {
 		this.descricaoAspectoSecrecao = descricaoAspectoSecrecao;
 	}
-	
+
 }
 	

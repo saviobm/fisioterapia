@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { MatMomentDateModule, MomentDateAdapter } from "@angular/material-moment-adapter";
 
 import {NgxMaskModule, IConfig} from 'ngx-mask';
 import { AppRoutingModule } from './app-routing.module';
@@ -94,6 +95,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     MatFormFieldModule,
     MatNativeDateModule,
     MatDialogModule,
+    MatMomentDateModule,
     NgxMaskModule.forRoot(options)
   ],
   entryComponents: [

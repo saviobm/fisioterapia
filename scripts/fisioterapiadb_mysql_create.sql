@@ -49,6 +49,7 @@ CREATE TABLE avaliacao (
 	data_avaliacao DATETIME NOT NULL,
 	patologia_id int NULL,
 	cid VARCHAR(200) NULL,
+	desc_ocupacao TEXT NULL,
 	desc_uso_medicamentos TEXT NULL,
 	desc_princ_queixas TEXT NULL,
 	hma TEXT NULL,		

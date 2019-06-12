@@ -1,3 +1,4 @@
+import { Endereco } from './../../../../model/endereco';
 import { MensagemComponent } from 'src/app/mensagem/mensagem.component';
 import { Message } from './../../../../model/message';
 import { MatDialog } from '@angular/material';
@@ -5,17 +6,34 @@ import { Mensagem } from './../../../paciente/form/cadastro-paciente/cadastro-pa
 import { PacienteService } from './../../../../service/paciente.service';
 import { Avaliacao } from './../../../../model/avaliacao';
 import { Component, OnInit } from '@angular/core';
+import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-moment-adapter';
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+import { Patologia } from 'src/app/model/patologia';
+import { PatologiaService } from 'src/app/service/patologia.service';
 
 @Component({
   selector: 'app-cadastro-avaliacao',
   templateUrl: './cadastro-avaliacao.component.html',
-  styleUrls: ['./cadastro-avaliacao.component.css']
+  styleUrls: ['./cadastro-avaliacao.component.css'],
+  providers: [
+    // The locale would typically be provided on the root module of your application. We do it at
+    // the component level here, due to limitations of our example generation script.
+    {provide: MAT_DATE_LOCALE, useValue: 'br-BR'},
+    // `MomentDateAdapter` and `MAT_MOMENT_DATE_FORMATS` can be automatically provided by importing
+    // `MatMomentDateModule` in your applications root module. We provide it at the component level
+    // here, due to limitations of our example generation script.
+    {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
+    {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS}
+  ],
 })
 export class CadastroAvaliacaoComponent implements OnInit {
 
-  constructor(private pacienteService: PacienteService, private dialog: MatDialog) { }
+  constructor(private pacienteService: PacienteService, private dialog: MatDialog, private _adapter: DateAdapter<any>,
+    private patologiaService: PatologiaService) { }
 
   avaliacao: Avaliacao = new Avaliacao();
+
+  listaPatologia: Patologia[] = [];
 
   ngOnInit() {
     this.inicializarVariaveis();
@@ -23,6 +41,7 @@ export class CadastroAvaliacaoComponent implements OnInit {
 
   inicializarVariaveis(): void {
     this.avaliacao = new Avaliacao();
+    this.inicializarCombos();
   }
 
   pesquisarPaciente() {
@@ -49,6 +68,22 @@ export class CadastroAvaliacaoComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) { }
+    });
+  }
+
+  preencherEndereco(): string {
+    if (this.avaliacao.paciente.listaEndereco) {
+      let endereco: Endereco = this.avaliacao.paciente.listaEndereco[0];
+      if (endereco) {
+        return endereco.descricaoEndereco + ' ' + endereco.cidade.nome + ' ' + endereco.cidade.estado.sgEstado;
+      }
+      return '';
+    }
+  }
+
+  inicializarCombos(): void {
+    this.patologiaService.listarPatologias().subscribe(data => {
+      this.listaPatologia = data;
     });
   }
 
