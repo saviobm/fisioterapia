@@ -3,49 +3,50 @@
     <div class="form-row">
       <div class="col-sm-2">
         <label for="cpf">CPF</label>
-        <div class="form-group">
-           <input id="cpf" name="cpf" class="form-control form-control-sm" required minlength="14" appForbiddenName="" [(ngModel)]="avaliacao.paciente.cpf" #cpf="ngModel" placeHolder="Insira um CPF" mask="000.000.000-00">
-        </div>
+        <input id="cpf" name="cpf" class="form-control form-control-sm" required minlength="14" appForbiddenName="" [(ngModel)]="avaliacao.paciente.cpf" #cpf="ngModel" placeHolder="Insira um CPF" mask="000.000.000-00">
       </div>
-      <div class="col-sm-1">
-        <div class="form-group">
-          <button mat-button (click)="pesquisarPaciente()" class="btn btn-primary btn-sm">Pesquisar</button>
-        </div>
-      </div>
-      <div class="col-sm-1">
+      <div class="col-sm-1 align-self-end">
+        <button mat-button (click)="pesquisarPaciente()" class="btn btn-primary btn-sm">Pesquisar</button>
       </div>
     </div>
+  </div>
+  <div class="form-group">
     <div class="form-row">
       <div class="col-sm-8">
         <label for="nome">Nome</label>
-        <input id="nome" name="nome" class="form-control form-control-sm" required [(ngModel)]="avaliacao.paciente.nome" #nome="ngModel" placeHolder="Nome">
+        <input id="nome" disabled name="nome" class="form-control form-control-sm" required [(ngModel)]="avaliacao.paciente.nome" #nome="ngModel" placeHolder="Nome">
       </div>
-      <div class="col-sm-3">
+      <div class="col-sm-4">
           <label for="nome">Idade</label>
-          <input id="idade" name="idade" class="form-control form-control-sm" required [(ngModel)]="avaliacao.paciente.idade" #idade="ngModel" placeHolder="Idade">
+          <input id="idade" disabled name="idade" class="form-control form-control-sm" required [(ngModel)]="avaliacao.paciente.idade" #idade="ngModel" placeHolder="Idade" maxlength="3">
         </div>
     </div>
+  </div>
+  <div class="form-group">
     <div class="form-row">
       <div class="col-sm-4">
         <label for="estadoCivil">Estado Civil</label>
-        <input id="estadoCivil" name="estadoCivil" class="form-control form-control-sm" required [(ngModel)]="avaliacao.paciente.estadoCivil" #estadoCivil="ngModel" placeHolder="Estado Civil">
+        <input id="estadoCivil" disabled name="estadoCivil" class="form-control form-control-sm" required [(ngModel)]="descricaoEstadoCivil" #estadoCivil="ngModel" placeHolder="Estado Civil">
       </div>
       <div class="col-sm-8">
         <label for="ocupacao">Ocupação</label>
         <input id="ocupacao" name="ocupacao" class="form-control form-control-sm" required [(ngModel)]="avaliacao.descricaoOcupacao" #ocupacao="ngModel" placeHolder="Ocupação">
       </div>
     </div>
+  </div>
+  <div class="form-group">
     <div class="form-row">
       <div class="col-sm-8">
           <label for="endereco">Endereço</label><BR>
-          <!--<input id="endereco" name="endereco" class="form-control form-control-sm" required [(ngModel)]="avaliacao.paciente.endereco[0].descricaoEndereco" #endereco="ngModel" placeHolder="Endereço">-->
-          {{ preencherEndereco() }}
+          <input id="endereco" disabled name="endereco" #endereco="ngModel" class="form-control form-control-sm" required [(ngModel)]="descricaoEndereco" #endereco="ngModel" placeHolder="Endereço">
       </div>
       <div class="col-sm-4">
           <label for="telefone">Telefone</label>
-          <input id="telefone" name="telefone" class="form-control form-control-sm" required [(ngModel)]="avaliacao.paciente.telefone" #telefone="ngModel" placeHolder="Telefone">
+          <input id="telefone" disabled name="telefone" class="form-control form-control-sm" required [(ngModel)]="avaliacao.paciente.telefone" #telefone="ngModel" placeHolder="Telefone" mask="(00) 00000-0000">
       </div>
     </div>
+  </div>
+  <div class="form-group">
     <div class="form-row">
       <div class="col-sm-12">
         <mat-form-field>
@@ -55,15 +56,63 @@
         </mat-form-field>
       </div>
     </div>
+  </div>
+  <div class="form-group">
     <div class="form-row">
-      <div class="col-sm-12">
+      <div class="col-sm-4">
         <label for="comboPatologia">Diagnóstico Clínico</label>
         <div class="form-group">
             <select class="form-control form-control-sm" required name="comboPatologia" id="comboPatologia" [(ngModel)]="avaliacao.patologia">
-              <option [(value)]="avaliacao.patologia.sigla" *ngFor="let patologia of listaPatologia">{{ patologia.descricao }}</option>
+              <option [(value)]="avaliacao.patologia"></option>
+              <option [(value)]="avaliacao.patologia" *ngFor="let patologia of listaPatologia">{{ patologia.descricao }}</option>
             </select>
         </div>
       </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-row">
+      <div class="col-sm-12">
+        <label for="descDiagFisio">Diagnóstico Fisioterapêutico</label>
+        <input id="descDiagFisio" name="descDiagFisio" class="form-control form-control-sm" required [(ngModel)]="avaliacao.descDiagFisioterapeutico" #descDiagFisio="ngModel" placeHolder="Diagnóstico Fisioterapêutico">
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-row">
+      <div class="col-sm-12">
+        <label for="nome">CID</label>
+        <input id="cid" name="cid" class="form-control form-control-sm" required [(ngModel)]="avaliacao.cid" #cid="ngModel" placeHolder="CID">
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-row">
+      <div class="col-sm-12">
+        <label for="descMedicamentosUso">Medicamentos em uso</label>
+        <textarea matInput id="descMedicamentosUso" class="form-control form-control-sm" name="descMedicamentosUso" [(ngModel)]="avaliacao.descricaoUsoMedicamentos" #descMedicamentosUso="ngModel" placeHolder="Medicamentos em uso"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-row">
+      <div class="col-sm-12">
+        <label for="descQueixasPrincipais">Queixas principais</label>
+        <textarea matInput id="descQueixasPrincipais" class="form-control form-control-sm" name="descQueixasPrincipais" [(ngModel)]="avaliacao.descricaoPrincipaisQueixas" #descQueixasPrincipais="ngModel" placeHolder="Queixas Principais"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-row">
+      <div class="col-sm-12">
+        <label for="descHMA">HMA</label>
+        <textarea matInput id="descHMA" class="form-control form-control-sm" name="descHMA" [(ngModel)]="avaliacao.descricaoHMA" #descHMA="ngModel" placeHolder="HMA"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-row">
+      <mat-checkbox id="ckHabitoVicio{{i}}" name="ckHabitoVicio{{i}}" class="col-sm" *ngFor="let habitosVicios of listaHabitosVicios; let i = index">{{ habitosVicios }}</mat-checkbox>
     </div>
   </div>
 </ng-form>

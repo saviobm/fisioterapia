@@ -36,6 +36,9 @@ public class Avaliacao extends Fisioterapia {
 	@JoinColumn(columnDefinition = "patologia_id", referencedColumnName = "id")
 	private Patologia patologia;
 	
+	@Column(name = "desc_diag_fisioterapeutico")
+	private String descDiagFisioterapeutico;
+	
 	@Column(name = "cid")
 	private String cid;
 	
@@ -112,6 +115,20 @@ public class Avaliacao extends Fisioterapia {
 	 */
 	public void setPatologia(Patologia patologia) {
 		this.patologia = patologia;
+	}
+
+	/**
+	 * @return the descDiagFisioterapeutico
+	 */
+	public String getDescDiagFisioterapeutico() {
+		return descDiagFisioterapeutico;
+	}
+
+	/**
+	 * @param descDiagFisioterapeutico the descDiagFisioterapeutico to set
+	 */
+	public void setDescDiagFisioterapeutico(String descDiagFisioterapeutico) {
+		this.descDiagFisioterapeutico = descDiagFisioterapeutico;
 	}
 
 	/**

@@ -8,6 +8,11 @@ export class Avaliacao {
   paciente: Paciente = new Paciente();
   descricaoOcupacao: string;
   patologia: Patologia = new Patologia();
+  descDiagFisioterapeutico: string;
+  cid: string;
+  descricaoUsoMedicamentos: string;
+  descricaoPrincipaisQueixas: string;
+  descricaoHMA: string;
 
   constructor() { }
 

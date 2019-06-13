@@ -1,4 +1,5 @@
 import { Endereco } from './../../../../model/endereco';
+import { Combo } from './../../../../model/combo';
 import { MensagemComponent } from 'src/app/mensagem/mensagem.component';
 import { Message } from './../../../../model/message';
 import { MatDialog } from '@angular/material';
@@ -35,6 +36,14 @@ export class CadastroAvaliacaoComponent implements OnInit {
 
   listaPatologia: Patologia[] = [];
 
+  listaHabitosVicios: string[] = ['Tabagista', 'Ex-Tabagista', 'Etilista', 'Ex-etilista'];
+
+  descricaoEndereco: string;
+
+  descricaoEstadoCivil: string;
+
+  estadoCivilEnum: any = '{ { "sigla": "DIV", "descricao" : "Divorciado" }, { "sigla" : "CAS", "descricao" : "Casado" }, { "sigla" : "SOL", "descricao" : "Solteiro" } }';
+
   ngOnInit() {
     this.inicializarVariaveis();
   }
@@ -49,6 +58,8 @@ export class CadastroAvaliacaoComponent implements OnInit {
       this.pacienteService.pesquisarPaciente(this.avaliacao.paciente).subscribe(data => {
         if (data) {
           this.avaliacao.paciente = data.items[0];
+          this.descricaoEndereco = this.preencherEndereco();
+          this.descricaoEstadoCivil = this.preencherEstadoCivil();
         } else {
           let msg = new Message();
           msg.message = 'Paciente não encontrado!';
@@ -73,7 +84,7 @@ export class CadastroAvaliacaoComponent implements OnInit {
 
   preencherEndereco(): string {
     if (this.avaliacao.paciente.listaEndereco) {
-      let endereco: Endereco = this.avaliacao.paciente.listaEndereco[0];
+      const endereco: Endereco = this.avaliacao.paciente.listaEndereco[0];
       if (endereco) {
         return endereco.descricaoEndereco + ' ' + endereco.cidade.nome + ' ' + endereco.cidade.estado.sgEstado;
       }
@@ -85,6 +96,20 @@ export class CadastroAvaliacaoComponent implements OnInit {
     this.patologiaService.listarPatologias().subscribe(data => {
       this.listaPatologia = data;
     });
+  }
+
+  preencherEstadoCivil(): string {
+  /*  if (this.avaliacao.paciente.estadoCivil) {
+      let array:Combo[] = any[];
+      array.copyInto(this.estadoCivilEnum);
+      for (let i = 0; i < array.length; i++) {
+        let item = this.estadoCivilEnum[i];
+        if (item.sigla == this.avaliacao.paciente.estadoCivil) {
+          return item.descricao;
+        }
+      }
+    }*/
+    return '';
   }
 
 }

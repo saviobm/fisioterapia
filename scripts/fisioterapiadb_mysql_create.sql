@@ -48,6 +48,7 @@ CREATE TABLE avaliacao (
 	paciente_id INT NOT NULL,	
 	data_avaliacao DATETIME NOT NULL,
 	patologia_id int NULL,
+	desc_diag_fisioterapeutico  VARCHAR(400) NULL,
 	cid VARCHAR(200) NULL,
 	desc_ocupacao TEXT NULL,
 	desc_uso_medicamentos TEXT NULL,
