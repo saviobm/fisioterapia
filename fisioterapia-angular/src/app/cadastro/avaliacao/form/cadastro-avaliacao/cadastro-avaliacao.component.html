@@ -51,7 +51,8 @@
       <div class="col-sm-12">
         <mat-form-field>
           <input id="dataAvaliacao" name="dataAvaliacao" matInput [matDatepicker]="dataAvaliacao" class="form-control form-control-sm" placeholder="Data da avaliação" [(ngModel)]="avaliacao.dataAvaliacao">
-          <mat-datepicker-toggle matSuffix [for]="dataAvaliacao"></mat-datepicker-toggle>
+          <mat-datepicker-toggle matSuffix [for]="dataAvaliacao">
+          </mat-datepicker-toggle>
           <mat-datepicker #dataAvaliacao></mat-datepicker>
         </mat-form-field>
       </div>
@@ -113,6 +114,11 @@
   <div class="form-group">
     <div class="form-row">
       <mat-checkbox id="ckHabitoVicio{{i}}" name="ckHabitoVicio{{i}}" class="col-sm" *ngFor="let habitosVicios of listaHabitosVicios; let i = index">{{ habitosVicios }}</mat-checkbox>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-row">
+      <button mat-button routerLink="/mini-mental" class="btn btn-primary btn-sm">Mini Mental</button>
     </div>
   </div>
 </ng-form>

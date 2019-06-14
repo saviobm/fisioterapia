@@ -42,6 +42,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MensagemComponent } from './mensagem/mensagem.component';
 import { CadastroAvaliacaoComponent } from './cadastro/avaliacao/form/cadastro-avaliacao/cadastro-avaliacao.component';
 import { PesquisaAvaliacaoComponent } from './cadastro/avaliacao/form/pesquisa-avaliacao/pesquisa-avaliacao.component';
+import { MiniMentalComponent } from './cadastro/mini-mental/mini-mental.component';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
@@ -52,7 +53,8 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     CadastroPacienteComponent,
     MensagemComponent,
     CadastroAvaliacaoComponent,
-    PesquisaAvaliacaoComponent
+    PesquisaAvaliacaoComponent,
+    MiniMentalComponent
   ],
   imports: [
     BrowserModule,

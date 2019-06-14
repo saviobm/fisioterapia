@@ -11,6 +11,12 @@ import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-mome
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 import { Patologia } from 'src/app/model/patologia';
 import { PatologiaService } from 'src/app/service/patologia.service';
+import {FormControl} from '@angular/forms';
+import * as _moment from 'moment';
+// tslint:disable-next-line:no-duplicate-imports
+import {defaultFormat as _rollupMoment} from 'moment';
+
+const moment = _rollupMoment || _moment;
 
 @Component({
   selector: 'app-cadastro-avaliacao',
@@ -42,15 +48,18 @@ export class CadastroAvaliacaoComponent implements OnInit {
 
   descricaoEstadoCivil: string;
 
-  estadoCivilEnum: any = '{ { "sigla": "DIV", "descricao" : "Divorciado" }, { "sigla" : "CAS", "descricao" : "Casado" }, { "sigla" : "SOL", "descricao" : "Solteiro" } }';
+  estadoCivilEnum: any = '{ "sigla": "DIV", "descricao" : "Divorciado" }, { "sigla" : "CAS", "descricao" : "Casado" }, { "sigla" : "SOL", "descricao" : "Solteiro" }';
 
+  date: FormControl;
+  
   ngOnInit() {
     this.inicializarVariaveis();
   }
 
   inicializarVariaveis(): void {
     this.avaliacao = new Avaliacao();
-    this.inicializarCombos();
+    this.inicializarCombos();    
+    this.date = new FormControl(new Date());
   }
 
   pesquisarPaciente() {
@@ -99,16 +108,14 @@ export class CadastroAvaliacaoComponent implements OnInit {
   }
 
   preencherEstadoCivil(): string {
-  /*  if (this.avaliacao.paciente.estadoCivil) {
-      let array:Combo[] = any[];
-      array.copyInto(this.estadoCivilEnum);
-      for (let i = 0; i < array.length; i++) {
-        let item = this.estadoCivilEnum[i];
-        if (item.sigla == this.avaliacao.paciente.estadoCivil) {
+    if (this.avaliacao.paciente.estadoCivil) {
+      const array = JSON.parse('[' + this.estadoCivilEnum + ']');
+      for (const item of array) {
+        if (item.sigla === this.avaliacao.paciente.estadoCivil) {
           return item.descricao;
         }
       }
-    }*/
+    }
     return '';
   }
 
