@@ -12,11 +12,6 @@ import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/
 import { Patologia } from 'src/app/model/patologia';
 import { PatologiaService } from 'src/app/service/patologia.service';
 import {FormControl} from '@angular/forms';
-import * as _moment from 'moment';
-// tslint:disable-next-line:no-duplicate-imports
-import {defaultFormat as _rollupMoment} from 'moment';
-
-const moment = _rollupMoment || _moment;
 
 @Component({
   selector: 'app-cadastro-avaliacao',
@@ -50,8 +45,6 @@ export class CadastroAvaliacaoComponent implements OnInit {
 
   estadoCivilEnum: any = '{ "sigla": "DIV", "descricao" : "Divorciado" }, { "sigla" : "CAS", "descricao" : "Casado" }, { "sigla" : "SOL", "descricao" : "Solteiro" }';
 
-  date: FormControl;
-  
   ngOnInit() {
     this.inicializarVariaveis();
   }
@@ -59,7 +52,6 @@ export class CadastroAvaliacaoComponent implements OnInit {
   inicializarVariaveis(): void {
     this.avaliacao = new Avaliacao();
     this.inicializarCombos();    
-    this.date = new FormControl(new Date());
   }
 
   pesquisarPaciente() {
