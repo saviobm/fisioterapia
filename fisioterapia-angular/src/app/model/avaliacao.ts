@@ -12,7 +12,7 @@ export class Avaliacao {
   cid: string;
   descricaoUsoMedicamentos: string;
   descricaoPrincipaisQueixas: string;
-  descricaoHMA: string;
+  descricaoHMA: string; 
 
   constructor() { }
 

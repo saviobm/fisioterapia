@@ -1,5 +1,4 @@
 import { Endereco } from './../../../../model/endereco';
-import { Combo } from './../../../../model/combo';
 import { MensagemComponent } from 'src/app/mensagem/mensagem.component';
 import { Message } from './../../../../model/message';
 import { MatDialog } from '@angular/material';
@@ -45,13 +44,31 @@ export class CadastroAvaliacaoComponent implements OnInit {
 
   estadoCivilEnum: any = '{ "sigla": "DIV", "descricao" : "Divorciado" }, { "sigla" : "CAS", "descricao" : "Casado" }, { "sigla" : "SOL", "descricao" : "Solteiro" }';
 
+  listaSinaisVitais: any[];
+
+  listaNivelConsciencia: any[];
+
+  listaEstadoEmocional: any[];
+
+  listaSistemaRespiratorio: any[];
+
+  listaRitmo: any[];
+
+  listaPMRespiratorio: any[];
+
+  listaExToracica: any[];
+
+  listaAuscultaPulmonar: any[];
+
+  listaRuidosAdventicios: any[];
+
   ngOnInit() {
     this.inicializarVariaveis();
   }
 
   inicializarVariaveis(): void {
     this.avaliacao = new Avaliacao();
-    this.inicializarCombos();    
+    this.inicializar();
   }
 
   pesquisarPaciente() {
@@ -93,10 +110,19 @@ export class CadastroAvaliacaoComponent implements OnInit {
     }
   }
 
-  inicializarCombos(): void {
+  inicializar(): void {
     this.patologiaService.listarPatologias().subscribe(data => {
       this.listaPatologia = data;
     });
+    this.listaSinaisVitais = JSON.parse('[' + '{ "sigla": "FC", "descricao" : "FC", "observacao": "" }, { "sigla" : "FR", "descricao" : "FR", "observacao": "" }, { "sigla" : "TAX", "descricao" : "TAX", "observacao": "" }, { "sigla" : "PA", "descricao" : "PA", "observacao": "" }' + ']');
+    this.listaNivelConsciencia = JSON.parse('[' + '{ "sigla": "LUC", "descricao" : "lúcido-orientado" }, { "sigla": "DES", "descricao" : "desorientado" }, { "sigla": "LUCMD", "descricao" : "lúcido com momentos de desorientação" }, { "sigla": "INC", "descricao" : "inconsciente" }' + ']');
+    this.listaEstadoEmocional = JSON.parse('[' + '{ "sigla": "CAL", "descricao" : "calmo" }, { "sigla": "AGIT", "descricao" : "agitado" }, { "sigla": "DEPRE", "descricao" : "depressivo" }, { "sigla": "ANC", "descricao" : "ancioso" }, { "sigla": "AGR", "descricao" : "agressivo" }' + ']');
+    this.listaSistemaRespiratorio = JSON.parse('[' + '{ "sigla": "VE", "descricao" : "ventilação espontânea", "observacao": "" }, { "sigla": "VEO2", "descricao" : "ventilação espontânea com suporte de O2", "observacao" : "" }' + ']');
+    this.listaRitmo = JSON.parse('[' + '{ "sigla": "REG", "descricao" : "regular" }, { "sigla": "TRAQ", "descricao" : "traqpinéia" }, { "sigla": "BRAD", "descricao" : "bradipnéia" }, { "sigla": "DISP", "descricao" : "dispnéia" }' + ']');
+    this.listaPMRespiratorio = JSON.parse('[' + '{ "sigla": "DIAFR", "descricao" : "diafragmático" }, { "sigla": "CDIAFR", "descricao" : "costo-diafragmático" }, { "sigla": "INTC", "descricao" : "intercostal" }, { "sigla": "ACESS", "descricao" : "acessório" }, { "sigla": "PARAD", "descricao" : "paradoxal" }, { "sigla": "APIC", "descricao" : "apical" }' + ']');
+    this.listaExToracica = JSON.parse('[' + '{ "sigla": "NORM", "descricao" : "normal" }, { "sigla": "DIMIN", "descricao" : "diminuída" }, { "sigla": "ASSIM", "descricao" : "assimétrica" }' + ']');
+    this.listaAuscultaPulmonar = JSON.parse('[' + '{ "sigla": "MVSRA", "descricao" : "mv s/ra", "observacao": "" }, { "sigla" : "MVD", "descricao" : "mv diminuído", "observacao": "" }, { "sigla" : "MVA", "descricao" : "mv abolido", "observacao": "" }' + ']');
+    this.listaRuidosAdventicios = JSON.parse('[' + '{ "sigla": "CREP", "descricao" : "crepitações" }, { "sigla": "RONC", "descricao" : "roncos" }, { "sigla": "SIBI", "descricao" : "sibilos" }' + ']');
   }
 
   preencherEstadoCivil(): string {

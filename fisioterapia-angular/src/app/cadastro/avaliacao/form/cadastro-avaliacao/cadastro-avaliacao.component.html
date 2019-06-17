@@ -2,7 +2,7 @@
   <div class="form-group">
     <div class="form-row">
       <div class="col-sm-2">
-        <label for="cpf">CPF</label>
+        <label for="cpf" class="fisioterapia-label">CPF</label>
         <input id="cpf" name="cpf" class="form-control form-control-sm" required minlength="14" appForbiddenName="" [(ngModel)]="avaliacao.paciente.cpf" #cpf="ngModel" placeHolder="Insira um CPF" mask="000.000.000-00">
       </div>
       <div class="col-sm-1 align-self-end">
@@ -13,11 +13,11 @@
   <div class="form-group">
     <div class="form-row">
       <div class="col-sm-8">
-        <label for="nome">Nome</label>
+        <label for="nome" class="fisioterapia-label">Nome</label>
         <input id="nome" disabled name="nome" class="form-control form-control-sm" required [(ngModel)]="avaliacao.paciente.nome" #nome="ngModel" placeHolder="Nome">
       </div>
       <div class="col-sm-4">
-          <label for="nome">Idade</label>
+          <label for="nome" class="fisioterapia-label">Idade</label>
           <input id="idade" disabled name="idade" class="form-control form-control-sm" required [(ngModel)]="avaliacao.paciente.idade" #idade="ngModel" placeHolder="Idade" maxlength="3">
         </div>
     </div>
@@ -25,11 +25,11 @@
   <div class="form-group">
     <div class="form-row">
       <div class="col-sm-4">
-        <label for="estadoCivil">Estado Civil</label>
+        <label for="estadoCivil" class="fisioterapia-label">Estado Civil</label>
         <input id="estadoCivil" disabled name="estadoCivil" class="form-control form-control-sm" required [(ngModel)]="descricaoEstadoCivil" #estadoCivil="ngModel" placeHolder="Estado Civil">
       </div>
       <div class="col-sm-8">
-        <label for="ocupacao">Ocupação</label>
+        <label for="ocupacao" class="fisioterapia-label">Ocupação</label>
         <input id="ocupacao" name="ocupacao" class="form-control form-control-sm" required [(ngModel)]="avaliacao.descricaoOcupacao" #ocupacao="ngModel" placeHolder="Ocupação">
       </div>
     </div>
@@ -37,11 +37,11 @@
   <div class="form-group">
     <div class="form-row">
       <div class="col-sm-8">
-          <label for="endereco">Endereço</label><BR>
+          <label for="endereco" class="fisioterapia-label">Endereço</label><BR>
           <input id="endereco" disabled name="endereco" #endereco="ngModel" class="form-control form-control-sm" required [(ngModel)]="descricaoEndereco" #endereco="ngModel" placeHolder="Endereço">
       </div>
       <div class="col-sm-4">
-          <label for="telefone">Telefone</label>
+          <label class="fisioterapia-label" for="telefone">Telefone</label>
           <input id="telefone" disabled name="telefone" class="form-control form-control-sm" required [(ngModel)]="avaliacao.paciente.telefone" #telefone="ngModel" placeHolder="Telefone" mask="(00) 00000-0000">
       </div>
     </div>
@@ -61,7 +61,7 @@
   <div class="form-group">
     <div class="form-row">
       <div class="col-sm-4">
-        <label for="comboPatologia">Diagnóstico Clínico</label>
+        <label class="fisioterapia-label">Diagnóstico Clínico</label>
         <div class="form-group">
             <select class="form-control form-control-sm" required name="comboPatologia" id="comboPatologia" [(ngModel)]="avaliacao.patologia">
               <option [(value)]="avaliacao.patologia"></option>
@@ -74,7 +74,7 @@
   <div class="form-group">
     <div class="form-row">
       <div class="col-sm-12">
-        <label for="descDiagFisio">Diagnóstico Fisioterapêutico</label>
+        <label for="descDiagFisio" class="fisioterapia-label">Diagnóstico Fisioterapêutico</label>
         <input id="descDiagFisio" name="descDiagFisio" class="form-control form-control-sm" required [(ngModel)]="avaliacao.descDiagFisioterapeutico" #descDiagFisio="ngModel" placeHolder="Diagnóstico Fisioterapêutico">
       </div>
     </div>
@@ -82,7 +82,7 @@
   <div class="form-group">
     <div class="form-row">
       <div class="col-sm-12">
-        <label for="nome">CID</label>
+        <label for="cid" class="fisioterapia-label">CID</label>
         <input id="cid" name="cid" class="form-control form-control-sm" required [(ngModel)]="avaliacao.cid" #cid="ngModel" placeHolder="CID">
       </div>
     </div>
@@ -90,7 +90,7 @@
   <div class="form-group">
     <div class="form-row">
       <div class="col-sm-12">
-        <label for="descMedicamentosUso">Medicamentos em uso</label>
+        <label for="descMedicamentosUso" class="fisioterapia-label">Medicamentos em uso</label>
         <textarea matInput id="descMedicamentosUso" class="form-control form-control-sm" name="descMedicamentosUso" [(ngModel)]="avaliacao.descricaoUsoMedicamentos" #descMedicamentosUso="ngModel" placeHolder="Medicamentos em uso"></textarea>
       </div>
     </div>
@@ -98,7 +98,7 @@
   <div class="form-group">
     <div class="form-row">
       <div class="col-sm-12">
-        <label for="descQueixasPrincipais">Queixas principais</label>
+        <label for="descQueixasPrincipais" class="fisioterapia-label">Queixas principais</label>
         <textarea matInput id="descQueixasPrincipais" class="form-control form-control-sm" name="descQueixasPrincipais" [(ngModel)]="avaliacao.descricaoPrincipaisQueixas" #descQueixasPrincipais="ngModel" placeHolder="Queixas Principais"></textarea>
       </div>
     </div>
@@ -106,7 +106,7 @@
   <div class="form-group">
     <div class="form-row">
       <div class="col-sm-12">
-        <label for="descHMA">HMA</label>
+        <label for="descHMA" class="fisioterapia-label">HMA</label>
         <textarea matInput id="descHMA" class="form-control form-control-sm" name="descHMA" [(ngModel)]="avaliacao.descricaoHMA" #descHMA="ngModel" placeHolder="HMA"></textarea>
       </div>
     </div>
@@ -121,4 +121,70 @@
       <button mat-button routerLink="/mini-mental" class="btn btn-primary btn-sm">Mini Mental</button>
     </div>
   </div>
+  <div class="form-group">
+    <div class="form-row">
+      <label class="fisioterapia-label">Sinais Vitais</label><BR>
+    </div>
+    <div class="form-row">
+      <mat-checkbox id="ckSinaisVitais{{i}}" name="ckSinaisVitais{{i}}" class="col-sm" *ngFor="let sinalVital of listaSinaisVitais; let i = index">{{ sinalVital.descricao }}
+        <input matInput id="descricaoSinalVital{{i}}" [(ngModel)]="sinalVital.observacao" name="descricaoSinalVital{{i}}" class="form-control form-control-sm">
+      </mat-checkbox>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-row">
+      <label class="fisioterapia-label">Nivel de Consciência</label><BR>
+    </div>
+    <div class="form-row">
+      <mat-checkbox id="ckNivelConsciencia{{i}}" name="ckNivelConsciencia{{i}}" class="col-sm" *ngFor="let nivelConsciencia of listaNivelConsciencia; let i = index">{{ nivelConsciencia.descricao }}</mat-checkbox>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-row">
+      <label class="fisioterapia-label">Estado Emocional</label><BR>
+    </div>
+    <div class="form-row">
+      <mat-checkbox id="ckEstadoEmocional{{i}}" name="ckEstadoEmocional{{i}}" class="col-sm" *ngFor="let estadoEmocional of listaEstadoEmocional; let i = index">{{ estadoEmocional.descricao }}</mat-checkbox>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-row">
+      <label class="fisioterapia-label">Sistema Respiratório</label><BR>
+    </div>
+    <div class="form-row">
+      <mat-checkbox id="ckSistemaRespiratorio{{i}}" name="ckSistemaRespiratorio{{i}}" class="col-sm" *ngFor="let sistemaRespiratorio of listaSistemaRespiratorio; let i = index">{{ sistemaRespiratorio.descricao }}
+        <input matInput id="descricaoSistemaRespiratorio{{i}}" [(ngModel)]="sistemaRespiratorio.observacao" name="descricaoSistemaRespiratorio{{i}}" class="form-control form-control-sm">
+      </mat-checkbox>
+    </div>
+    <div class="form-row">
+      <label class="fisioterapia-label">Ritmo: </label><BR>
+      <mat-checkbox id="ckRitmo{{i}}" name="ckRitmo{{i}}" class="col-sm" *ngFor="let ritmo of listaRitmo; let i = index">{{ ritmo.descricao }}</mat-checkbox>
+    </div>
+  </div>
+  <div class="form-group">
+      <div class="form-row">
+        <label class="fisioterapia-label">Padrão Muscular Respiratório</label><BR>
+      </div>
+      <div class="form-row">
+        <mat-checkbox id="ckPMRespitarorio{{i}}" name="ckPMRespitarorio{{i}}" class="col-sm" *ngFor="let pmRespiratorio of listaPMRespiratorio; let i = index">{{ pmRespiratorio.descricao }}</mat-checkbox>
+      </div>
+      <div class="form-row">
+        <label class="fisioterapia-label">Expansibilidade Torácica: </label><BR>
+        <mat-checkbox id="ckExTorcica{{i}}" name="ckExTorcica{{i}}" class="col-sm" *ngFor="let exToracica of listaExToracica; let i = index">{{ exToracica.descricao }}</mat-checkbox>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="form-row">
+        <label class="fisioterapia-label">Ausculta Pulmonar</label><BR>
+      </div>
+      <div class="form-row">
+        <mat-checkbox id="ckAuscultaPulmonar{{i}}" name="ckAuscultaPulmonar{{i}}" class="col-sm" *ngFor="let auscultaPulmonar of listaAuscultaPulmonar; let i = index">{{ auscultaPulmonar.descricao }}
+          <input matInput id="descricaoAuscultaPulmonar{{i}}" [(ngModel)]="auscultaPulmonar.observacao" name="descricaoAuscultaPulmonar{{i}}" class="form-control form-control-sm">
+        </mat-checkbox>
+      </div>
+      <div class="form-row">
+        <label class="fisioterapia-label">Ruídos adventícios: </label><BR>
+        <mat-checkbox id="ckRuidosAdventicios{{i}}" name="ckRuidosAdventicios{{i}}" class="col-sm" *ngFor="let ruidosAdventicios of listaRuidosAdventicios; let i = index">{{ ruidosAdventicios.descricao }}</mat-checkbox>
+      </div>
+    </div>
 </ng-form>
