@@ -187,4 +187,84 @@
         <mat-checkbox id="ckRuidosAdventicios{{i}}" name="ckRuidosAdventicios{{i}}" class="col-sm" *ngFor="let ruidosAdventicios of listaRuidosAdventicios; let i = index">{{ ruidosAdventicios.descricao }}</mat-checkbox>
       </div>
     </div>
+    <div class="form-group">
+      <div class="form-row">
+        <label class="fisioterapia-label">Tosse</label><BR>
+      </div>
+      <div class="form-row">
+        <mat-checkbox id="ckTosse{{i}}" name="ckTosse{{i}}" class="col-sm" *ngFor="let tosse of listaTosses; let i = index">{{ tosse.descricao }}</mat-checkbox>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="form-row">
+        <div class="col-sm-12">
+          <label for="descAspectoSecrecao" class="fisioterapia-label">Aspecto da secreção: </label>
+          <input id="descAspectoSecrecao" name="descAspectoSecrecao" class="form-control form-control-sm" [(ngModel)]="avaliacao.descricaoAspectoSecrecao" #descAspectoSecrecao="ngModel" placeHolder="Aspecto da secreção">
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="form-row">
+        <label class="fisioterapia-label">Sistema Osteomioarticular</label><BR>
+      </div>
+      <div class="form-row">
+        <mat-checkbox id="ckSistemaOsteomioarticular{{i}}" name="ckSistemaOsteomioarticular{{i}}" class="col-sm" *ngFor="let sistemaOsteomioarticular of listaSistemaOsteomioarticular; let i = index">{{ sistemaOsteomioarticular.descricao }}</mat-checkbox>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="form-row">
+        <label class="fisioterapia-label">Força Muscular</label><BR>
+      </div>
+      <div class="form-row">
+        <mat-checkbox id="ckForcaMuscular{{i}}" name="ckForcaMuscular{{i}}" class="col-sm" *ngFor="let forcaMuscular of listaForcaMuscular; let i = index">{{ forcaMuscular.descricao }}</mat-checkbox>
+      </div>
+    </div>
+    <div class="form-group">
+      <table mat-table [dataSource]="dataSourceForcaMuscular" class="fisioterapia-table">
+        <ng-container matColumnDef="OMBRO">
+          <th mat-header-cell *matHeaderCellDef>OMBRO</th>
+          <td mat-cell *matCellDef="let row; let i = index">
+            <input matInput [value]="row.descOmbro" name="ombro{{i}}" id="ombro{{i}}" [(ngModel)]="row.desOmbro">
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="COTOVELO">
+          <th mat-header-cell *matHeaderCellDef>COTOVELO</th>
+          <td mat-cell *matCellDef="let row; let i = index">
+            <input matInput [value]="row.descCotovelo" name="cotovelo{{i}}" id="cotovelo{{i}}" [(ngModel)]="row.descCotovelo">
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="PUNHO">
+          <th mat-header-cell *matHeaderCellDef>PUNHO</th>
+          <td mat-cell *matCellDef="let row; let i = index">
+            <input matInput [value]="row.descPunho" name="punho{{i}}" id="punho{{i}}" [(ngModel)]="row.descPunho">
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="TRONCO">
+          <th mat-header-cell *matHeaderCellDef>TRONCO</th>
+          <td mat-cell *matCellDef="let row; let i = index">
+            <input matInput [value]="row.descTronco" name="tronco{{i}}" id="tronco{{i}}" [(ngModel)]="row.descTronco">
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="QUADRIL">
+          <th mat-header-cell *matHeaderCellDef>QUADRIL</th>
+          <td mat-cell *matCellDef="let row; let i = index">
+            <input matInput [value]="row.descQuadril" name="quadril{{i}}" id="quadril{{i}}" [(ngModel)]="row.descQuadril">
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="JOELHO">
+          <th mat-header-cell *matHeaderCellDef>JOELHO</th>
+          <td mat-cell *matCellDef="let row; let i = index">
+            <input matInput [value]="row.descJoelho" name="joelho{{i}}" id="joelho{{i}}" [(ngModel)]="row.descJoelho">
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="TORNOZELO">
+          <th mat-header-cell *matHeaderCellDef>TORNOZELO</th>
+          <td mat-cell *matCellDef="let row; let i = index">
+            <input matInput [value]="row.descTornozelo" name="tornozelo{{i}}" id="tornozelo{{i}}" [(ngModel)]="row.descTornozelo">
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsForcaMuscular"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsForcaMuscular;"></tr>
+      </table>
+    </div>
 </ng-form>

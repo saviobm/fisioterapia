@@ -1,3 +1,4 @@
+import { ForcaMuscular } from './../../../../model/forca-muscular';
 import { Endereco } from './../../../../model/endereco';
 import { MensagemComponent } from 'src/app/mensagem/mensagem.component';
 import { Message } from './../../../../model/message';
@@ -62,6 +63,18 @@ export class CadastroAvaliacaoComponent implements OnInit {
 
   listaRuidosAdventicios: any[];
 
+  listaTosses: any[];
+
+  listaSistemaOsteomioarticular: any[];
+
+  listaForcaMuscular: any[];
+
+  displayedColumnsForcaMuscular: string[] =  ['OMBRO', 'COTOVELO', 'PUNHO', 'TRONCO', 'QUADRIL', 'JOELHO', 'TORNOZELO'];
+
+  dataSourceForcaMuscular: any[] = [];
+
+  tamanhoArrayForcaMuscular = 7;
+
   ngOnInit() {
     this.inicializarVariaveis();
   }
@@ -123,6 +136,10 @@ export class CadastroAvaliacaoComponent implements OnInit {
     this.listaExToracica = JSON.parse('[' + '{ "sigla": "NORM", "descricao" : "normal" }, { "sigla": "DIMIN", "descricao" : "diminuída" }, { "sigla": "ASSIM", "descricao" : "assimétrica" }' + ']');
     this.listaAuscultaPulmonar = JSON.parse('[' + '{ "sigla": "MVSRA", "descricao" : "mv s/ra", "observacao": "" }, { "sigla" : "MVD", "descricao" : "mv diminuído", "observacao": "" }, { "sigla" : "MVA", "descricao" : "mv abolido", "observacao": "" }' + ']');
     this.listaRuidosAdventicios = JSON.parse('[' + '{ "sigla": "CREP", "descricao" : "crepitações" }, { "sigla": "RONC", "descricao" : "roncos" }, { "sigla": "SIBI", "descricao" : "sibilos" }' + ']');
+    this.listaTosses = JSON.parse('[' + '{ "sigla": "AUS", "descricao" : "ausente" }, { "sigla": "SEC", "descricao" : "seca" }, { "sigla": "UMI", "descricao" : "úmida" }, { "sigla": "PROD", "descricao" : "produtiva" }' + ']');
+    this.listaSistemaOsteomioarticular = JSON.parse('[' + '{ "sigla": "MOVV", "descricao" : "mov. voluntário" }, { "sigla": "MOVI", "descricao" : "mov. involutário" }, { "sigla": "PLEG", "descricao" : "plegia" }, { "sigla": "PARES", "descricao" : "paresia" }' + ']');
+    this.listaForcaMuscular = JSON.parse('[' + '{ "sigla": "NORM", "descricao" : "normal" }, { "sigla": "DIMIN", "descricao" : "diminuída" }' + ']');
+    this.inicializarDSForcaMuscular();
   }
 
   preencherEstadoCivil(): string {
@@ -135,6 +152,12 @@ export class CadastroAvaliacaoComponent implements OnInit {
       }
     }
     return '';
+  }
+
+  inicializarDSForcaMuscular(): void {
+    for (let i = 0; i < this.tamanhoArrayForcaMuscular; i++) {
+      this.dataSourceForcaMuscular.push(new ForcaMuscular());
+    }
   }
 
 }
