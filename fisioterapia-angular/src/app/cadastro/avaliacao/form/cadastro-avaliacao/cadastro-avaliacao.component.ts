@@ -1,3 +1,6 @@
+import { Ck } from './../../../../model/ck';
+import { Ashworth } from './../../../../model/ashworth';
+import { Adm } from './../../../../model/adm';
 import { ForcaMuscular } from './../../../../model/forca-muscular';
 import { Endereco } from './../../../../model/endereco';
 import { MensagemComponent } from 'src/app/mensagem/mensagem.component';
@@ -75,6 +78,20 @@ export class CadastroAvaliacaoComponent implements OnInit {
 
   tamanhoArrayForcaMuscular = 7;
 
+  dataSourceAvaliacaoADMMMS: Adm[] = [];
+
+  dataSourceAvaliacaoADMMMII: Adm[] = [];
+
+  displayedColumnsAvaliacaoADM: string[] =  ['articulação', 'flexão', 'flexão1', 'extensão', 'extensão1', 'abdução', 'abdução1', 'adução', 'adução1'];
+
+  dataSourceEscalaAshworth: Ashworth[] = [];
+
+  displayedColumnsAsworth: string[] = ['branco', 'normal', 'hipotonico', 'hipertonico', 'clonus'];
+
+  listaAmplitudeArticular: Ck[] = [];
+
+  listaTipoEmatomaAA: Ck[] = [];
+
   ngOnInit() {
     this.inicializarVariaveis();
   }
@@ -140,6 +157,10 @@ export class CadastroAvaliacaoComponent implements OnInit {
     this.listaSistemaOsteomioarticular = JSON.parse('[' + '{ "sigla": "MOVV", "descricao" : "mov. voluntário" }, { "sigla": "MOVI", "descricao" : "mov. involutário" }, { "sigla": "PLEG", "descricao" : "plegia" }, { "sigla": "PARES", "descricao" : "paresia" }' + ']');
     this.listaForcaMuscular = JSON.parse('[' + '{ "sigla": "NORM", "descricao" : "normal" }, { "sigla": "DIMIN", "descricao" : "diminuída" }' + ']');
     this.inicializarDSForcaMuscular();
+    this.inicializarDSAvaliacaoADM();
+    this.inicializarEscalaAshworth();
+    this.inicializarListaAmplitudeArticular();
+    this.inicializarListaTipoEmatomaAA();
   }
 
   preencherEstadoCivil(): string {
@@ -158,6 +179,88 @@ export class CadastroAvaliacaoComponent implements OnInit {
     for (let i = 0; i < this.tamanhoArrayForcaMuscular; i++) {
       this.dataSourceForcaMuscular.push(new ForcaMuscular());
     }
+  }
+
+  inicializarDSAvaliacaoADM(): void {
+    const adm: Adm = new Adm();
+    adm.descricao[1] = 'D';
+    adm.descricao[2] = 'E';
+    adm.descricao[3] = 'D';
+    adm.descricao[4] = 'E';
+    adm.descricao[5] = 'D';
+    adm.descricao[6] = 'E';
+    adm.descricao[7] = 'D';
+    adm.descricao[8] = 'E';
+
+    const admOmbro: Adm = new Adm();
+    admOmbro.descricao[0] = 'ombro';
+    const admCotovelo: Adm = new Adm();
+    admCotovelo.descricao[0] = 'cotovelo';
+    const admPunho: Adm = new Adm();
+    admPunho.descricao[0] = 'punho';
+
+    this.dataSourceAvaliacaoADMMMS.push(adm);
+    this.dataSourceAvaliacaoADMMMS.push(admOmbro);
+    this.dataSourceAvaliacaoADMMMS.push(admCotovelo);
+    this.dataSourceAvaliacaoADMMMS.push(admPunho);
+
+    const admQuadril: Adm = new Adm();
+    admQuadril.descricao[0] = 'quadril';
+
+    const admJoelho: Adm = new Adm();
+    admJoelho.descricao[0] = 'joelho';
+    admJoelho.descricao[5] = 'RI';
+    admJoelho.descricao[7] = 'RE';
+
+    const admMMIIBranco: Adm = new Adm();
+    admMMIIBranco.descricao[1] = 'dorsiflexão';
+    admMMIIBranco.descricao[3] = 'flexãoplanar';
+    admMMIIBranco.descricao[5] = 'inversão';
+    admMMIIBranco.descricao[7] = 'eversão';
+
+    const admTornozelo: Adm = new Adm();
+    admTornozelo.descricao[0] = 'tornozelo';
+
+    this.dataSourceAvaliacaoADMMMII.push(adm);
+    this.dataSourceAvaliacaoADMMMII.push(admQuadril);
+    this.dataSourceAvaliacaoADMMMII.push(admJoelho);
+    this.dataSourceAvaliacaoADMMMII.push(admMMIIBranco);
+    this.dataSourceAvaliacaoADMMMII.push(admTornozelo);
+  }
+
+  inicializarEscalaAshworth(): void {
+    const ashworth0: Ashworth = new Ashworth();
+    ashworth0.descricao[0] = 'MS';
+    const ashworth1: Ashworth = new Ashworth();
+    ashworth1.descricao[0] = 'MI';
+
+    this.dataSourceEscalaAshworth.push(ashworth0);
+    this.dataSourceEscalaAshworth.push(ashworth1);
+  }
+
+  inicializarListaAmplitudeArticular(): void {
+    const adm0: Ck = new Ck();
+    adm0.titulo = 'normal';
+    const adm1: Ck = new Ck();
+    adm1.titulo = 'diminuída';
+
+    this.listaAmplitudeArticular.push(adm0);
+    this.listaAmplitudeArticular.push(adm1);
+  }
+
+  inicializarListaTipoEmatomaAA(): void {
+    const tipoEAA: Ck = new Ck();
+    tipoEAA.titulo = 'luxação';
+    const tipoEAA1: Ck = new Ck();
+    tipoEAA1.titulo = 'rigidez';
+    const tipoEAA2: Ck = new Ck();
+    tipoEAA2.titulo = 'fratura';
+    const tipoEAA3: Ck = new Ck();
+    tipoEAA3.titulo = 'desvios posturais';
+    this.listaTipoEmatomaAA.push(tipoEAA);
+    this.listaTipoEmatomaAA.push(tipoEAA1);
+    this.listaTipoEmatomaAA.push(tipoEAA2);
+    this.listaTipoEmatomaAA.push(tipoEAA3);
   }
 
 }

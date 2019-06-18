@@ -5,3 +5,9 @@
 .fisioterapia-table {
   width: 100%;
 }
+
+.avaliacao-textarea {
+  border-style: dotted;
+  border-color: darkgray;
+  border-width: 0.5px;
+}

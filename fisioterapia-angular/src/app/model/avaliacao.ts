@@ -14,6 +14,7 @@ export class Avaliacao {
   descricaoPrincipaisQueixas: string;
   descricaoHMA: string;
   descricaoAspectoSecrecao: string;
+  descricaoAmplitudeArticular: string;
 
   constructor() { }
 
