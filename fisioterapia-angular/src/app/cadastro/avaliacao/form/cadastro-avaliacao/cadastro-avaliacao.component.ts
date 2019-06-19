@@ -1,3 +1,4 @@
+import { Ponto } from './../../../../model/ponto';
 import { Ck } from './../../../../model/ck';
 import { Ashworth } from './../../../../model/ashworth';
 import { Adm } from './../../../../model/adm';
@@ -16,6 +17,7 @@ import { Patologia } from 'src/app/model/patologia';
 import { PatologiaService } from 'src/app/service/patologia.service';
 import {FormControl} from '@angular/forms';
 import { template } from '@angular/core/src/render3';
+import { controlNameBinding } from '@angular/forms/src/directives/reactive_directives/form_control_name';
 
 @Component({
   selector: 'app-cadastro-avaliacao',
@@ -112,6 +114,8 @@ export class CadastroAvaliacaoComponent implements OnInit {
   dataSourceEquilibrio: Adm[] = [];
 
   listaTipoDores: Ck[] = [];
+
+  listaPontos: Ponto[] = [];
 
   @ViewChild('canvas')
   canvas: ElementRef<HTMLCanvasElement>;
@@ -411,15 +415,30 @@ export class CadastroAvaliacaoComponent implements OnInit {
 
   marcarPonto(e: MouseEvent): any {
     if (!this.ctx.isPointInPath(e.offsetX, e.offsetY)) {
+      this.adicionarPonto(e.offsetX, e.offsetY);
+      console.log(this.ctx.isPointInStroke(e.offsetX, e.offsetY));
       console.log(e);
+      this.ctx.beginPath();
       this.ctx.fillStyle = 'red';
       this.ctx.strokeStyle = '#df4b26';
-      this.ctx.beginPath();
-      this.ctx.arc(e.offsetX, e.offsetY, 10, 0, 2 * Math.PI);
+      this.ctx.arc(e.offsetX, e.offsetY, 6, 0, 2 * Math.PI);
       this.ctx.stroke();
       this.ctx.fill();
     }
-    //this.ctx.fillRect(0, 0, 5, 5);
+  }
+
+  adicionarPonto(x: number, y: number): void {
+    const ponto: Ponto = new Ponto();
+    ponto.x = x;
+    ponto.y = y;
+    this.listaPontos.push(ponto);
+    console.log(this.listaPontos);
+  }
+
+  limparCanvas(): void {
+    this.listaPontos = [];
+    this.img.src = './assets/img/corpo_humano.jpg';
+    this.img.onload = this.inicializarCanva.bind(this);
   }
 
 }
