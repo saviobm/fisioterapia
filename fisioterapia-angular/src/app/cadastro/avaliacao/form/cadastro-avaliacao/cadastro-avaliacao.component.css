@@ -11,3 +11,17 @@
   border-color: darkgray;
   border-width: 0.5px;
 }
+
+.corpo-humano-card {
+  width: 800px;
+  height: 900px;
+}
+
+.corpo-humano-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+
+.align-center {
+  text-align: center;
+}

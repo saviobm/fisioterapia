@@ -15,6 +15,11 @@ export class Avaliacao {
   descricaoHMA: string;
   descricaoAspectoSecrecao: string;
   descricaoAmplitudeArticular: string;
+  descricaoPele: string;
+  descricaoLocal: string;
+  descricaoTipo: string;
+  descricaoGrau: string;
+  descricaoSequelas: string;
 
   constructor() { }
 

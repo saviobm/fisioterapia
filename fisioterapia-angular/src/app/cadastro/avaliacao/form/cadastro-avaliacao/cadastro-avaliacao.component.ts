@@ -9,12 +9,13 @@ import { MatDialog } from '@angular/material';
 import { Mensagem } from './../../../paciente/form/cadastro-paciente/cadastro-paciente.component';
 import { PacienteService } from './../../../../service/paciente.service';
 import { Avaliacao } from './../../../../model/avaliacao';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 import { Patologia } from 'src/app/model/patologia';
 import { PatologiaService } from 'src/app/service/patologia.service';
 import {FormControl} from '@angular/forms';
+import { template } from '@angular/core/src/render3';
 
 @Component({
   selector: 'app-cadastro-avaliacao',
@@ -74,7 +75,11 @@ export class CadastroAvaliacaoComponent implements OnInit {
 
   displayedColumnsForcaMuscular: string[] =  ['OMBRO', 'COTOVELO', 'PUNHO', 'TRONCO', 'QUADRIL', 'JOELHO', 'TORNOZELO'];
 
+  displayedColumnsOsteotendinoso: string[] =  ['branco', 'normoreflexia', 'hiporeflexia', 'hiperreflexia', 'arreflexia'];
+
   dataSourceForcaMuscular: any[] = [];
+
+  dataSourceOsteotendinoso: Ck[] = [];
 
   tamanhoArrayForcaMuscular = 7;
 
@@ -88,12 +93,46 @@ export class CadastroAvaliacaoComponent implements OnInit {
 
   displayedColumnsAsworth: string[] = ['branco', 'normal', 'hipotonico', 'hipertonico', 'clonus'];
 
+  displayedColumnsCoordenacao: string[] = ['coordenacao', 'branco'];
+
+  displayedColumnsEquilibrio: string[] = ['equilibrio', 'branco'];
+
   listaAmplitudeArticular: Ck[] = [];
 
   listaTipoEmatomaAA: Ck[] = [];
 
+  listaDeambulacao: Ck[] = [];
+
+  listaMarcha: Ck[] = [];
+
+  listaSensibilidade: Ck[] = [];
+
+  dataSourceCoordenacao: Adm[] = [];
+
+  dataSourceEquilibrio: Adm[] = [];
+
+  listaTipoDores: Ck[] = [];
+
+  @ViewChild('canvas')
+  canvas: ElementRef<HTMLCanvasElement>;
+
+  private ctx: CanvasRenderingContext2D;
+  private img = new Image(453, 325);
+
   ngOnInit() {
     this.inicializarVariaveis();
+    this.img.src = './assets/img/corpo_humano.jpg';
+    this.img.onload = this.inicializarCanva.bind(this);
+  }
+
+  inicializarCanva():void {
+    this.canvas.nativeElement.width = this.img.width;
+    this.canvas.nativeElement.height = this.img.height;
+
+    this.ctx = this.canvas.nativeElement.getContext('2d');
+    this.ctx.drawImage(this.img, 0, 0, this.img.width, this.img.height);
+    // this.canvas.nativeElement.onmousemove = this.marcarPonto;
+    this.canvas.nativeElement.onclick = e => this.marcarPonto(e);
   }
 
   inicializarVariaveis(): void {
@@ -161,6 +200,13 @@ export class CadastroAvaliacaoComponent implements OnInit {
     this.inicializarEscalaAshworth();
     this.inicializarListaAmplitudeArticular();
     this.inicializarListaTipoEmatomaAA();
+    this.inicializarListaDeambulacao();
+    this.inicializarMarcha();
+    this.inicializarSensibilidade();
+    this.inicializarDatasourceCoordenacao();
+    this.inicializarDatasourceEquilibrio();
+    this.inicializarOsteotendinoso();
+    this.inicializarListaTipoDores();
   }
 
   preencherEstadoCivil(): string {
@@ -261,6 +307,119 @@ export class CadastroAvaliacaoComponent implements OnInit {
     this.listaTipoEmatomaAA.push(tipoEAA1);
     this.listaTipoEmatomaAA.push(tipoEAA2);
     this.listaTipoEmatomaAA.push(tipoEAA3);
+  }
+
+  inicializarListaDeambulacao(): void {
+    const deamb: Ck = new Ck();
+    deamb.titulo = 'livre';
+    const deamb1: Ck = new Ck();
+    deamb1.titulo = 'bengala';
+    const deamb2: Ck = new Ck();
+    deamb2.titulo = 'andador';
+    const deamb3: Ck = new Ck();
+    deamb3.titulo = 'cadeira de rodas';
+    const deamb4: Ck = new Ck();
+    deamb4.titulo = 'leito';
+    this.listaDeambulacao.push(deamb);
+    this.listaDeambulacao.push(deamb1);
+    this.listaDeambulacao.push(deamb2);
+    this.listaDeambulacao.push(deamb3);
+    this.listaDeambulacao.push(deamb4);
+  }
+
+  inicializarMarcha(): void {
+    const marcha: Ck = new Ck();
+    marcha.titulo = 'normal';
+    const marcha1: Ck = new Ck();
+    marcha1.titulo = 'antálgica';
+    const marcha2: Ck = new Ck();
+    marcha2.titulo = 'patológica';
+    this.listaMarcha.push(marcha);
+    this.listaMarcha.push(marcha1);
+    this.listaMarcha.push(marcha2);
+  }
+
+  inicializarSensibilidade(): void {
+    const sensibilidade: Ck = new Ck();
+    sensibilidade.titulo = 'térmica';
+    const sensibilidade1: Ck = new Ck();
+    sensibilidade1.titulo = 'tátil';
+    const sensibilidade2: Ck = new Ck();
+    sensibilidade2.titulo = 'dolorosa';
+    this.listaSensibilidade.push(sensibilidade);
+    this.listaSensibilidade.push(sensibilidade1);
+    this.listaSensibilidade.push(sensibilidade2);
+  }
+
+  inicializarDatasourceCoordenacao(): void {
+    const item: Adm = new Adm();
+    item.titulo = 'Index-Nariz';
+    const item1: Adm = new Adm();
+    item1.titulo = 'Index-Index';
+    const item2: Adm = new Adm();
+    item2.titulo = 'Calcanhar-Joelho';
+    const item3: Adm = new Adm();
+    item3.titulo = 'Disdiadococinesia';
+    this.dataSourceCoordenacao.push(item);
+    this.dataSourceCoordenacao.push(item1);
+    this.dataSourceCoordenacao.push(item2);
+    this.dataSourceCoordenacao.push(item3);
+  }
+
+  inicializarDatasourceEquilibrio(): void {
+    const item: Adm = new Adm();
+    item.titulo = 'Sentado';
+    const item1: Adm = new Adm();
+    item1.titulo = 'Romberg';
+    const item2: Adm = new Adm();
+    item2.titulo = 'Romberg Sensibilizado';
+    const item3: Adm = new Adm();
+    item3.titulo = 'Marcha';
+    this.dataSourceEquilibrio.push(item);
+    this.dataSourceEquilibrio.push(item1);
+    this.dataSourceEquilibrio.push(item2);
+    this.dataSourceEquilibrio.push(item3);
+  }
+
+  inicializarOsteotendinoso(): void {
+    const item: Ck = new Ck();
+    item.titulo = 'Bicital - C6';
+    const item1: Ck = new Ck();
+    item1.titulo = 'Triciptal - C7';
+    const item2: Ck = new Ck();
+    item2.titulo = 'Patelar - L2, L3 e L4';
+    const item3: Ck = new Ck();
+    item3.titulo = 'Aquileu - L5, S1 e S2';
+
+    this.dataSourceOsteotendinoso.push(item);
+    this.dataSourceOsteotendinoso.push(item1);
+    this.dataSourceOsteotendinoso.push(item2);
+    this.dataSourceOsteotendinoso.push(item3);
+  }
+
+  inicializarListaTipoDores(): void {
+    const item: Ck = new Ck();
+    item.titulo = 'Presente';
+    const item1: Ck = new Ck();
+    item1.titulo = 'Ausente';
+    const item2: Ck = new Ck();
+    item2.titulo = 'Mecânica';
+    this.listaTipoDores.push(item);
+    this.listaTipoDores.push(item1);
+    this.listaTipoDores.push(item2);
+  }
+
+  marcarPonto(e: MouseEvent): any {
+    if (!this.ctx.isPointInPath(e.offsetX, e.offsetY)) {
+      console.log(e);
+      this.ctx.fillStyle = 'red';
+      this.ctx.strokeStyle = '#df4b26';
+      this.ctx.beginPath();
+      this.ctx.arc(e.offsetX, e.offsetY, 10, 0, 2 * Math.PI);
+      this.ctx.stroke();
+      this.ctx.fill();
+    }
+    //this.ctx.fillRect(0, 0, 5, 5);
   }
 
 }
