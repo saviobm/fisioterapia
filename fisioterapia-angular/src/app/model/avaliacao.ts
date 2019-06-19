@@ -20,6 +20,12 @@ export class Avaliacao {
   descricaoTipo: string;
   descricaoGrau: string;
   descricaoSequelas: string;
+  descricaoFatoresAgravantes: string;
+  descricaoFatoresAtenuantes: string;
+  descricaoObservacoes: string;
+  descricaoDignosticoFisioterapeutico: string;
+  descricaoObjetivos: string;
+  descricaoCondutas: string;
 
   constructor() { }
 

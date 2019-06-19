@@ -451,7 +451,7 @@
     <div class="form-group">
       <label class="fisioterapia-label">Amplitude Articular</label><BR>
       <div class="form-row">
-        <mat-checkbox [ngModelOptions]="{standalone: true}" class="col-sm" [(ngModel)]="amplitudeArticular.value" *ngFor="let amplitudeArticular of listaAmplitudeArticular; let i = index">{{ amplitudeArticular.titulo }}</mat-checkbox>
+        <mat-checkbox [ngModelOptions]="{standalone: true}" class="col-sm" [(ngModel)]="amplitudeArticular.value[0]" *ngFor="let amplitudeArticular of listaAmplitudeArticular; let i = index">{{ amplitudeArticular.titulo }}</mat-checkbox>
       </div>
       <div class="form-row">
         <input id="amplitudeArticular" name="amplitudeArticular" class="form-control form-control-sm" [(ngModel)]="avaliacao.descricaoAmplitudeArticular" #amplitudeArticular="ngModel">
@@ -459,7 +459,7 @@
     </div>
     <div class="form-group">
       <div class="form-row">
-        <mat-checkbox [ngModelOptions]="{standalone: true}" class="col-sm" [(ngModel)]="tipoEmatomaAA.value" *ngFor="let tipoEmatomaAA of listaTipoEmatomaAA; let i = index">
+        <mat-checkbox [ngModelOptions]="{standalone: true}" class="col-sm" [(ngModel)]="tipoEmatomaAA.value[0]" *ngFor="let tipoEmatomaAA of listaTipoEmatomaAA; let i = index">
           <table>
             <tr>
               <td>{{ tipoEmatomaAA.titulo }}</td>
@@ -472,18 +472,18 @@
     <div class="form-group">
       <label class="fisioterapia-label">Deambulação</label><BR>
       <div class="form-row">
-        <mat-checkbox [ngModelOptions]="{standalone: true}" class="col-sm" [(ngModel)]="deambulacao.value" *ngFor="let deambulacao of listaDeambulacao; let i = index">{{ deambulacao.titulo }}</mat-checkbox>
+        <mat-checkbox [ngModelOptions]="{standalone: true}" class="col-sm" [(ngModel)]="deambulacao.value[0]" *ngFor="let deambulacao of listaDeambulacao; let i = index">{{ deambulacao.titulo }}</mat-checkbox>
       </div>
     </div>
     <div class="form-group">
       <label class="fisioterapia-label">Marcha</label><BR>
       <div class="form-row">
-        <mat-checkbox [ngModelOptions]="{standalone: true}" class="col-sm" [(ngModel)]="marcha.value" *ngFor="let marcha of listaMarcha; let i = index">{{ marcha.titulo }}</mat-checkbox>
+        <mat-checkbox [ngModelOptions]="{standalone: true}" class="col-sm" [(ngModel)]="marcha.value[0]" *ngFor="let marcha of listaMarcha; let i = index">{{ marcha.titulo }}</mat-checkbox>
       </div>
     </div>
     <div class="form-group">
       <div class="form-row">
-        <mat-checkbox [ngModelOptions]="{standalone: true}" class="col-sm" [(ngModel)]="sensibilidade.value" *ngFor="let sensibilidade of listaSensibilidade; let i = index">
+        <mat-checkbox [ngModelOptions]="{standalone: true}" class="col-sm" [(ngModel)]="sensibilidade.value[0]" *ngFor="let sensibilidade of listaSensibilidade; let i = index">
           <table>
             <tr>
               <td>{{ sensibilidade.titulo }}</td>
@@ -615,11 +615,11 @@
     </div>
     <div class="form-group">
         <div class="form-row">
-            <mat-card class="corpo-humano-card">
+            <mat-card>
               <mat-card-header>
                 <!--<div mat-card-avatar class="corpo-humano-header-image"></div>-->
                 <mat-card-title>DOR</mat-card-title>
-                <mat-card-subtitle> Clique nos membros onde existe dor</mat-card-subtitle>
+                <mat-card-subtitle> Clique nos membros onde existem dores</mat-card-subtitle>
               </mat-card-header>
               <mat-card-content class="align-center">
                 <canvas #canvas></canvas>
@@ -632,5 +632,77 @@
               </mat-card-actions>
             </mat-card>
         </div>
+    </div>
+    <div class="form-group">
+      <div class="form-row">
+        <div class="col-sm">
+          <label class="fisioterapia-label">Fatores agravantes</label>
+          <input [ngModelOptions]="{standalone: true}" class="form-control form-control-sm" [(ngModel)]="avaliacao.descricaoFatoresAgravantes" placeHolder="Fatores Agravantes">
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="form-row">
+        <div class="col-sm">
+          <label class="fisioterapia-label">Fatores atenuantes</label>
+          <input [ngModelOptions]="{standalone: true}" class="form-control form-control-sm" [(ngModel)]="avaliacao.descricaoFatoresAtenuantes" placeHolder="Fatores Atenuantes">
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="form-row">
+          <div class="col-sm">
+            <label class="fisioterapia-label">Aparelho Digestório</label><BR>
+            <mat-checkbox class="col-sm" *ngFor="let aparelhoDigestorio of listaAparelhosDigestorio; let i = index">{{ aparelhoDigestorio.titulo }}</mat-checkbox>
+          </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="form-row">
+          <div class="col-sm">
+            <label class="fisioterapia-label">Abdômem</label><BR>
+            <mat-checkbox class="col-sm" *ngFor="let abdomem of listaAbdomem; let i = index">{{ abdomem.titulo }}</mat-checkbox>
+          </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="form-row">
+          <div class="col-sm">
+            <label class="fisioterapia-label">Aparelho Genitourinário</label><BR>
+            <mat-checkbox class="col-sm" *ngFor="let genitoUrinario of listaAparelhoGenitourinario; let i = index">{{ genitoUrinario.titulo }}</mat-checkbox>
+          </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="form-row">
+        <div class="col-sm-12">
+          <label for="descObservacoes" class="fisioterapia-label">Observações</label>
+          <textarea matInput id="descObservacoes" class="form-control form-control-sm avaliacao-textarea" name="descObservacoes" [(ngModel)]="avaliacao.descricaoObservacoes" #descObservacoes="ngModel" placeHolder="Observações"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="form-row">
+        <div class="col-sm-12">
+          <label for="descDiagFisio" class="fisioterapia-label">Diagnóstico Fisioterapêutico</label>
+          <textarea matInput id="descDiagFisio" class="form-control form-control-sm avaliacao-textarea" name="descDiagFisio" [(ngModel)]="avaliacao.descricaoDignosticoFisioterapeutico" #descDiagFisio="ngModel" placeHolder="Diagnóstico Fisioterapêutico"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="form-row">
+        <div class="col-sm-12">
+          <label for="descObjetivos" class="fisioterapia-label">Objetivos</label>
+          <textarea matInput id="descObjetivos" class="form-control form-control-sm avaliacao-textarea" name="descObjetivos" [(ngModel)]="avaliacao.descricaoObjetivos" #descObjetivos="ngModel" placeHolder="Objetivos"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="form-row">
+        <div class="col-sm-12">
+          <label for="descCondutas" class="fisioterapia-label">Condutas</label>
+          <textarea matInput id="descCondutas" class="form-control form-control-sm avaliacao-textarea" name="descCondutas" [(ngModel)]="avaliacao.descricaoCondutas" #descCondutas="ngModel" placeHolder="Condutas"></textarea>
+        </div>
+      </div>
     </div>
 </ng-form>

@@ -117,6 +117,12 @@ export class CadastroAvaliacaoComponent implements OnInit {
 
   listaPontos: Ponto[] = [];
 
+  listaAparelhosDigestorio: Ck[] = [];
+
+  listaAbdomem: Ck[] = [];
+
+  listaAparelhoGenitourinario: Ck[] = [];
+
   @ViewChild('canvas')
   canvas: ElementRef<HTMLCanvasElement>;
 
@@ -211,6 +217,9 @@ export class CadastroAvaliacaoComponent implements OnInit {
     this.inicializarDatasourceEquilibrio();
     this.inicializarOsteotendinoso();
     this.inicializarListaTipoDores();
+    this.inicializarListaAparelhosDigestorio();
+    this.inicializarListaAbdomem();
+    this.inicializarListaAparelhoGenitourinario();
   }
 
   preencherEstadoCivil(): string {
@@ -439,6 +448,48 @@ export class CadastroAvaliacaoComponent implements OnInit {
     this.listaPontos = [];
     this.img.src = './assets/img/corpo_humano.jpg';
     this.img.onload = this.inicializarCanva.bind(this);
+  }
+
+  inicializarListaAparelhosDigestorio(): void {
+    const item: Ck = new Ck();
+    item.titulo = 'continência';
+    const item1: Ck = new Ck();
+    item1.titulo = 'incontinência fecal';
+    const item2: Ck = new Ck();
+    item2.titulo = 'obstipação';
+    this.listaAparelhosDigestorio.push(item);
+    this.listaAparelhosDigestorio.push(item1);
+    this.listaAparelhosDigestorio.push(item2);
+  }
+
+  inicializarListaAbdomem(): void {
+    const item: Ck = new Ck();
+    item.titulo = 'normal';
+    const item1: Ck = new Ck();
+    item1.titulo = 'rígido';
+    const item2: Ck = new Ck();
+    item2.titulo = 'flácido';
+    const item3: Ck = new Ck();
+    item3.titulo = 'distendido';
+    const item4: Ck = new Ck();
+    item4.titulo = 'doloroso';
+    this.listaAbdomem.push(item);
+    this.listaAbdomem.push(item1);
+    this.listaAbdomem.push(item2);
+    this.listaAbdomem.push(item3);
+    this.listaAbdomem.push(item4);
+  }
+
+  inicializarListaAparelhoGenitourinario(): void {
+    const item: Ck = new Ck();
+    item.titulo = 'continência';
+    const item1: Ck = new Ck();
+    item1.titulo = 'função sexual';
+    const item2: Ck = new Ck();
+    item2.titulo = 'incontinência';
+    this.listaAparelhoGenitourinario.push(item);
+    this.listaAparelhoGenitourinario.push(item1);
+    this.listaAparelhoGenitourinario.push(item2);
   }
 
 }
