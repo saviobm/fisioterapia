@@ -56,6 +56,17 @@ CREATE TABLE avaliacao (
 	hma TEXT NULL,		
 	mini_mental_id INT NOT NULL,
 	desc_aspecto_secrecao VARCHAR(300) NULL,	
+	desc_amplitude_articular TEXT NULL,
+	desc_pele TEXT NULL,
+	desc_local TEXT NULL,
+	desc_Tipo TEXT NULL,
+	desc_grau TEXT NULL,
+	desc_sequelas TEXT NULL,
+	desc_fatores_agravantes TEXT NULL,
+	desc_fatores_atenuantes TEXT NULL,
+	desc_observacoes TEXT NULL,	
+	desc_objetivos TEXT NULL,
+	desc_condutas TEXT NULL,	
 	PRIMARY KEY (id)
 );
 

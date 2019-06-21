@@ -1,3 +1,4 @@
+import { AvaliacaoService } from './../../../../service/avaliacao.service';
 import { Ponto } from './../../../../model/ponto';
 import { Ck } from './../../../../model/ck';
 import { Ashworth } from './../../../../model/ashworth';
@@ -13,11 +14,11 @@ import { Avaliacao } from './../../../../model/avaliacao';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
-import { Patologia } from 'src/app/model/patologia';
 import { PatologiaService } from 'src/app/service/patologia.service';
 import {FormControl} from '@angular/forms';
 import { template } from '@angular/core/src/render3';
 import { controlNameBinding } from '@angular/forms/src/directives/reactive_directives/form_control_name';
+import { Patologia } from './../../../../model/patologia';
 
 @Component({
   selector: 'app-cadastro-avaliacao',
@@ -37,7 +38,7 @@ import { controlNameBinding } from '@angular/forms/src/directives/reactive_direc
 export class CadastroAvaliacaoComponent implements OnInit {
 
   constructor(private pacienteService: PacienteService, private dialog: MatDialog, private _adapter: DateAdapter<any>,
-    private patologiaService: PatologiaService) { }
+    private patologiaService: PatologiaService, private avaliacaoService: AvaliacaoService) { }
 
   avaliacao: Avaliacao = new Avaliacao();
 
@@ -490,6 +491,20 @@ export class CadastroAvaliacaoComponent implements OnInit {
     this.listaAparelhoGenitourinario.push(item);
     this.listaAparelhoGenitourinario.push(item1);
     this.listaAparelhoGenitourinario.push(item2);
+  }
+
+  salvar() {
+    this.avaliacaoService.salvar(this.avaliacao).subscribe(avaliacao => {
+      let msg = new Message();
+      if (avaliacao.id) {
+        this.avaliacao = avaliacao;
+        msg.message = 'Avaliação salva com sucesso!';
+      } else {
+        msg.message = 'Erro ao salvar a avaliação!';
+      }
+      msg.title = 'Cadastro Avaliação';
+      this.openDialog(msg);
+    });
   }
 
 }

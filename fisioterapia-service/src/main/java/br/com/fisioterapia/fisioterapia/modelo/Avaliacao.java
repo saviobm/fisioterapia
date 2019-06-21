@@ -37,7 +37,7 @@ public class Avaliacao extends Fisioterapia {
 	private Patologia patologia;
 	
 	@Column(name = "desc_diag_fisioterapeutico")
-	private String descDiagFisioterapeutico;
+	private String descricaoDiagFisioterapeutico;
 	
 	@Column(name = "cid")
 	private String cid;
@@ -60,6 +60,39 @@ public class Avaliacao extends Fisioterapia {
 	
 	@Column(name = "desc_aspecto_secrecao")
 	private String descricaoAspectoSecrecao;
+	
+	@Column(name = "desc_amplitude_articular")
+	private String descricaoAmplitudeArticular;
+	
+	@Column(name = "desc_pele")
+	private String   descricaoPele;
+	
+	@Column(name = "desc_local")
+	private String descricaoLocal;
+	  
+	@Column(name = "desc_Tipo")
+	private String descricaoTipo;
+	  
+	@Column(name = "desc_grau")
+	private String descricaoGrau;
+	  
+	@Column(name = "desc_sequelas")
+	private String descricaoSequelas;
+	
+	@Column(name = "desc_fatores_agravantes")
+	private String descricaoFatoresAgravantes;
+	  
+	@Column(name = "desc_fatores_atenuantes")
+	private String descricaoFatoresAtenuantes;
+	  
+	@Column(name = "desc_observacoes")
+	private String descricaoObservacoes;
+
+	@Column(name = "desc_objetivos")
+	private String descricaoObjetivos;
+	  
+	@Column(name = "desc_condutas")
+	private String descricaoCondutas;
 
 	/**
 	 * @return the id
@@ -118,17 +151,17 @@ public class Avaliacao extends Fisioterapia {
 	}
 
 	/**
-	 * @return the descDiagFisioterapeutico
+	 * @return the descricaoDiagFisioterapeutico
 	 */
-	public String getDescDiagFisioterapeutico() {
-		return descDiagFisioterapeutico;
+	public String getDescricaoDiagFisioterapeutico() {
+		return descricaoDiagFisioterapeutico;
 	}
 
 	/**
-	 * @param descDiagFisioterapeutico the descDiagFisioterapeutico to set
+	 * @param descricaoDiagFisioterapeutico the descricaoDiagFisioterapeutico to set
 	 */
-	public void setDescDiagFisioterapeutico(String descDiagFisioterapeutico) {
-		this.descDiagFisioterapeutico = descDiagFisioterapeutico;
+	public void setDescricaoDiagFisioterapeutico(String descricaoDiagFisioterapeutico) {
+		this.descricaoDiagFisioterapeutico = descricaoDiagFisioterapeutico;
 	}
 
 	/**
@@ -229,5 +262,158 @@ public class Avaliacao extends Fisioterapia {
 		this.descricaoAspectoSecrecao = descricaoAspectoSecrecao;
 	}
 
+	/**
+	 * @return the descricaoAmplitudeArticular
+	 */
+	public String getDescricaoAmplitudeArticular() {
+		return descricaoAmplitudeArticular;
+	}
+
+	/**
+	 * @param descricaoAmplitudeArticular the descricaoAmplitudeArticular to set
+	 */
+	public void setDescricaoAmplitudeArticular(String descricaoAmplitudeArticular) {
+		this.descricaoAmplitudeArticular = descricaoAmplitudeArticular;
+	}
+
+	/**
+	 * @return the descricaoPele
+	 */
+	public String getDescricaoPele() {
+		return descricaoPele;
+	}
+
+	/**
+	 * @param descricaoPele the descricaoPele to set
+	 */
+	public void setDescricaoPele(String descricaoPele) {
+		this.descricaoPele = descricaoPele;
+	}
+
+	/**
+	 * @return the descricaoLocal
+	 */
+	public String getDescricaoLocal() {
+		return descricaoLocal;
+	}
+
+	/**
+	 * @param descricaoLocal the descricaoLocal to set
+	 */
+	public void setDescricaoLocal(String descricaoLocal) {
+		this.descricaoLocal = descricaoLocal;
+	}
+
+	/**
+	 * @return the descricaoTipo
+	 */
+	public String getDescricaoTipo() {
+		return descricaoTipo;
+	}
+
+	/**
+	 * @param descricaoTipo the descricaoTipo to set
+	 */
+	public void setDescricaoTipo(String descricaoTipo) {
+		this.descricaoTipo = descricaoTipo;
+	}
+
+	/**
+	 * @return the descricaoGrau
+	 */
+	public String getDescricaoGrau() {
+		return descricaoGrau;
+	}
+
+	/**
+	 * @param descricaoGrau the descricaoGrau to set
+	 */
+	public void setDescricaoGrau(String descricaoGrau) {
+		this.descricaoGrau = descricaoGrau;
+	}
+
+	/**
+	 * @return the descricaoSequelas
+	 */
+	public String getDescricaoSequelas() {
+		return descricaoSequelas;
+	}
+
+	/**
+	 * @param descricaoSequelas the descricaoSequelas to set
+	 */
+	public void setDescricaoSequelas(String descricaoSequelas) {
+		this.descricaoSequelas = descricaoSequelas;
+	}
+
+	/**
+	 * @return the descricaoFatoresAgravantes
+	 */
+	public String getDescricaoFatoresAgravantes() {
+		return descricaoFatoresAgravantes;
+	}
+
+	/**
+	 * @param descricaoFatoresAgravantes the descricaoFatoresAgravantes to set
+	 */
+	public void setDescricaoFatoresAgravantes(String descricaoFatoresAgravantes) {
+		this.descricaoFatoresAgravantes = descricaoFatoresAgravantes;
+	}
+
+	/**
+	 * @return the descricaoFatoresAtenuantes
+	 */
+	public String getDescricaoFatoresAtenuantes() {
+		return descricaoFatoresAtenuantes;
+	}
+
+	/**
+	 * @param descricaoFatoresAtenuantes the descricaoFatoresAtenuantes to set
+	 */
+	public void setDescricaoFatoresAtenuantes(String descricaoFatoresAtenuantes) {
+		this.descricaoFatoresAtenuantes = descricaoFatoresAtenuantes;
+	}
+
+	/**
+	 * @return the descricaoObservacoes
+	 */
+	public String getDescricaoObservacoes() {
+		return descricaoObservacoes;
+	}
+
+	/**
+	 * @param descricaoObservacoes the descricaoObservacoes to set
+	 */
+	public void setDescricaoObservacoes(String descricaoObservacoes) {
+		this.descricaoObservacoes = descricaoObservacoes;
+	}
+
+	/**
+	 * @return the descricaoObjetivos
+	 */
+	public String getDescricaoObjetivos() {
+		return descricaoObjetivos;
+	}
+
+	/**
+	 * @param descricaoObjetivos the descricaoObjetivos to set
+	 */
+	public void setDescricaoObjetivos(String descricaoObjetivos) {
+		this.descricaoObjetivos = descricaoObjetivos;
+	}
+
+	/**
+	 * @return the descricaoCondutas
+	 */
+	public String getDescricaoCondutas() {
+		return descricaoCondutas;
+	}
+
+	/**
+	 * @param descricaoCondutas the descricaoCondutas to set
+	 */
+	public void setDescricaoCondutas(String descricaoCondutas) {
+		this.descricaoCondutas = descricaoCondutas;
+	}
+
 }
-	
