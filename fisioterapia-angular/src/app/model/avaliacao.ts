@@ -1,5 +1,6 @@
 import { Paciente } from './paciente';
 import { Patologia } from './patologia';
+import { Ck } from './ck';
 
 export class Avaliacao {
 
@@ -26,6 +27,8 @@ export class Avaliacao {
   descricaoDignosticoFisioterapeutico: string;
   descricaoObjetivos: string;
   descricaoCondutas: string;
+  listaHabitosVicios: Ck[] = [];
+  listaSinaisVitais: Ck[] = [];
 
   constructor() { }
 

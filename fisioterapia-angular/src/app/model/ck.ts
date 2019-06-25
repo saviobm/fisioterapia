@@ -1,6 +1,8 @@
 export class Ck {
   titulo: string;
   value: boolean[] = [];
-  descricao: string[] = [];
+  sigla: string[] = [];
+  selecionado?: false;
+  descricao?: string[] = [];
   constructor() {}
 }

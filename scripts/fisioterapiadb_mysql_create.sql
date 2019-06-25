@@ -66,7 +66,8 @@ CREATE TABLE avaliacao (
 	desc_fatores_atenuantes TEXT NULL,
 	desc_observacoes TEXT NULL,	
 	desc_objetivos TEXT NULL,
-	desc_condutas TEXT NULL,	
+	desc_condutas TEXT NULL,
+	desc_habitos_vicios VARCHAR(300) NULL,	
 	PRIMARY KEY (id)
 );
 

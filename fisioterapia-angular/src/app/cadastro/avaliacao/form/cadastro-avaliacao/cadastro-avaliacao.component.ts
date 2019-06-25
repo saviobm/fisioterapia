@@ -7,7 +7,7 @@ import { ForcaMuscular } from './../../../../model/forca-muscular';
 import { Endereco } from './../../../../model/endereco';
 import { MensagemComponent } from 'src/app/mensagem/mensagem.component';
 import { Message } from './../../../../model/message';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatCheckbox } from '@angular/material';
 import { Mensagem } from './../../../paciente/form/cadastro-paciente/cadastro-paciente.component';
 import { PacienteService } from './../../../../service/paciente.service';
 import { Avaliacao } from './../../../../model/avaliacao';
@@ -44,7 +44,7 @@ export class CadastroAvaliacaoComponent implements OnInit {
 
   listaPatologia: Patologia[] = [];
 
-  listaHabitosVicios: string[] = ['Tabagista', 'Ex-Tabagista', 'Etilista', 'Ex-etilista'];
+  listaHabitosVicios: Ck[] = [];
 
   descricaoEndereco: string;
 
@@ -52,7 +52,7 @@ export class CadastroAvaliacaoComponent implements OnInit {
 
   estadoCivilEnum: any = '{ "sigla": "DIV", "descricao" : "Divorciado" }, { "sigla" : "CAS", "descricao" : "Casado" }, { "sigla" : "SOL", "descricao" : "Solteiro" }';
 
-  listaSinaisVitais: any[];
+  listaSinaisVitais: Ck[] = [];
 
   listaNivelConsciencia: any[];
 
@@ -194,7 +194,8 @@ export class CadastroAvaliacaoComponent implements OnInit {
     this.patologiaService.listarPatologias().subscribe(data => {
       this.listaPatologia = data;
     });
-    this.listaSinaisVitais = JSON.parse('[' + '{ "sigla": "FC", "descricao" : "FC", "observacao": "" }, { "sigla" : "FR", "descricao" : "FR", "observacao": "" }, { "sigla" : "TAX", "descricao" : "TAX", "observacao": "" }, { "sigla" : "PA", "descricao" : "PA", "observacao": "" }' + ']');
+    this.inicializarHabitosVicios();
+    this.inicializarListaSinaisVitais();
     this.listaNivelConsciencia = JSON.parse('[' + '{ "sigla": "LUC", "descricao" : "lúcido-orientado" }, { "sigla": "DES", "descricao" : "desorientado" }, { "sigla": "LUCMD", "descricao" : "lúcido com momentos de desorientação" }, { "sigla": "INC", "descricao" : "inconsciente" }' + ']');
     this.listaEstadoEmocional = JSON.parse('[' + '{ "sigla": "CAL", "descricao" : "calmo" }, { "sigla": "AGIT", "descricao" : "agitado" }, { "sigla": "DEPRE", "descricao" : "depressivo" }, { "sigla": "ANC", "descricao" : "ancioso" }, { "sigla": "AGR", "descricao" : "agressivo" }' + ']');
     this.listaSistemaRespiratorio = JSON.parse('[' + '{ "sigla": "VE", "descricao" : "ventilação espontânea", "observacao": "" }, { "sigla": "VEO2", "descricao" : "ventilação espontânea com suporte de O2", "observacao" : "" }' + ']');
@@ -221,6 +222,50 @@ export class CadastroAvaliacaoComponent implements OnInit {
     this.inicializarListaAparelhosDigestorio();
     this.inicializarListaAbdomem();
     this.inicializarListaAparelhoGenitourinario();
+  }
+
+  inicializarListaSinaisVitais(): void {
+    const item: Ck = new Ck();
+    item.sigla[0] = 'FC';
+    const item1: Ck = new Ck();
+    item1.sigla[0] = 'FR';
+    const item2: Ck = new Ck();
+    item2.sigla[0] = 'TAX';
+    const item3: Ck = new Ck();
+    item3.sigla[0] = 'PA';
+    this.listaSinaisVitais.push(item);
+    this.listaSinaisVitais.push(item1);
+    this.listaSinaisVitais.push(item2);
+    this.listaSinaisVitais.push(item3);
+  }
+
+  inicializarHabitosVicios(): void {
+    this.listaHabitosVicios = [
+      {
+        titulo: 'Tabagista',
+        value: null,
+        sigla: ['TAB'],
+        selecionado: false
+      },
+      {
+        titulo: 'Ex-Tabagista',
+        value: null,
+        sigla: ['EXTAB'],
+        selecionado: false
+      },
+      {
+        titulo: 'Etilista',
+        value: null,
+        sigla: ['ELIT'],
+        selecionado: false
+      },
+      {
+        titulo: 'Ex-Etilista',
+        value: null,
+        sigla: ['EXELIT'],
+        selecionado: false
+      }
+    ];
   }
 
   preencherEstadoCivil(): string {
@@ -494,8 +539,12 @@ export class CadastroAvaliacaoComponent implements OnInit {
   }
 
   salvar() {
+    this.avaliacao.listaHabitosVicios = this.listaHabitosVicios.filter(habito => habito.selecionado);
+    // Filta a lista de sinais vitais para colocar apenas os selecionados
+    this.avaliacao.listaSinaisVitais = this.listaSinaisVitais.filter(sinalVital => sinalVital.selecionado);
+
     this.avaliacaoService.salvar(this.avaliacao).subscribe(avaliacao => {
-      let msg = new Message();
+      const msg = new Message();
       if (avaliacao.id) {
         this.avaliacao = avaliacao;
         msg.message = 'Avaliação salva com sucesso!';

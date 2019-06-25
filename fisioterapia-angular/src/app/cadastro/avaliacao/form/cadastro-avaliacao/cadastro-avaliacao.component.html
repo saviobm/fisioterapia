@@ -112,7 +112,10 @@
   </div>
   <div class="form-group">
     <div class="form-row">
-      <mat-checkbox id="ckHabitoVicio{{i}}" name="ckHabitoVicio{{i}}" class="col-sm" *ngFor="let habitosVicios of listaHabitosVicios; let i = index">{{ habitosVicios }}</mat-checkbox>
+        <label for="ckHabitosVicios" class="fisioterapia-label">Hábitos/Vícios</label>
+    </div>
+    <div class="form-row">
+      <mat-checkbox [ngModelOptions]="{standalone: true}" #ckHabitosVicios class="col-sm" *ngFor="let habitosVicios of listaHabitosVicios; let i = index;" [(ngModel)]="habitosVicios.selecionado">{{ habitosVicios.titulo }}</mat-checkbox>
     </div>
   </div>
   <div class="form-group">
@@ -125,11 +128,11 @@
       <label class="fisioterapia-label">Sinais Vitais</label><BR>
     </div>
     <div class="form-row">
-      <mat-checkbox id="ckSinaisVitais{{i}}" name="ckSinaisVitais{{i}}" class="col-sm" *ngFor="let sinalVital of listaSinaisVitais; let i = index">
+      <mat-checkbox class="col-sm" [ngModelOptions]="{standalone: true}" [(ngModel)]="sinalVital.selecionado" *ngFor="let sinalVital of listaSinaisVitais; let i = index">
           <table>
             <tr>
-              <td>{{ sinalVital.descricao }}</td>
-              <td><input id="descricaoSinalVital{{i}}" [(ngModel)]="sinalVital.observacao" name="descricaoSinalVital{{i}}" class="form-control form-control-sm"></td>
+              <td>{{ sinalVital.sigla[0] }}</td>
+              <td><input [ngModelOptions]="{standalone: true}" [(ngModel)]="sinalVital.descricao[0]" class="form-control form-control-sm"></td>
             </tr>
           </table>
       </mat-checkbox>
