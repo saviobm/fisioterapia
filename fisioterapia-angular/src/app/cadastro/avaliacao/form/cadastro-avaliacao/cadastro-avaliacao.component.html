@@ -172,7 +172,7 @@
   <div class="form-group">
     <div class="form-row">
       <label class="fisioterapia-label">Ritmo: </label><BR>
-      <mat-checkbox id="ckRitmo{{i}}" name="ckRitmo{{i}}" class="col-sm" *ngFor="let ritmo of listaRitmo; let i = index">{{ ritmo.descricao }}</mat-checkbox>
+      <mat-checkbox [ngModelOptions]="{standalone: true}" class="col-sm" [(ngModel)]="ritmo.selecionado" *ngFor="let ritmo of listaRitmo; let i = index">{{ ritmo.titulo }}</mat-checkbox>
     </div>
   </div>
   <div class="form-group">
@@ -180,13 +180,13 @@
         <label class="fisioterapia-label">Padrão Muscular Respiratório</label><BR>
       </div>
       <div class="form-row">
-        <mat-checkbox id="ckPMRespitarorio{{i}}" name="ckPMRespitarorio{{i}}" class="col-sm" *ngFor="let pmRespiratorio of listaPMRespiratorio; let i = index">{{ pmRespiratorio.descricao }}</mat-checkbox>
+        <mat-checkbox [ngModelOptions]="{standalone: true}" class="col-sm" [(ngModel)]="pmRespiratorio.selecionado" *ngFor="let pmRespiratorio of listaPMRespiratorio; let i = index">{{ pmRespiratorio.titulo }}</mat-checkbox>
       </div>
   </div>
   <div class="form-group">
     <div class="form-row">
       <label class="fisioterapia-label">Expansibilidade Torácica: </label><BR>
-      <mat-checkbox id="ckExTorcica{{i}}" name="ckExTorcica{{i}}" class="col-sm" *ngFor="let exToracica of listaExToracica; let i = index">{{ exToracica.descricao }}</mat-checkbox>
+      <mat-checkbox [ngModelOptions]="{standalone: true}" class="col-sm" [(ngModel)]="exToracica.selecionado" *ngFor="let exToracica of listaExToracica; let i = index">{{ exToracica.titulo }}</mat-checkbox>
     </div>
   </div>
 
@@ -195,18 +195,18 @@
         <label class="fisioterapia-label">Ausculta Pulmonar</label><BR>
       </div>
       <div class="form-row">
-        <mat-checkbox id="ckAuscultaPulmonar{{i}}" name="ckAuscultaPulmonar{{i}}" class="col-sm" *ngFor="let auscultaPulmonar of listaAuscultaPulmonar; let i = index">
+        <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="auscultaPulmonar.selecionado" class="col-sm" *ngFor="let auscultaPulmonar of listaAuscultaPulmonar; let i = index">
           <table>
             <tr>
-              <td>{{ auscultaPulmonar.descricao }}</td>
-              <td><input id="descricaoAuscultaPulmonar{{i}}" [(ngModel)]="auscultaPulmonar.observacao" name="descricaoAuscultaPulmonar{{i}}" class="form-control form-control-sm"></td>
+              <td>{{ auscultaPulmonar.titulo }}</td>
+              <td><input [ngModelOptions]="{standalone: true}" [(ngModel)]="auscultaPulmonar.descricao" class="form-control form-control-sm"></td>
             </tr>
           </table>
         </mat-checkbox>
       </div>
       <div class="form-row">
         <label class="fisioterapia-label">Ruídos adventícios: </label><BR>
-        <mat-checkbox id="ckRuidosAdventicios{{i}}" name="ckRuidosAdventicios{{i}}" class="col-sm" *ngFor="let ruidosAdventicios of listaRuidosAdventicios; let i = index">{{ ruidosAdventicios.descricao }}</mat-checkbox>
+        <mat-checkbox [ngModelOptions]="{standalone: true}" class="col-sm" [(ngModel)]="ruidosAdventicios.selecionado" *ngFor="let ruidosAdventicios of listaRuidosAdventicios; let i = index">{{ ruidosAdventicios.titulo }}</mat-checkbox>
       </div>
     </div>
     <div class="form-group">

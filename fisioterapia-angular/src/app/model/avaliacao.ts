@@ -32,6 +32,11 @@ export class Avaliacao {
   listaNivelConsciencia: Ck[] = [];
   listaEstadoEmocional: Ck[] = [];
   listaSistemaRespiratorio: Ck[] = [];
+  listaRitmo: Ck[] = [];
+  listaPMRespiratorio: Ck[] = [];
+  listaExToracica: Ck[] = [];
+  listaAuscultaPulmonar: Ck[] = [];
+  listaRuidosAdventicios: Ck[] = [];
 
   constructor() { }
 

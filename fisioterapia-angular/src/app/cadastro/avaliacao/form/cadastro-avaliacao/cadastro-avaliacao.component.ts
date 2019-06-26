@@ -60,15 +60,15 @@ export class CadastroAvaliacaoComponent implements OnInit {
 
   listaSistemaRespiratorio: Ck[] = [];
 
-  listaRitmo: any[];
+  listaRitmo: Ck[] = [];
 
-  listaPMRespiratorio: any[];
+  listaPMRespiratorio: Ck[] = [];
 
-  listaExToracica: any[];
+  listaExToracica: Ck[] = [];
 
-  listaAuscultaPulmonar: any[];
+  listaAuscultaPulmonar: Ck[] = [];
 
-  listaRuidosAdventicios: any[];
+  listaRuidosAdventicios: Ck[] = [];
 
   listaTosses: any[];
 
@@ -199,11 +199,11 @@ export class CadastroAvaliacaoComponent implements OnInit {
     this.inicializarListaNivelConsciencia();
     this.inicializarListaEstadoEmocional();
     this.inicializarListaSistemaRespiratorio();
-    this.listaRitmo = JSON.parse('[' + '{ "sigla": "REG", "descricao" : "regular" }, { "sigla": "TRAQ", "descricao" : "traqpinéia" }, { "sigla": "BRAD", "descricao" : "bradipnéia" }, { "sigla": "DISP", "descricao" : "dispnéia" }' + ']');
-    this.listaPMRespiratorio = JSON.parse('[' + '{ "sigla": "DIAFR", "descricao" : "diafragmático" }, { "sigla": "CDIAFR", "descricao" : "costo-diafragmático" }, { "sigla": "INTC", "descricao" : "intercostal" }, { "sigla": "ACESS", "descricao" : "acessório" }, { "sigla": "PARAD", "descricao" : "paradoxal" }, { "sigla": "APIC", "descricao" : "apical" }' + ']');
-    this.listaExToracica = JSON.parse('[' + '{ "sigla": "NORM", "descricao" : "normal" }, { "sigla": "DIMIN", "descricao" : "diminuída" }, { "sigla": "ASSIM", "descricao" : "assimétrica" }' + ']');
-    this.listaAuscultaPulmonar = JSON.parse('[' + '{ "sigla": "MVSRA", "descricao" : "mv s/ra", "observacao": "" }, { "sigla" : "MVD", "descricao" : "mv diminuído", "observacao": "" }, { "sigla" : "MVA", "descricao" : "mv abolido", "observacao": "" }' + ']');
-    this.listaRuidosAdventicios = JSON.parse('[' + '{ "sigla": "CREP", "descricao" : "crepitações" }, { "sigla": "RONC", "descricao" : "roncos" }, { "sigla": "SIBI", "descricao" : "sibilos" }' + ']');
+    this.inicializarListaRitmo();
+    this.inicializarListaPMRespiratorio();
+    this.inicializarListaExpansividadeToraxica();
+    this.inicializarListaAuscultaPulmonar();
+    this.inicializarListaRuidosAdventicios();
     this.listaTosses = JSON.parse('[' + '{ "sigla": "AUS", "descricao" : "ausente" }, { "sigla": "SEC", "descricao" : "seca" }, { "sigla": "UMI", "descricao" : "úmida" }, { "sigla": "PROD", "descricao" : "produtiva" }' + ']');
     this.listaSistemaOsteomioarticular = JSON.parse('[' + '{ "sigla": "MOVV", "descricao" : "mov. voluntário" }, { "sigla": "MOVI", "descricao" : "mov. involutário" }, { "sigla": "PLEG", "descricao" : "plegia" }, { "sigla": "PARES", "descricao" : "paresia" }' + ']');
     this.listaForcaMuscular = JSON.parse('[' + '{ "sigla": "NORM", "descricao" : "normal" }, { "sigla": "DIMIN", "descricao" : "diminuída" }' + ']');
@@ -222,6 +222,97 @@ export class CadastroAvaliacaoComponent implements OnInit {
     this.inicializarListaAparelhosDigestorio();
     this.inicializarListaAbdomem();
     this.inicializarListaAparelhoGenitourinario();
+  }
+
+  inicializarListaRuidosAdventicios(): void {
+    const item: Ck = new Ck();
+    item.titulo = 'crepitações';
+    item.sigla[0] = 'CREP';
+    const item1: Ck = new Ck();
+    item1.titulo = 'roncos';
+    item1.sigla[0] = 'RONC';
+    const item2: Ck = new Ck();
+    item2.titulo = 'sibilos';
+    item2.sigla[0] = 'SIBI';
+    this.listaRuidosAdventicios.push(item);
+    this.listaRuidosAdventicios.push(item1);
+    this.listaRuidosAdventicios.push(item2);
+  }
+
+  inicializarListaAuscultaPulmonar(): void {
+    const item: Ck = new Ck();
+    item.titulo = 'mv s/ra';
+    item.sigla[0] = 'normal';
+    const item1: Ck = new Ck();
+    item1.titulo = 'mv diminuído';
+    item1.sigla[0] = 'MVD';
+    const item2: Ck = new Ck();
+    item2.titulo = 'mv abolido';
+    item2.sigla[0] = 'MVA';
+    this.listaAuscultaPulmonar.push(item);
+    this.listaAuscultaPulmonar.push(item1);
+    this.listaAuscultaPulmonar.push(item2);
+  }
+
+  inicializarListaExpansividadeToraxica(): void {
+    const item: Ck = new Ck();
+    item.titulo = 'normal';
+    item.sigla[0] = 'NORM';
+    const item1: Ck = new Ck();
+    item1.titulo = 'diminuída';
+    item1.sigla[0] = 'DIMIN';
+    const item2: Ck = new Ck();
+    item2.titulo = 'assimétrica';
+    item2.sigla[0] = 'ASSIM';
+    this.listaExToracica.push(item);
+    this.listaExToracica.push(item1);
+    this.listaExToracica.push(item2);
+  }
+
+  inicializarListaPMRespiratorio(): void {
+    const item: Ck = new Ck();
+    item.titulo = 'diafragmático';
+    item.sigla[0] = 'DIAFR';
+    const item1: Ck = new Ck();
+    item1.titulo = 'costo-diafragmático';
+    item1.sigla[0] = 'CDIAFR';
+    const item2: Ck = new Ck();
+    item2.titulo = 'intercostal';
+    item2.sigla[0] = 'INTC';
+    const item3: Ck = new Ck();
+    item3.titulo = 'acessório';
+    item3.sigla[0] = 'ACESS';
+    const item4: Ck = new Ck();
+    item4.titulo = 'paradoxal';
+    item4.sigla[0] = 'PARAD';
+    const item5: Ck = new Ck();
+    item5.titulo = 'apical';
+    item5.sigla[0] = 'APIC';
+    this.listaPMRespiratorio.push(item);
+    this.listaPMRespiratorio.push(item1);
+    this.listaPMRespiratorio.push(item2);
+    this.listaPMRespiratorio.push(item3);
+    this.listaPMRespiratorio.push(item4);
+    this.listaPMRespiratorio.push(item5);
+  }
+
+  inicializarListaRitmo(): void {
+    const item: Ck = new Ck();
+    item.titulo = 'regular';
+    item.sigla[0] = 'REG';
+    const item1: Ck = new Ck();
+    item1.titulo = 'traqpinéia';
+    item1.sigla[0] = 'TRAQ';
+    const item2: Ck = new Ck();
+    item2.titulo = 'bradipnéia';
+    item2.sigla[0] = 'BRAD';
+    const item3: Ck = new Ck();
+    item3.titulo = 'dispnéia';
+    item3.sigla[0] = 'DISP';
+    this.listaRitmo.push(item);
+    this.listaRitmo.push(item1);
+    this.listaRitmo.push(item2);
+    this.listaRitmo.push(item3);
   }
 
   inicializarListaSistemaRespiratorio(): void {
@@ -590,6 +681,11 @@ export class CadastroAvaliacaoComponent implements OnInit {
     this.avaliacao.listaNivelConsciencia = this.listaNivelConsciencia.filter(nivelConsciencia => nivelConsciencia.selecionado);
     this.avaliacao.listaEstadoEmocional = this.listaEstadoEmocional.filter(estadoEmocional => estadoEmocional.selecionado);
     this.avaliacao.listaSistemaRespiratorio = this.listaSistemaRespiratorio.filter(sistemaRespiratorio => sistemaRespiratorio.selecionado);
+    this.avaliacao.listaRitmo = this.listaRitmo.filter(ritmo => ritmo.selecionado);
+    this.avaliacao.listaPMRespiratorio = this.listaPMRespiratorio.filter(pmRespiratorio => pmRespiratorio.selecionado);
+    this.avaliacao.listaExToracica = this.listaExToracica.filter(exToracica => exToracica.selecionado);
+    this.avaliacao.listaAuscultaPulmonar = this.listaAuscultaPulmonar.filter(auscultaPulmonar => auscultaPulmonar.selecionado);
+    this.avaliacao.listaRuidosAdventicios = this.listaRuidosAdventicios.filter(ruidosAdventicios => ruidosAdventicios.selecionado);
     this.avaliacaoService.salvar(this.avaliacao).subscribe(avaliacao => {
       const msg = new Message();
       if (avaliacao.id) {
