@@ -54,11 +54,11 @@ export class CadastroAvaliacaoComponent implements OnInit {
 
   listaSinaisVitais: Ck[] = [];
 
-  listaNivelConsciencia: any[];
+  listaNivelConsciencia: Ck[] = [];
 
-  listaEstadoEmocional: any[];
+  listaEstadoEmocional: Ck[] = [];
 
-  listaSistemaRespiratorio: any[];
+  listaSistemaRespiratorio: Ck[] = [];
 
   listaRitmo: any[];
 
@@ -196,9 +196,9 @@ export class CadastroAvaliacaoComponent implements OnInit {
     });
     this.inicializarHabitosVicios();
     this.inicializarListaSinaisVitais();
-    this.listaNivelConsciencia = JSON.parse('[' + '{ "sigla": "LUC", "descricao" : "lúcido-orientado" }, { "sigla": "DES", "descricao" : "desorientado" }, { "sigla": "LUCMD", "descricao" : "lúcido com momentos de desorientação" }, { "sigla": "INC", "descricao" : "inconsciente" }' + ']');
-    this.listaEstadoEmocional = JSON.parse('[' + '{ "sigla": "CAL", "descricao" : "calmo" }, { "sigla": "AGIT", "descricao" : "agitado" }, { "sigla": "DEPRE", "descricao" : "depressivo" }, { "sigla": "ANC", "descricao" : "ancioso" }, { "sigla": "AGR", "descricao" : "agressivo" }' + ']');
-    this.listaSistemaRespiratorio = JSON.parse('[' + '{ "sigla": "VE", "descricao" : "ventilação espontânea", "observacao": "" }, { "sigla": "VEO2", "descricao" : "ventilação espontânea com suporte de O2", "observacao" : "" }' + ']');
+    this.inicializarListaNivelConsciencia();
+    this.inicializarListaEstadoEmocional();
+    this.inicializarListaSistemaRespiratorio();
     this.listaRitmo = JSON.parse('[' + '{ "sigla": "REG", "descricao" : "regular" }, { "sigla": "TRAQ", "descricao" : "traqpinéia" }, { "sigla": "BRAD", "descricao" : "bradipnéia" }, { "sigla": "DISP", "descricao" : "dispnéia" }' + ']');
     this.listaPMRespiratorio = JSON.parse('[' + '{ "sigla": "DIAFR", "descricao" : "diafragmático" }, { "sigla": "CDIAFR", "descricao" : "costo-diafragmático" }, { "sigla": "INTC", "descricao" : "intercostal" }, { "sigla": "ACESS", "descricao" : "acessório" }, { "sigla": "PARAD", "descricao" : "paradoxal" }, { "sigla": "APIC", "descricao" : "apical" }' + ']');
     this.listaExToracica = JSON.parse('[' + '{ "sigla": "NORM", "descricao" : "normal" }, { "sigla": "DIMIN", "descricao" : "diminuída" }, { "sigla": "ASSIM", "descricao" : "assimétrica" }' + ']');
@@ -224,6 +224,59 @@ export class CadastroAvaliacaoComponent implements OnInit {
     this.inicializarListaAparelhoGenitourinario();
   }
 
+  inicializarListaSistemaRespiratorio(): void {
+    const item: Ck = new Ck();
+    item.titulo = 'ventilação espontânea';
+    item.sigla[0] = 'VE';
+    const item1: Ck = new Ck();
+    item1.titulo = 'ventilação espontânea com suporte de O2';
+    item1.sigla[0] = 'VEO2';
+    this.listaSistemaRespiratorio.push(item);
+    this.listaSistemaRespiratorio.push(item1);
+  }
+
+  inicializarListaEstadoEmocional(): void {
+    const item: Ck = new Ck();
+    item.titulo = 'calmo';
+    item.sigla[0] = 'CAL';
+    const item1: Ck = new Ck();
+    item1.titulo = 'agitado';
+    item1.sigla[0] = 'AGIT';
+    const item2: Ck = new Ck();
+    item2.titulo = 'depressivo';
+    item2.sigla[0] = 'DEPRE';
+    const item3: Ck = new Ck();
+    item3.titulo = 'ancioso';
+    item3.sigla[0] = 'ANC';
+    const item4: Ck = new Ck();
+    item4.titulo = 'agressivo';
+    item4.sigla[0] = 'AGR';
+    this.listaEstadoEmocional.push(item);
+    this.listaEstadoEmocional.push(item1);
+    this.listaEstadoEmocional.push(item2);
+    this.listaEstadoEmocional.push(item3);
+    this.listaEstadoEmocional.push(item4);
+  }
+
+  inicializarListaNivelConsciencia(): void {
+    const item: Ck = new Ck();
+    item.titulo = 'lúcido-orientado';
+    item.sigla[0] = 'LUC';
+    const item1: Ck = new Ck();
+    item1.titulo = 'desorientado';
+    item1.sigla[0] = 'DES';
+    const item2: Ck = new Ck();
+    item2.titulo = 'lúcido com momentos de desorientação';
+    item2.sigla[0] = 'LUCMD';
+    const item3: Ck = new Ck();
+    item3.titulo = 'inconsciente';
+    item3.sigla[0] = 'INC';
+    this.listaNivelConsciencia.push(item);
+    this.listaNivelConsciencia.push(item1);
+    this.listaNivelConsciencia.push(item2);
+    this.listaNivelConsciencia.push(item3);
+  }
+
   inicializarListaSinaisVitais(): void {
     const item: Ck = new Ck();
     item.sigla[0] = 'FC';
@@ -243,27 +296,19 @@ export class CadastroAvaliacaoComponent implements OnInit {
     this.listaHabitosVicios = [
       {
         titulo: 'Tabagista',
-        value: null,
-        sigla: ['TAB'],
-        selecionado: false
+        sigla: ['TAB']
       },
       {
         titulo: 'Ex-Tabagista',
-        value: null,
-        sigla: ['EXTAB'],
-        selecionado: false
+        sigla: ['EXTAB']
       },
       {
         titulo: 'Etilista',
-        value: null,
-        sigla: ['ELIT'],
-        selecionado: false
+        sigla: ['ELIT']
       },
       {
         titulo: 'Ex-Etilista',
-        value: null,
-        sigla: ['EXELIT'],
-        selecionado: false
+        sigla: ['EXELIT']
       }
     ];
   }
@@ -542,7 +587,9 @@ export class CadastroAvaliacaoComponent implements OnInit {
     this.avaliacao.listaHabitosVicios = this.listaHabitosVicios.filter(habito => habito.selecionado);
     // Filta a lista de sinais vitais para colocar apenas os selecionados
     this.avaliacao.listaSinaisVitais = this.listaSinaisVitais.filter(sinalVital => sinalVital.selecionado);
-
+    this.avaliacao.listaNivelConsciencia = this.listaNivelConsciencia.filter(nivelConsciencia => nivelConsciencia.selecionado);
+    this.avaliacao.listaEstadoEmocional = this.listaEstadoEmocional.filter(estadoEmocional => estadoEmocional.selecionado);
+    this.avaliacao.listaSistemaRespiratorio = this.listaSistemaRespiratorio.filter(sistemaRespiratorio => sistemaRespiratorio.selecionado);
     this.avaliacaoService.salvar(this.avaliacao).subscribe(avaliacao => {
       const msg = new Message();
       if (avaliacao.id) {

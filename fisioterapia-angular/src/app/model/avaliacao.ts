@@ -29,6 +29,9 @@ export class Avaliacao {
   descricaoCondutas: string;
   listaHabitosVicios: Ck[] = [];
   listaSinaisVitais: Ck[] = [];
+  listaNivelConsciencia: Ck[] = [];
+  listaEstadoEmocional: Ck[] = [];
+  listaSistemaRespiratorio: Ck[] = [];
 
   constructor() { }
 

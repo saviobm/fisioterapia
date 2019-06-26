@@ -132,7 +132,7 @@
           <table>
             <tr>
               <td>{{ sinalVital.sigla[0] }}</td>
-              <td><input [ngModelOptions]="{standalone: true}" [(ngModel)]="sinalVital.descricao[0]" class="form-control form-control-sm"></td>
+              <td><input [ngModelOptions]="{standalone: true}" [(ngModel)]="sinalVital.descricao[i]" class="form-control form-control-sm"></td>
             </tr>
           </table>
       </mat-checkbox>
@@ -143,7 +143,7 @@
       <label class="fisioterapia-label">Nivel de Consciência</label><BR>
     </div>
     <div class="form-row">
-      <mat-checkbox id="ckNivelConsciencia{{i}}" name="ckNivelConsciencia{{i}}" class="col-sm" *ngFor="let nivelConsciencia of listaNivelConsciencia; let i = index">{{ nivelConsciencia.descricao }}</mat-checkbox>
+      <mat-checkbox [ngModelOptions]="{standalone: true}" class="col-sm" [(ngModel)]="nivelConsciencia.selecionado" *ngFor="let nivelConsciencia of listaNivelConsciencia; let i = index">{{ nivelConsciencia.titulo }}</mat-checkbox>
     </div>
   </div>
   <div class="form-group">
@@ -151,7 +151,7 @@
       <label class="fisioterapia-label">Estado Emocional</label><BR>
     </div>
     <div class="form-row">
-      <mat-checkbox id="ckEstadoEmocional{{i}}" name="ckEstadoEmocional{{i}}" class="col-sm" *ngFor="let estadoEmocional of listaEstadoEmocional; let i = index">{{ estadoEmocional.descricao }}</mat-checkbox>
+      <mat-checkbox [ngModelOptions]="{standalone: true}" class="col-sm" [(ngModel)]="estadoEmocional.selecionado" *ngFor="let estadoEmocional of listaEstadoEmocional; let i = index">{{ estadoEmocional.titulo }}</mat-checkbox>
     </div>
   </div>
   <div class="form-group">
@@ -159,11 +159,11 @@
       <label class="fisioterapia-label">Sistema Respiratório</label><BR>
     </div>
     <div class="form-row">
-      <mat-checkbox id="ckSistemaRespiratorio{{i}}" name="ckSistemaRespiratorio{{i}}" class="col-sm" *ngFor="let sistemaRespiratorio of listaSistemaRespiratorio; let i = index">
+      <mat-checkbox [ngModelOptions]="{standalone: true}" class="col-sm" [(ngModel)]="sistemaRespiratorio.selecionado" *ngFor="let sistemaRespiratorio of listaSistemaRespiratorio; let i = index">
         <table>
           <tr>
-            <td>{{ sistemaRespiratorio.descricao }}</td>
-            <td><input id="descricaoSistemaRespiratorio{{i}}" [(ngModel)]="sistemaRespiratorio.observacao" name="descricaoSistemaRespiratorio{{i}}" class="form-control form-control-sm"></td>
+            <td>{{ sistemaRespiratorio.titulo }}</td>
+            <td><input [ngModelOptions]="{standalone: true}"  [(ngModel)]="sistemaRespiratorio.descricao[0]" class="form-control form-control-sm"></td>
           </tr>
         </table>
       </mat-checkbox>
@@ -453,7 +453,7 @@
     <div class="form-group">
       <label class="fisioterapia-label">Amplitude Articular</label><BR>
       <div class="form-row">
-        <mat-checkbox [ngModelOptions]="{standalone: true}" class="col-sm" [(ngModel)]="amplitudeArticular.value[0]" *ngFor="let amplitudeArticular of listaAmplitudeArticular; let i = index">{{ amplitudeArticular.titulo }}</mat-checkbox>
+        <mat-checkbox [ngModelOptions]="{standalone: true}" class="col-sm" [(ngModel)]="amplitudeArticular.descricao[0]" *ngFor="let amplitudeArticular of listaAmplitudeArticular; let i = index">{{ amplitudeArticular.titulo }}</mat-checkbox>
       </div>
       <div class="form-row">
         <input id="amplitudeArticular" name="amplitudeArticular" class="form-control form-control-sm" [(ngModel)]="avaliacao.descricaoAmplitudeArticular" #amplitudeArticular="ngModel">
@@ -461,7 +461,7 @@
     </div>
     <div class="form-group">
       <div class="form-row">
-        <mat-checkbox [ngModelOptions]="{standalone: true}" class="col-sm" [(ngModel)]="tipoEmatomaAA.value[0]" *ngFor="let tipoEmatomaAA of listaTipoEmatomaAA; let i = index">
+        <mat-checkbox [ngModelOptions]="{standalone: true}" class="col-sm" [(ngModel)]="tipoEmatomaAA.descricao[0]" *ngFor="let tipoEmatomaAA of listaTipoEmatomaAA; let i = index">
           <table>
             <tr>
               <td>{{ tipoEmatomaAA.titulo }}</td>
@@ -474,18 +474,18 @@
     <div class="form-group">
       <label class="fisioterapia-label">Deambulação</label><BR>
       <div class="form-row">
-        <mat-checkbox [ngModelOptions]="{standalone: true}" class="col-sm" [(ngModel)]="deambulacao.value[0]" *ngFor="let deambulacao of listaDeambulacao; let i = index">{{ deambulacao.titulo }}</mat-checkbox>
+        <mat-checkbox [ngModelOptions]="{standalone: true}" class="col-sm" [(ngModel)]="deambulacao.descricao[0]" *ngFor="let deambulacao of listaDeambulacao; let i = index">{{ deambulacao.titulo }}</mat-checkbox>
       </div>
     </div>
     <div class="form-group">
       <label class="fisioterapia-label">Marcha</label><BR>
       <div class="form-row">
-        <mat-checkbox [ngModelOptions]="{standalone: true}" class="col-sm" [(ngModel)]="marcha.value[0]" *ngFor="let marcha of listaMarcha; let i = index">{{ marcha.titulo }}</mat-checkbox>
+        <mat-checkbox [ngModelOptions]="{standalone: true}" class="col-sm" [(ngModel)]="marcha.descricao[0]" *ngFor="let marcha of listaMarcha; let i = index">{{ marcha.titulo }}</mat-checkbox>
       </div>
     </div>
     <div class="form-group">
       <div class="form-row">
-        <mat-checkbox [ngModelOptions]="{standalone: true}" class="col-sm" [(ngModel)]="sensibilidade.value[0]" *ngFor="let sensibilidade of listaSensibilidade; let i = index">
+        <mat-checkbox [ngModelOptions]="{standalone: true}" class="col-sm" [(ngModel)]="sensibilidade.descricao[0]" *ngFor="let sensibilidade of listaSensibilidade; let i = index">
           <table>
             <tr>
               <td>{{ sensibilidade.titulo }}</td>
@@ -544,36 +544,36 @@
             <th mat-header-cell *matHeaderCellDef>normoreflexia</th>
             <td mat-cell *matCellDef="let row; let i = index">
               <label class="fisioterapia-label">D</label>
-              <mat-checkbox class="col-sm" [ngModelOptions]="{standalone: true}" [(ngModel)]="row.value[0]"></mat-checkbox>
+              <mat-checkbox class="col-sm" [ngModelOptions]="{standalone: true}" [(ngModel)]="row.descricao[0]"></mat-checkbox>
               <label class="fisioterapia-label">E</label>
-              <mat-checkbox class="col-sm" [ngModelOptions]="{standalone: true}" [(ngModel)]="row.value[1]"></mat-checkbox>
+              <mat-checkbox class="col-sm" [ngModelOptions]="{standalone: true}" [(ngModel)]="row.descricao[1]"></mat-checkbox>
             </td>
           </ng-container>
           <ng-container matColumnDef="hiporeflexia">
             <th mat-header-cell *matHeaderCellDef>Hiporeflexia</th>
             <td mat-cell *matCellDef="let row; let i = index">
               <label class="fisioterapia-label">D</label>
-              <mat-checkbox class="col-sm" [ngModelOptions]="{standalone: true}" [(ngModel)]="row.value[2]"></mat-checkbox>
+              <mat-checkbox class="col-sm" [ngModelOptions]="{standalone: true}" [(ngModel)]="row.descricao[2]"></mat-checkbox>
               <label class="fisioterapia-label">E</label>
-              <mat-checkbox class="col-sm" [ngModelOptions]="{standalone: true}" [(ngModel)]="row.value[4]"></mat-checkbox>
+              <mat-checkbox class="col-sm" [ngModelOptions]="{standalone: true}" [(ngModel)]="row.descricao[4]"></mat-checkbox>
             </td>
           </ng-container>
           <ng-container matColumnDef="hiperreflexia">
             <th mat-header-cell *matHeaderCellDef>hiperreflexia</th>
             <td mat-cell *matCellDef="let row; let i = index">
               <label class="fisioterapia-label">D</label>
-              <mat-checkbox class="col-sm" [ngModelOptions]="{standalone: true}" [(ngModel)]="row.value[4]"></mat-checkbox>
+              <mat-checkbox class="col-sm" [ngModelOptions]="{standalone: true}" [(ngModel)]="row.descricao[4]"></mat-checkbox>
               <label class="fisioterapia-label">E</label>
-              <mat-checkbox class="col-sm" [ngModelOptions]="{standalone: true}" [(ngModel)]="row.value[5]"></mat-checkbox>
+              <mat-checkbox class="col-sm" [ngModelOptions]="{standalone: true}" [(ngModel)]="row.descricao[5]"></mat-checkbox>
             </td>
           </ng-container>
           <ng-container matColumnDef="arreflexia">
             <th mat-header-cell *matHeaderCellDef>arreflexia</th>
             <td mat-cell *matCellDef="let row; let i = index">
               <label class="fisioterapia-label">D</label>
-              <mat-checkbox class="col-sm" [ngModelOptions]="{standalone: true}" [(ngModel)]="row.value[6]"></mat-checkbox>
+              <mat-checkbox class="col-sm" [ngModelOptions]="{standalone: true}" [(ngModel)]="row.descricao[6]"></mat-checkbox>
               <label class="fisioterapia-label">E</label>
-              <mat-checkbox class="col-sm" [ngModelOptions]="{standalone: true}" [(ngModel)]="row.value[7]"></mat-checkbox>
+              <mat-checkbox class="col-sm" [ngModelOptions]="{standalone: true}" [(ngModel)]="row.descricao[7]"></mat-checkbox>
             </td>
           </ng-container>
           <tr mat-header-row *matHeaderRowDef="displayedColumnsOsteotendinoso"></tr>
