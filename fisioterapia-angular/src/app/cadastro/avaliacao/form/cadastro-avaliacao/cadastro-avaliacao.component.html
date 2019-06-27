@@ -214,14 +214,14 @@
         <label class="fisioterapia-label">Tosse</label><BR>
       </div>
       <div class="form-row">
-        <mat-checkbox id="ckTosse{{i}}" name="ckTosse{{i}}" class="col-sm" *ngFor="let tosse of listaTosses; let i = index">{{ tosse.descricao }}</mat-checkbox>
+        <mat-checkbox [ngModelOptions]="{standalone: true}" class="col-sm" [(ngModel)]="tosse.selecionado" *ngFor="let tosse of listaTosses; let i = index">{{ tosse.titulo }}</mat-checkbox>
       </div>
     </div>
     <div class="form-group">
       <div class="form-row">
         <div class="col-sm-12">
           <label for="descAspectoSecrecao" class="fisioterapia-label">Aspecto da secreção: </label>
-          <input id="descAspectoSecrecao" name="descAspectoSecrecao" class="form-control form-control-sm" [(ngModel)]="avaliacao.descricaoAspectoSecrecao" #descAspectoSecrecao="ngModel" placeHolder="Aspecto da secreção">
+          <input [ngModelOptions]="{standalone: true}" class="form-control form-control-sm" [(ngModel)]="avaliacao.descricaoAspectoSecrecao" #descAspectoSecrecao="ngModel" placeHolder="Aspecto da secreção">
         </div>
       </div>
     </div>
@@ -230,7 +230,7 @@
         <label class="fisioterapia-label">Sistema Osteomioarticular</label><BR>
       </div>
       <div class="form-row">
-        <mat-checkbox id="ckSistemaOsteomioarticular{{i}}" name="ckSistemaOsteomioarticular{{i}}" class="col-sm" *ngFor="let sistemaOsteomioarticular of listaSistemaOsteomioarticular; let i = index">{{ sistemaOsteomioarticular.descricao }}</mat-checkbox>
+        <mat-checkbox [ngModelOptions]="{standalone: true}" class="col-sm" [(ngModel)]="sistemaOsteomioarticular.selecionado" *ngFor="let sistemaOsteomioarticular of listaSistemaOsteomioarticular; let i = index">{{ sistemaOsteomioarticular.titulo }}</mat-checkbox>
       </div>
     </div>
     <div class="form-group">
@@ -238,7 +238,7 @@
         <label class="fisioterapia-label">Força Muscular</label><BR>
       </div>
       <div class="form-row">
-        <mat-checkbox id="ckForcaMuscular{{i}}" name="ckForcaMuscular{{i}}" class="col-sm" *ngFor="let forcaMuscular of listaForcaMuscular; let i = index">{{ forcaMuscular.descricao }}</mat-checkbox>
+        <mat-checkbox [ngModelOptions]="{standalone: true}" class="col-sm" [(ngModel)]="forcaMuscular.selecionado" *ngFor="let forcaMuscular of listaForcaMuscular; let i = index">{{ forcaMuscular.titulo }}</mat-checkbox>
       </div>
     </div>
     <div class="form-group">

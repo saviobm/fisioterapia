@@ -70,11 +70,11 @@ export class CadastroAvaliacaoComponent implements OnInit {
 
   listaRuidosAdventicios: Ck[] = [];
 
-  listaTosses: any[];
+  listaTosses: Ck[] = [];
 
-  listaSistemaOsteomioarticular: any[];
+  listaSistemaOsteomioarticular: Ck[] = [];
 
-  listaForcaMuscular: any[];
+  listaForcaMuscular: Ck[] = [];
 
   displayedColumnsForcaMuscular: string[] =  ['OMBRO', 'COTOVELO', 'PUNHO', 'TRONCO', 'QUADRIL', 'JOELHO', 'TORNOZELO'];
 
@@ -204,9 +204,9 @@ export class CadastroAvaliacaoComponent implements OnInit {
     this.inicializarListaExpansividadeToraxica();
     this.inicializarListaAuscultaPulmonar();
     this.inicializarListaRuidosAdventicios();
-    this.listaTosses = JSON.parse('[' + '{ "sigla": "AUS", "descricao" : "ausente" }, { "sigla": "SEC", "descricao" : "seca" }, { "sigla": "UMI", "descricao" : "úmida" }, { "sigla": "PROD", "descricao" : "produtiva" }' + ']');
-    this.listaSistemaOsteomioarticular = JSON.parse('[' + '{ "sigla": "MOVV", "descricao" : "mov. voluntário" }, { "sigla": "MOVI", "descricao" : "mov. involutário" }, { "sigla": "PLEG", "descricao" : "plegia" }, { "sigla": "PARES", "descricao" : "paresia" }' + ']');
-    this.listaForcaMuscular = JSON.parse('[' + '{ "sigla": "NORM", "descricao" : "normal" }, { "sigla": "DIMIN", "descricao" : "diminuída" }' + ']');
+    this.inicializarListaTosse();
+    this.inicializarListaOsteomioarticular();
+    this.inicializarListaForcaMuscular();
     this.inicializarDSForcaMuscular();
     this.inicializarDSAvaliacaoADM();
     this.inicializarEscalaAshworth();
@@ -222,6 +222,55 @@ export class CadastroAvaliacaoComponent implements OnInit {
     this.inicializarListaAparelhosDigestorio();
     this.inicializarListaAbdomem();
     this.inicializarListaAparelhoGenitourinario();
+  }
+
+  inicializarListaForcaMuscular(): void {
+    const item: Ck = new Ck();
+    item.titulo = 'normal';
+    item.sigla[0] = 'NORM';
+    const item1: Ck = new Ck();
+    item1.titulo = 'diminuída';
+    item1.sigla[0] = 'DIMIN';
+    this.listaForcaMuscular.push(item);
+    this.listaForcaMuscular.push(item1);
+  }
+
+  inicializarListaOsteomioarticular(): void {
+    const item: Ck = new Ck();
+    item.titulo = 'mov. voluntário';
+    item.sigla[0] = 'MOVV';
+    const item1: Ck = new Ck();
+    item1.titulo = 'mov. involutário';
+    item1.sigla[0] = 'MOVI';
+    const item2: Ck = new Ck();
+    item2.titulo = 'plegia';
+    item2.sigla[0] = 'PLEG';
+    const item3: Ck = new Ck();
+    item3.titulo = 'paresia';
+    item3.sigla[0] = 'PARES';
+    this.listaSistemaOsteomioarticular.push(item);
+    this.listaSistemaOsteomioarticular.push(item1);
+    this.listaSistemaOsteomioarticular.push(item2);
+    this.listaSistemaOsteomioarticular.push(item3);
+  }
+
+  inicializarListaTosse(): void {
+    const item: Ck = new Ck();
+    item.titulo = 'ausente';
+    item.sigla[0] = 'AUS';
+    const item1: Ck = new Ck();
+    item1.titulo = 'seca';
+    item1.sigla[0] = 'SEC';
+    const item2: Ck = new Ck();
+    item2.titulo = 'úmida';
+    item2.sigla[0] = 'UMI';
+    const item3: Ck = new Ck();
+    item3.titulo = 'produtiva';
+    item3.sigla[0] = 'PROD';
+    this.listaTosses.push(item);
+    this.listaTosses.push(item1);
+    this.listaTosses.push(item2);
+    this.listaTosses.push(item3);
   }
 
   inicializarListaRuidosAdventicios(): void {
@@ -686,6 +735,9 @@ export class CadastroAvaliacaoComponent implements OnInit {
     this.avaliacao.listaExToracica = this.listaExToracica.filter(exToracica => exToracica.selecionado);
     this.avaliacao.listaAuscultaPulmonar = this.listaAuscultaPulmonar.filter(auscultaPulmonar => auscultaPulmonar.selecionado);
     this.avaliacao.listaRuidosAdventicios = this.listaRuidosAdventicios.filter(ruidosAdventicios => ruidosAdventicios.selecionado);
+    this.avaliacao.listaTosses = this.listaTosses.filter(tosse => tosse.selecionado);
+    this.avaliacao.listaSistemaOsteomioarticular = this.listaSistemaOsteomioarticular.filter(osteomioarticular => osteomioarticular.selecionado);
+    this.avaliacao.listaForcaMuscular = this.listaForcaMuscular.filter(forcaMuscular => forcaMuscular.selecionado);
     this.avaliacaoService.salvar(this.avaliacao).subscribe(avaliacao => {
       const msg = new Message();
       if (avaliacao.id) {

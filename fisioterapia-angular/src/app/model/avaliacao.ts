@@ -37,6 +37,9 @@ export class Avaliacao {
   listaExToracica: Ck[] = [];
   listaAuscultaPulmonar: Ck[] = [];
   listaRuidosAdventicios: Ck[] = [];
+  listaTosses: Ck[] = [];
+  listaSistemaOsteomioarticular: Ck[] = [];
+  listaForcaMuscular: Ck[] = [];
 
   constructor() { }
 
