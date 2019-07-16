@@ -80,7 +80,7 @@ export class CadastroAvaliacaoComponent implements OnInit {
 
   displayedColumnsOsteotendinoso: string[] =  ['branco', 'normoreflexia', 'hiporeflexia', 'hiperreflexia', 'arreflexia'];
 
-  dataSourceForcaMuscular: any[] = [];
+  dataSourceForcaMuscular: ForcaMuscular[] = [];
 
   dataSourceOsteotendinoso: Ck[] = [];
 
@@ -481,13 +481,25 @@ export class CadastroAvaliacaoComponent implements OnInit {
     adm.descricao[6] = 'E';
     adm.descricao[7] = 'D';
     adm.descricao[8] = 'E';
+    adm.readOnly[0] = true;
+    adm.readOnly[1] = true;
+    adm.readOnly[2] = true;
+    adm.readOnly[3] = true;
+    adm.readOnly[4] = true;
+    adm.readOnly[5] = true;
+    adm.readOnly[6] = true;
+    adm.readOnly[7] = true;
+    adm.readOnly[8] = true;
 
     const admOmbro: Adm = new Adm();
     admOmbro.descricao[0] = 'ombro';
+    admOmbro.readOnly[0] = true;
     const admCotovelo: Adm = new Adm();
     admCotovelo.descricao[0] = 'cotovelo';
+    admCotovelo.readOnly[0] = true;
     const admPunho: Adm = new Adm();
     admPunho.descricao[0] = 'punho';
+    admPunho.readOnly[0] = true;
 
     this.dataSourceAvaliacaoADMMMS.push(adm);
     this.dataSourceAvaliacaoADMMMS.push(admOmbro);
@@ -496,17 +508,30 @@ export class CadastroAvaliacaoComponent implements OnInit {
 
     const admQuadril: Adm = new Adm();
     admQuadril.descricao[0] = 'quadril';
+    admQuadril.readOnly[0] = true;
 
     const admJoelho: Adm = new Adm();
     admJoelho.descricao[0] = 'joelho';
     admJoelho.descricao[5] = 'RI';
     admJoelho.descricao[7] = 'RE';
+    admJoelho.readOnly[0] = true;
+    admJoelho.readOnly[5] = true;
+    admJoelho.readOnly[7] = true;
 
     const admMMIIBranco: Adm = new Adm();
     admMMIIBranco.descricao[1] = 'dorsiflexão';
     admMMIIBranco.descricao[3] = 'flexãoplanar';
     admMMIIBranco.descricao[5] = 'inversão';
     admMMIIBranco.descricao[7] = 'eversão';
+    admMMIIBranco.readOnly[0] = true;
+    admMMIIBranco.readOnly[1] = true;
+    admMMIIBranco.readOnly[2] = true;
+    admMMIIBranco.readOnly[3] = true;
+    admMMIIBranco.readOnly[4] = true;
+    admMMIIBranco.readOnly[5] = true;
+    admMMIIBranco.readOnly[6] = true;
+    admMMIIBranco.readOnly[7] = true;
+    admMMIIBranco.readOnly[8] = true;
 
     const admTornozelo: Adm = new Adm();
     admTornozelo.descricao[0] = 'tornozelo';
@@ -519,13 +544,65 @@ export class CadastroAvaliacaoComponent implements OnInit {
   }
 
   inicializarEscalaAshworth(): void {
+    const lista: Ashworth[] = [];
+
     const ashworth0: Ashworth = new Ashworth();
-    ashworth0.descricao[0] = 'MS';
+    ashworth0.descricao = 'MS';
+    ashworth0.descricaoColuna = 'branco';
+    lista.push(ashworth0);
+
     const ashworth1: Ashworth = new Ashworth();
-    ashworth1.descricao[0] = 'MI';
+    ashworth1.descricao = 'D';
+    ashworth1.descricaoColuna = 'normal';
+    lista.push(ashworth1);
+    const ashworth2: Ashworth = new Ashworth();
+    ashworth2.descricao = 'E';
+    ashworth2.descricaoColuna = 'normal';
+    lista.push(ashworth2);
+
+    const ashworth3: Ashworth = new Ashworth();
+    ashworth3.descricao = 'D';
+    ashworth3.descricaoColuna = 'hipotônico';
+    lista.push(ashworth3);
+
+    const ashworth4: Ashworth = new Ashworth();
+    ashworth4.descricao = 'E';
+    ashworth4.descricaoColuna = 'hipotônico';
+    lista.push(ashworth4);
+
+    const ashworth5: Ashworth = new Ashworth();
+    ashworth5.descricao = 'D';
+    ashworth5.descricaoColuna = 'hipertônico';
+    lista.push(ashworth5);
+
+    const ashworth6: Ashworth = new Ashworth();
+    ashworth6.descricao = 'E';
+    ashworth6.descricaoColuna = 'hipertônico';
+    lista.push(ashworth6);
+
+    const ashworth7: Ashworth = new Ashworth();
+    ashworth7.descricao = 'D';
+    ashworth7.descricaoColuna = 'clônus';
+    lista.push(ashworth7);
+
+    const ashworth8: Ashworth = new Ashworth();
+    ashworth8.descricao = 'E';
+    ashworth8.descricaoColuna = 'clônus';
+    lista.push(ashworth8);
+    ashworth0.lista = lista;
+
+/*    ashworth1.descricao[0] = 'MI';
+    ashworth1.descricao[1] = 'D';
+    ashworth1.descricao[2] = 'E';
+    ashworth1.descricao[3] = 'D';
+    ashworth1.descricao[4] = 'E';
+    ashworth1.descricao[5] = 'D';
+    ashworth1.descricao[6] = 'E';
+    ashworth1.descricao[7] = 'D';
+    ashworth1.descricao[8] = 'E';*/
 
     this.dataSourceEscalaAshworth.push(ashworth0);
-    this.dataSourceEscalaAshworth.push(ashworth1);
+
   }
 
   inicializarListaAmplitudeArticular(): void {
@@ -738,6 +815,27 @@ export class CadastroAvaliacaoComponent implements OnInit {
     this.avaliacao.listaTosses = this.listaTosses.filter(tosse => tosse.selecionado);
     this.avaliacao.listaSistemaOsteomioarticular = this.listaSistemaOsteomioarticular.filter(osteomioarticular => osteomioarticular.selecionado);
     this.avaliacao.listaForcaMuscular = this.listaForcaMuscular.filter(forcaMuscular => forcaMuscular.selecionado);
+    this.avaliacao.listaGridForcaMuscular = this.dataSourceForcaMuscular.filter(itemGridForcaMuscular => {
+          itemGridForcaMuscular.descCotovelo
+                || itemGridForcaMuscular.descJoelho
+                || itemGridForcaMuscular.descOmbro
+                || itemGridForcaMuscular.descPunho
+                || itemGridForcaMuscular.descTronco
+                || itemGridForcaMuscular.descQuadril
+                || itemGridForcaMuscular.descJoelho
+                || itemGridForcaMuscular.descTornozelo;
+    });
+    this.avaliacao.listaEscalaAshworth = this.dataSourceEscalaAshworth.filter(escalaAshworth => {
+      const listaRetorno: Ashworth[] = [];
+      for (const item of escalaAshworth.lista) {
+        if (item.selecionado) {
+          listaRetorno.push(item);
+        }
+      }
+      escalaAshworth.lista = listaRetorno;
+      return escalaAshworth;
+    });
+    this.avaliacao.listaAmplitudeArticular = this.listaAmplitudeArticular.filter(amplitudeArticular => amplitudeArticular.selecionado);
     this.avaliacaoService.salvar(this.avaliacao).subscribe(avaliacao => {
       const msg = new Message();
       if (avaliacao.id) {

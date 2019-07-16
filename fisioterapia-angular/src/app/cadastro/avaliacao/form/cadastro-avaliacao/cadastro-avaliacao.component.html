@@ -246,43 +246,43 @@
         <ng-container matColumnDef="OMBRO">
           <th mat-header-cell *matHeaderCellDef >OMBRO</th>
           <td mat-cell *matCellDef="let row; let i = index">
-            <input matInput [value]="row.descOmbro" name="ombro{{i}}" id="ombro{{i}}" [(ngModel)]="row.desOmbro" class="form-control form-control-sm">
+            <input matInput [value]="row.descOmbro" [ngModelOptions]="{standalone: true}" [(ngModel)]="row.desOmbro" class="form-control form-control-sm">
           </td>
         </ng-container>
         <ng-container matColumnDef="COTOVELO">
           <th mat-header-cell *matHeaderCellDef>COTOVELO</th>
           <td mat-cell *matCellDef="let row; let i = index">
-            <input matInput [value]="row.descCotovelo" name="cotovelo{{i}}" id="cotovelo{{i}}" [(ngModel)]="row.descCotovelo" class="form-control form-control-sm">
+            <input matInput [value]="row.descCotovelo" [ngModelOptions]="{standalone: true}" [(ngModel)]="row.descCotovelo" class="form-control form-control-sm">
           </td>
         </ng-container>
         <ng-container matColumnDef="PUNHO">
           <th mat-header-cell *matHeaderCellDef>PUNHO</th>
           <td mat-cell *matCellDef="let row; let i = index">
-            <input matInput [value]="row.descPunho" name="punho{{i}}" id="punho{{i}}" [(ngModel)]="row.descPunho" class="form-control form-control-sm">
+            <input matInput [value]="row.descPunho" [ngModelOptions]="{standalone: true}" [(ngModel)]="row.descPunho" class="form-control form-control-sm">
           </td>
         </ng-container>
         <ng-container matColumnDef="TRONCO">
           <th mat-header-cell *matHeaderCellDef>TRONCO</th>
           <td mat-cell *matCellDef="let row; let i = index">
-            <input matInput [value]="row.descTronco" name="tronco{{i}}" id="tronco{{i}}" [(ngModel)]="row.descTronco" class="form-control form-control-sm">
+            <input matInput [value]="row.descTronco" [ngModelOptions]="{standalone: true}" [(ngModel)]="row.descTronco" class="form-control form-control-sm">
           </td>
         </ng-container>
         <ng-container matColumnDef="QUADRIL">
           <th mat-header-cell *matHeaderCellDef>QUADRIL</th>
           <td mat-cell *matCellDef="let row; let i = index">
-            <input matInput [value]="row.descQuadril" name="quadril{{i}}" id="quadril{{i}}" [(ngModel)]="row.descQuadril" class="form-control form-control-sm">
+            <input matInput [value]="row.descQuadril" [ngModelOptions]="{standalone: true}" [(ngModel)]="row.descQuadril" class="form-control form-control-sm">
           </td>
         </ng-container>
         <ng-container matColumnDef="JOELHO">
           <th mat-header-cell *matHeaderCellDef>JOELHO</th>
           <td mat-cell *matCellDef="let row; let i = index">
-            <input matInput [value]="row.descJoelho" name="joelho{{i}}" id="joelho{{i}}" [(ngModel)]="row.descJoelho" class="form-control form-control-sm">
+            <input matInput [value]="row.descJoelho" [ngModelOptions]="{standalone: true}" [(ngModel)]="row.descJoelho" class="form-control form-control-sm">
           </td>
         </ng-container>
         <ng-container matColumnDef="TORNOZELO">
           <th mat-header-cell *matHeaderCellDef>TORNOZELO</th>
           <td mat-cell *matCellDef="let row; let i = index">
-            <input matInput [value]="row.descTornozelo" name="tornozelo{{i}}" id="tornozelo{{i}}" [(ngModel)]="row.descTornozelo" class="form-control form-control-sm">
+            <input matInput [value]="row.descTornozelo" [ngModelOptions]="{standalone: true}" [(ngModel)]="row.descTornozelo" class="form-control form-control-sm">
           </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumnsForcaMuscular"></tr>
@@ -292,55 +292,55 @@
         <ng-container matColumnDef="articulação">
           <th mat-header-cell *matHeaderCellDef>Articulação</th>
           <td mat-cell *matCellDef="let row; let i = index">
-            <input matInput [ngModelOptions]="{standalone: true}" [value]="row.descricao[0]" [(ngModel)]="row.descricao[0]" class="form-control form-control-sm">
+            <input matInput [ngModelOptions]="{standalone: true}" [readonly]="row.readOnly[0]" [value]="row.descricao[0]" [(ngModel)]="row.descricao[0]" class="form-control form-control-sm">
           </td>
         </ng-container>
         <ng-container matColumnDef="flexão">
           <th mat-header-cell *matHeaderCellDef>Flexão</th>
           <td mat-cell *matCellDef="let row; let i = index">
-            <input matInput [ngModelOptions]="{standalone: true}" [value]="row.descricao[1]" [(ngModel)]="row.descricao[1]" class="form-control form-control-sm">
+            <input matInput [ngModelOptions]="{standalone: true}" [readonly]="row.readOnly[1]" [value]="row.descricao[1]" [(ngModel)]="row.descricao[1]" class="form-control form-control-sm">
           </td>
         </ng-container>
         <ng-container matColumnDef="flexão1">
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let row; let i = index">
-              <input matInput [ngModelOptions]="{standalone: true}" [value]="row.descricao[2]" [(ngModel)]="row.descricao[2]" class="form-control form-control-sm">
+              <input matInput [ngModelOptions]="{standalone: true}" [readonly]="row.readOnly[2]" [value]="row.descricao[2]" [(ngModel)]="row.descricao[2]" class="form-control form-control-sm">
             </td>
         </ng-container>
         <ng-container matColumnDef="extensão">
           <th mat-header-cell *matHeaderCellDef>Extensão</th>
           <td mat-cell *matCellDef="let row; let i = index">
-            <input matInput [ngModelOptions]="{standalone: true}" [value]="row.descricao[3]" [(ngModel)]="row.descricao[3]" class="form-control form-control-sm">
+            <input matInput [ngModelOptions]="{standalone: true}" [readonly]="row.readOnly[3]" [value]="row.descricao[3]" [(ngModel)]="row.descricao[3]" class="form-control form-control-sm">
           </td>
         </ng-container>
         <ng-container matColumnDef="extensão1">
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let row; let i = index">
-              <input matInput [ngModelOptions]="{standalone: true}" [value]="row.descricao[4]" [(ngModel)]="row.descricao[4]" class="form-control form-control-sm">
+              <input matInput [ngModelOptions]="{standalone: true}" [readonly]="row.readOnly[4]" [value]="row.descricao[4]" [(ngModel)]="row.descricao[4]" class="form-control form-control-sm">
             </td>
         </ng-container>
         <ng-container matColumnDef="abdução">
           <th mat-header-cell *matHeaderCellDef>Abdução</th>
           <td mat-cell *matCellDef="let row; let i = index">
-            <input matInput [ngModelOptions]="{standalone: true}" [value]="row.descricao[5]" [(ngModel)]="row.descricao[5]" class="form-control form-control-sm">
+            <input matInput [ngModelOptions]="{standalone: true}" [readonly]="row.readOnly[5]" [value]="row.descricao[5]" [(ngModel)]="row.descricao[5]" class="form-control form-control-sm">
           </td>
         </ng-container>
         <ng-container matColumnDef="abdução1">
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let row; let i = index">
-              <input matInput [ngModelOptions]="{standalone: true}" [value]="row.descricao[6]" [(ngModel)]="row.descricao[6]" class="form-control form-control-sm">
+              <input matInput [ngModelOptions]="{standalone: true}" [readonly]="row.readOnly[6]" [value]="row.descricao[6]" [(ngModel)]="row.descricao[6]" class="form-control form-control-sm">
             </td>
         </ng-container>
         <ng-container matColumnDef="adução">
           <th mat-header-cell *matHeaderCellDef>Adução</th>
           <td mat-cell *matCellDef="let row; let i = index">
-            <input matInput [ngModelOptions]="{standalone: true}" [value]="row.descricao[7]" [(ngModel)]="row.descricao[7]" class="form-control form-control-sm">
+            <input matInput [ngModelOptions]="{standalone: true}" [readonly]="row.readOnly[7]" [value]="row.descricao[7]" [(ngModel)]="row.descricao[7]" class="form-control form-control-sm">
           </td>
         </ng-container>
         <ng-container matColumnDef="adução1">
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let row; let i = index">
-              <input matInput [ngModelOptions]="{standalone: true}" [value]="row.descricao[8]" [(ngModel)]="row.descricao[8]" class="form-control form-control-sm">
+              <input matInput [ngModelOptions]="{standalone: true}" [readonly]="row.readOnly[8]" [value]="row.descricao[8]" [(ngModel)]="row.descricao[8]" class="form-control form-control-sm">
             </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumnsAvaliacaoADM"></tr>
@@ -350,55 +350,55 @@
           <ng-container matColumnDef="articulação">
             <th mat-header-cell *matHeaderCellDef>Articulação</th>
             <td mat-cell *matCellDef="let row; let i = index">
-              <input matInput [ngModelOptions]="{standalone: true}" [value]="row.descricao[0]" [(ngModel)]="row.descricao[0]" class="form-control form-control-sm">
+              <input matInput [ngModelOptions]="{standalone: true}" [readonly]="row.readOnly[0]" [value]="row.descricao[0]" [(ngModel)]="row.descricao[0]" class="form-control form-control-sm">
             </td>
           </ng-container>
           <ng-container matColumnDef="flexão">
             <th mat-header-cell *matHeaderCellDef>Flexão</th>
             <td mat-cell *matCellDef="let row; let i = index">
-              <input matInput [ngModelOptions]="{standalone: true}" [value]="row.descricao[1]" [(ngModel)]="row.descricao[1]" class="form-control form-control-sm">
+              <input matInput [ngModelOptions]="{standalone: true}" [readonly]="row.readOnly[1]" [value]="row.descricao[1]" [(ngModel)]="row.descricao[1]" class="form-control form-control-sm">
             </td>
           </ng-container>
           <ng-container matColumnDef="flexão1">
               <th mat-header-cell *matHeaderCellDef></th>
               <td mat-cell *matCellDef="let row; let i = index">
-                <input matInput [ngModelOptions]="{standalone: true}" [value]="row.descricao[2]" [(ngModel)]="row.descricao[2]" class="form-control form-control-sm">
+                <input matInput [ngModelOptions]="{standalone: true}" [readonly]="row.readOnly[2]" [value]="row.descricao[2]" [(ngModel)]="row.descricao[2]" class="form-control form-control-sm">
               </td>
           </ng-container>
           <ng-container matColumnDef="extensão">
             <th mat-header-cell *matHeaderCellDef>Extensão</th>
             <td mat-cell *matCellDef="let row; let i = index">
-              <input matInput [ngModelOptions]="{standalone: true}" [value]="row.descricao[3]" [(ngModel)]="row.descricao[3]" class="form-control form-control-sm">
+              <input matInput [ngModelOptions]="{standalone: true}" [readonly]="row.readOnly[3]" [value]="row.descricao[3]" [(ngModel)]="row.descricao[3]" class="form-control form-control-sm">
             </td>
           </ng-container>
           <ng-container matColumnDef="extensão1">
               <th mat-header-cell *matHeaderCellDef></th>
               <td mat-cell *matCellDef="let row; let i = index">
-                <input matInput [ngModelOptions]="{standalone: true}" [value]="row.descricao[4]" [(ngModel)]="row.descricao[4]" class="form-control form-control-sm">
+                <input matInput [ngModelOptions]="{standalone: true}" [readonly]="row.readOnly[4]" [value]="row.descricao[4]" [(ngModel)]="row.descricao[4]" class="form-control form-control-sm">
               </td>
           </ng-container>
           <ng-container matColumnDef="abdução">
             <th mat-header-cell *matHeaderCellDef>Abdução</th>
             <td mat-cell *matCellDef="let row; let i = index">
-              <input matInput [ngModelOptions]="{standalone: true}" [value]="row.descricao[5]" [(ngModel)]="row.descricao[5]" class="form-control form-control-sm">
+              <input matInput [ngModelOptions]="{standalone: true}" [readonly]="row.readOnly[5]" [value]="row.descricao[5]" [(ngModel)]="row.descricao[5]" class="form-control form-control-sm">
             </td>
           </ng-container>
           <ng-container matColumnDef="abdução1">
               <th mat-header-cell *matHeaderCellDef></th>
               <td mat-cell *matCellDef="let row; let i = index">
-                <input matInput [ngModelOptions]="{standalone: true}" [value]="row.descricao[6]" [(ngModel)]="row.descricao[6]" class="form-control form-control-sm">
+                <input matInput [ngModelOptions]="{standalone: true}" [readonly]="row.readOnly[6]" [value]="row.descricao[6]" [(ngModel)]="row.descricao[6]" class="form-control form-control-sm">
               </td>
           </ng-container>
           <ng-container matColumnDef="adução">
             <th mat-header-cell *matHeaderCellDef>Adução</th>
             <td mat-cell *matCellDef="let row; let i = index">
-              <input matInput [ngModelOptions]="{standalone: true}" [value]="row.descricao[7]" [(ngModel)]="row.descricao[7]" class="form-control form-control-sm">
+              <input matInput [ngModelOptions]="{standalone: true}" [readonly]="row.readOnly[7]" [value]="row.descricao[7]" [(ngModel)]="row.descricao[7]" class="form-control form-control-sm">
             </td>
           </ng-container>
           <ng-container matColumnDef="adução1">
               <th mat-header-cell *matHeaderCellDef></th>
               <td mat-cell *matCellDef="let row; let i = index">
-                <input matInput [ngModelOptions]="{standalone: true}" [value]="row.descricao[8]" [(ngModel)]="row.descricao[8]" class="form-control form-control-sm">
+                <input matInput [ngModelOptions]="{standalone: true}" [readonly]="row.readOnly[8]" [value]="row.descricao[8]" [(ngModel)]="row.descricao[8]" class="form-control form-control-sm">
               </td>
           </ng-container>
           <tr mat-header-row *matHeaderRowDef="displayedColumnsAvaliacaoADM"></tr>
@@ -408,42 +408,42 @@
         <table mat-table [dataSource]="dataSourceEscalaAshworth" class="fisioterapia-table">
             <ng-container matColumnDef="branco">
                 <th mat-header-cell *matHeaderCellDef></th>
-                <td mat-cell *matCellDef="let row; let i = index"> {{ row.descricao[0] }}
+                <td mat-cell *matCellDef="let row; let i = index"> {{ row.lista[0].descricao }}
             </ng-container>
             <ng-container matColumnDef="normal">
               <th mat-header-cell *matHeaderCellDef>normal</th>
               <td mat-cell *matCellDef="let row; let i = index">
-                <label class="fisioterapia-label">D</label>
-                <mat-checkbox class="col-sm">{{ row.descricao[1] }}</mat-checkbox>
-                <label class="fisioterapia-label">E</label>
-                <mat-checkbox class="col-sm">{{ row.descricao[2] }}</mat-checkbox>
+                <label class="fisioterapia-label">{{ row.lista[1].descricao }}</label>
+                <mat-checkbox class="col-sm" [ngModelOptions]="{standalone: true}" [value]="row.lista[1].descricao" [(ngModel)]="row.lista[1].selecionado"></mat-checkbox>
+                <label class="fisioterapia-label">{{ row.lista[2].descricao }}</label>
+                <mat-checkbox class="col-sm" [ngModelOptions]="{standalone: true}" [value]="row.lista[2].descricao" [(ngModel)]="row.lista[2].selecionado"></mat-checkbox>
               </td>
             </ng-container>
             <ng-container matColumnDef="hipotonico">
               <th mat-header-cell *matHeaderCellDef>hipotônico</th>
               <td mat-cell *matCellDef="let row; let i = index">
-                <label class="fisioterapia-label">D</label>
-                <mat-checkbox class="col-sm">{{ row.descricao[3] }}</mat-checkbox>
-                <label class="fisioterapia-label">E</label>
-                <mat-checkbox class="col-sm">{{ row.descricao[4] }}</mat-checkbox>
+                <label class="fisioterapia-label">{{ row.lista[3].descricao }}</label>
+                <mat-checkbox class="col-sm" [ngModelOptions]="{standalone: true}" [value]="row.lista[3].descricao" [(ngModel)]="row.lista[3].selecionado"></mat-checkbox>
+                <label class="fisioterapia-label">{{ row.lista[4].descricao }}</label>
+                <mat-checkbox class="col-sm" [ngModelOptions]="{standalone: true}" [value]="row.lista[4].descricao" [(ngModel)]="row.lista[4].selecionado"></mat-checkbox>
               </td>
             </ng-container>
             <ng-container matColumnDef="hipertonico">
               <th mat-header-cell *matHeaderCellDef>hipertônico</th>
               <td mat-cell *matCellDef="let row; let i = index">
-                <label class="fisioterapia-label">D</label>
-                <mat-checkbox class="col-sm">{{ row.descricao[5] }}</mat-checkbox>
-                <label class="fisioterapia-label">E</label>
-                <mat-checkbox class="col-sm">{{ row.descricao[6] }}</mat-checkbox>
+                <label class="fisioterapia-label">{{ row.lista[5].descricao }}</label>
+                <mat-checkbox class="col-sm" [ngModelOptions]="{standalone: true}" [value]="row.lista[5].descricao" [(ngModel)]="row.lista[5].selecionado"></mat-checkbox>
+                <label class="fisioterapia-label">{{ row.lista[6].descricao }}</label>
+                <mat-checkbox class="col-sm" [ngModelOptions]="{standalone: true}" [value]="row.lista[6].descricao" [(ngModel)]="row.lista[6].selecionado"></mat-checkbox>
               </td>
             </ng-container>
             <ng-container matColumnDef="clonus">
               <th mat-header-cell *matHeaderCellDef>clônus</th>
               <td mat-cell *matCellDef="let row; let i = index">
-                <label class="fisioterapia-label">D</label>
-                <mat-checkbox class="col-sm">{{ row.descricao[7] }}</mat-checkbox>
-                <label class="fisioterapia-label">E</label>
-                <mat-checkbox class="col-sm">{{ row.descricao[8] }}</mat-checkbox>
+                <label class="fisioterapia-label">{{ row.lista[7].descricao }}</label>
+                <mat-checkbox class="col-sm" [ngModelOptions]="{standalone: true}" [value]="row.lista[7].descricao" [(ngModel)]="row.lista[7].selecionado"></mat-checkbox>
+                <label class="fisioterapia-label">{{ row.lista[8].descricao }}</label>
+                <mat-checkbox class="col-sm" [ngModelOptions]="{standalone: true}" [value]="row.lista[8].descricao" [(ngModel)]="row.lista[8].selecionado"></mat-checkbox>
               </td>
             </ng-container>
             <tr mat-header-row *matHeaderRowDef="displayedColumnsAsworth"></tr>
@@ -453,7 +453,7 @@
     <div class="form-group">
       <label class="fisioterapia-label">Amplitude Articular</label><BR>
       <div class="form-row">
-        <mat-checkbox [ngModelOptions]="{standalone: true}" class="col-sm" [(ngModel)]="amplitudeArticular.descricao[0]" *ngFor="let amplitudeArticular of listaAmplitudeArticular; let i = index">{{ amplitudeArticular.titulo }}</mat-checkbox>
+        <mat-checkbox [ngModelOptions]="{standalone: true}" class="col-sm" [value]="amplitudeArticular.descricao[0]" [(ngModel)]="amplitudeArticular.selecionado" *ngFor="let amplitudeArticular of listaAmplitudeArticular; let i = index">{{ amplitudeArticular.titulo }}</mat-checkbox>
       </div>
       <div class="form-row">
         <input id="amplitudeArticular" name="amplitudeArticular" class="form-control form-control-sm" [(ngModel)]="avaliacao.descricaoAmplitudeArticular" #amplitudeArticular="ngModel">

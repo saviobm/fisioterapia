@@ -1,3 +1,5 @@
+import { Ashworth } from './ashworth';
+import { ForcaMuscular } from './forca-muscular';
 import { Paciente } from './paciente';
 import { Patologia } from './patologia';
 import { Ck } from './ck';
@@ -40,6 +42,9 @@ export class Avaliacao {
   listaTosses: Ck[] = [];
   listaSistemaOsteomioarticular: Ck[] = [];
   listaForcaMuscular: Ck[] = [];
+  listaGridForcaMuscular: ForcaMuscular[] = [];
+  listaEscalaAshworth: Ashworth[] = [];
+  listaAmplitudeArticular: Ck[] = [];
 
   constructor() { }
 

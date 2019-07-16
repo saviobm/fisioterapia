@@ -1,4 +1,7 @@
 export class Ashworth {
-  descricao: string[] = [];
+  descricao = '';
+  selecionado = false;
+  descricaoColuna = '';
+  lista: Ashworth[] = [];
   constructor() {}
 }
