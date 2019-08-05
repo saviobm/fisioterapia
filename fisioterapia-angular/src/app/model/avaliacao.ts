@@ -1,8 +1,10 @@
+import { Forca } from 'src/app/model/forca';
 import { Ashworth } from './ashworth';
 import { ForcaMuscular } from './forca-muscular';
 import { Paciente } from './paciente';
 import { Patologia } from './patologia';
 import { Ck } from './ck';
+import { Adm } from './adm';
 
 export class Avaliacao {
 
@@ -19,9 +21,9 @@ export class Avaliacao {
   descricaoAspectoSecrecao: string;
   descricaoAmplitudeArticular: string;
   descricaoPele: string;
-  descricaoLocal: string;
-  descricaoTipo: string;
-  descricaoGrau: string;
+  descricaoEdemaLocal: string;
+  descricaoEdemaTipo: string;
+  descricaoEdemaGrau: string;
   descricaoSequelas: string;
   descricaoFatoresAgravantes: string;
   descricaoFatoresAtenuantes: string;
@@ -45,6 +47,13 @@ export class Avaliacao {
   listaGridForcaMuscular: ForcaMuscular[] = [];
   listaEscalaAshworth: Ashworth[] = [];
   listaAmplitudeArticular: Ck[] = [];
+  listaTipoEmatomaAA: Ck[] = [];
+  listaDeambulacao: Ck[] = [];
+  listaMarcha: Ck[] = [];
+  listaSensibilidade: Ck[] = [];
+  listaCoordenacao: Adm[] = [];
+  listaEquilibrio: Adm[] = [];
+  listaOsteotendinoso: Forca[] = [];
 
   constructor() { }
 

@@ -19,6 +19,7 @@ import {FormControl} from '@angular/forms';
 import { template } from '@angular/core/src/render3';
 import { controlNameBinding } from '@angular/forms/src/directives/reactive_directives/form_control_name';
 import { Patologia } from './../../../../model/patologia';
+import { Forca } from 'src/app/model/forca';
 
 @Component({
   selector: 'app-cadastro-avaliacao',
@@ -82,7 +83,7 @@ export class CadastroAvaliacaoComponent implements OnInit {
 
   dataSourceForcaMuscular: ForcaMuscular[] = [];
 
-  dataSourceOsteotendinoso: Ck[] = [];
+  dataSourceOsteotendinoso: Forca[] = [];
 
   tamanhoArrayForcaMuscular = 7;
 
@@ -703,13 +704,13 @@ export class CadastroAvaliacaoComponent implements OnInit {
   }
 
   inicializarOsteotendinoso(): void {
-    const item: Ck = new Ck();
+    const item: Forca = new Forca();
     item.titulo = 'Bicital - C6';
-    const item1: Ck = new Ck();
+    const item1: Forca = new Forca();
     item1.titulo = 'Triciptal - C7';
-    const item2: Ck = new Ck();
+    const item2: Forca = new Forca();
     item2.titulo = 'Patelar - L2, L3 e L4';
-    const item3: Ck = new Ck();
+    const item3: Forca = new Forca();
     item3.titulo = 'Aquileu - L5, S1 e S2';
 
     this.dataSourceOsteotendinoso.push(item);
@@ -836,6 +837,21 @@ export class CadastroAvaliacaoComponent implements OnInit {
       return escalaAshworth;
     });
     this.avaliacao.listaAmplitudeArticular = this.listaAmplitudeArticular.filter(amplitudeArticular => amplitudeArticular.selecionado);
+    this.avaliacao.listaTipoEmatomaAA = this.listaTipoEmatomaAA.filter(tipoEmatomaAA => tipoEmatomaAA.selecionado);
+    this.avaliacao.listaDeambulacao = this.listaDeambulacao.filter(deambulacao => deambulacao.selecionado);
+    this.avaliacao.listaMarcha = this.listaMarcha.filter(marcha => marcha.selecionado);
+    this.avaliacao.listaSensibilidade = this.listaSensibilidade.filter(sensibilidade => sensibilidade.selecionado);
+    this.avaliacao.listaCoordenacao = this.dataSourceCoordenacao.filter(coordenacao => coordenacao.descricao[0] && coordenacao.descricao[0].trim);
+    this.avaliacao.listaEquilibrio = this.dataSourceEquilibrio.filter(equilibrio => equilibrio.descricao[0] && equilibrio.descricao[0].trim);
+    this.avaliacao.listaOsteotendinoso = this.dataSourceOsteotendinoso.filter(osteotendinoso => osteotendinoso.arreflexiaD.selecionado ||
+                                                                                                osteotendinoso.arreflexiaE.selecionado ||
+                                                                                                osteotendinoso.hiperreflexiaD.selecionado ||
+                                                                                                osteotendinoso.hiperreflexiaE.selecionado ||
+                                                                                                osteotendinoso.hiporeflexiaD.selecionado ||
+                                                                                                osteotendinoso.hiporeflexiaE.selecionado ||
+                                                                                                osteotendinoso.normoreflexiaD.selecionado ||
+                                                                                                osteotendinoso.normoreflexiaE.selecionado);
+
     this.avaliacaoService.salvar(this.avaliacao).subscribe(avaliacao => {
       const msg = new Message();
       if (avaliacao.id) {
