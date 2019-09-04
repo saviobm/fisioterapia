@@ -1,3 +1,4 @@
+import { Ponto } from './ponto';
 import { Forca } from 'src/app/model/forca';
 import { Ashworth } from './ashworth';
 import { ForcaMuscular } from './forca-muscular';
@@ -60,6 +61,8 @@ export class Avaliacao {
   descricaoAbdomem: string;
   listaAparelhoGenitourinario: Ck[] = [];
   descricaoAparelhoGenitourinario: string;
+  listaTipoDores: Ck[] = [];
+  listaPontos: Ponto[] = [];
 
   constructor() { }
 

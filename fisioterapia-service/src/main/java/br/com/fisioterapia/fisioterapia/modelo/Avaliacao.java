@@ -1,6 +1,7 @@
 package br.com.fisioterapia.fisioterapia.modelo;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -96,6 +98,9 @@ public class Avaliacao extends Fisioterapia {
 	
 	@Column(name = "desc_habitos_vicios")
 	private String descricaoHabitosVicios;
+	
+	@OneToMany(mappedBy = "avaliacao")
+	private List<Ponto> listaPontos;
 
 	/**
 	 * @return the id
@@ -431,6 +436,20 @@ public class Avaliacao extends Fisioterapia {
 	 */
 	public void setDescricaoHabitosVicios(String descricaoHabitosVicios) {
 		this.descricaoHabitosVicios = descricaoHabitosVicios;
+	}
+
+	/**
+	 * @return the listaPontos
+	 */
+	public List<Ponto> getListaPontos() {
+		return listaPontos;
+	}
+
+	/**
+	 * @param listaPontos the listaPontos to set
+	 */
+	public void setListaPontos(List<Ponto> listaPontos) {
+		this.listaPontos = listaPontos;
 	}
 	
 }

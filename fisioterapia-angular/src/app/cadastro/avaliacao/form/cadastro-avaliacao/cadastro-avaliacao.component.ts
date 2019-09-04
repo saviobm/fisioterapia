@@ -117,8 +117,6 @@ export class CadastroAvaliacaoComponent implements OnInit {
 
   listaTipoDores: Ck[] = [];
 
-  listaPontos: Ponto[] = [];
-
   listaAparelhosDigestorio: Ck[] = [];
 
   listaAbdomem: Ck[] = [];
@@ -749,12 +747,12 @@ export class CadastroAvaliacaoComponent implements OnInit {
     const ponto: Ponto = new Ponto();
     ponto.x = x;
     ponto.y = y;
-    this.listaPontos.push(ponto);
-    console.log(this.listaPontos);
+    this.avaliacao.listaPontos.push(ponto);
+    console.log(this.avaliacao.listaPontos);
   }
 
   limparCanvas(): void {
-    this.listaPontos = [];
+    this.avaliacao.listaPontos = [];
     this.img.src = './assets/img/corpo_humano.jpg';
     this.img.onload = this.inicializarCanva.bind(this);
   }
@@ -854,6 +852,7 @@ export class CadastroAvaliacaoComponent implements OnInit {
     this.avaliacao.listaAparelhosDigestorio = this.listaAparelhosDigestorio.filter(aparelhoDigestorio => aparelhoDigestorio.selecionado);
     this.avaliacao.listaAbdomem = this.listaAbdomem.filter(abdomem => abdomem.selecionado);
     this.avaliacao.listaAparelhoGenitourinario = this.listaAparelhoGenitourinario.filter(aparelhoGenitourinario => aparelhoGenitourinario.selecionado);
+    this.avaliacao.listaTipoDores = this.listaTipoDores.filter(tipoDor => tipoDor.selecionado);
     this.avaliacaoService.salvar(this.avaliacao).subscribe(avaliacao => {
       const msg = new Message();
       if (avaliacao.id) {

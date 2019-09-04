@@ -624,10 +624,18 @@
                 <mat-card-title>DOR</mat-card-title>
                 <mat-card-subtitle> Clique nos membros onde existem dores</mat-card-subtitle>
               </mat-card-header>
+              <div class="col-sm-12">
+                  <table>
+                    <tr>
+                      <td class="col-sm-6">ANTES</td>
+                      <td class="col-sm-6">DEPOIS</td>
+                    </tr>
+                  </table>
+              </div>
               <mat-card-content class="align-center">
                 <canvas #canvas></canvas>
                 <p>
-                  <mat-checkbox class="col-sm" *ngFor="let item of listaTipoDores; let i = index">{{ item.titulo }}</mat-checkbox>
+                  <mat-checkbox class="col-sm" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.selecionado" *ngFor="let item of listaTipoDores; let i = index">{{ item.titulo }}</mat-checkbox>
                 </p>
               </mat-card-content>
               <mat-card-actions>
@@ -656,7 +664,7 @@
       <div class="form-row">
           <div class="col-sm">
             <label class="fisioterapia-label">Aparelho Digestório</label><BR>
-            <mat-checkbox class="col-sm" [(ngModel)]="aparelhoDigestorio.selecionado" *ngFor="let aparelhoDigestorio of listaAparelhosDigestorio; let i = index">{{ aparelhoDigestorio.titulo }}</mat-checkbox><BR>
+            <mat-checkbox class="col-sm" [ngModelOptions]="{standalone: true}" [(ngModel)]="aparelhoDigestorio.selecionado" *ngFor="let aparelhoDigestorio of listaAparelhosDigestorio; let i = index">{{ aparelhoDigestorio.titulo }}</mat-checkbox><BR>
             <input [ngModelOptions]="{standalone: true}" class="form-control form-control-sm" [(ngModel)]="avaliacao.descricaoAparelhoDigestorio" placeHolder="Descrição aparelho digestório">
           </div>
       </div>
@@ -665,7 +673,7 @@
       <div class="form-row">
           <div class="col-sm">
             <label class="fisioterapia-label">Abdômem</label><BR>
-            <mat-checkbox class="col-sm" [(ngModel)]="abdomem.selecionado" *ngFor="let abdomem of listaAbdomem; let i = index">{{ abdomem.titulo }}</mat-checkbox><BR>
+            <mat-checkbox class="col-sm" [ngModelOptions]="{standalone: true}" [(ngModel)]="abdomem.selecionado" *ngFor="let abdomem of listaAbdomem; let i = index">{{ abdomem.titulo }}</mat-checkbox><BR>
             <input [ngModelOptions]="{standalone: true}" class="form-control form-control-sm" [(ngModel)]="avaliacao.descricaoAbdomem" placeHolder="Descrição abdômem">
           </div>
       </div>
@@ -674,7 +682,7 @@
       <div class="form-row">
           <div class="col-sm">
             <label class="fisioterapia-label">Aparelho Genitourinário</label><BR>
-            <mat-checkbox class="col-sm" *ngFor="let genitoUrinario of listaAparelhoGenitourinario; let i = index">{{ genitoUrinario.titulo }}</mat-checkbox><BR>
+            <mat-checkbox class="col-sm" [ngModelOptions]="{standalone: true}" [(ngModel)]="genitoUrinario.selecionado" *ngFor="let genitoUrinario of listaAparelhoGenitourinario; let i = index">{{ genitoUrinario.titulo }}</mat-checkbox><BR>
             <input [ngModelOptions]="{standalone: true}" class="form-control form-control-sm" [(ngModel)]="avaliacao.descricaoAparelhoGenitourinario" placeHolder="Descrição aparelho genitourinário">
           </div>
       </div>

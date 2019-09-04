@@ -235,9 +235,13 @@ CREATE TABLE forca_muscular (
 )
 
 
-
-
-
+CREATE TABLE ponto (
+	id INT NOT NULL AUTO_INCREMENT,	
+	avaliacao_id INT(10) NOT NULL,
+	screenX INT(10) NOT NULL,
+	screenY INT(10) NOT NULL,
+	PRIMARY KEY (id)
+);
 
 ALTER TABLE avaliacao ADD CONSTRAINT paciente_fk0 FOREIGN KEY (paciente_id) REFERENCES paciente(id);
 ALTER TABLE avaliacao ADD CONSTRAINT patologia_fk0 FOREIGN KEY (patologia_id) REFERENCES patolodia(id);
@@ -251,4 +255,6 @@ ALTER TABLE endereco ADD CONSTRAINT endereco_fk1 FOREIGN KEY (paciente_id) REFER
 ALTER TABLE cidade ADD CONSTRAINT cidade_fk0 FOREIGN KEY (estado_id) REFERENCES estado(id);
 
 ALTER TABLE avaliacao ADD CONSTRAINT avaliacao_fk0 FOREIGN KEY (paciente_id) REFERENCES paciente(id);
+
+ALTER TABLE ponto ADD CONSTRAINT ponto_fk0 FOREIGN KEY (avaliacao_id) REFERENCES ponto(id);
 
