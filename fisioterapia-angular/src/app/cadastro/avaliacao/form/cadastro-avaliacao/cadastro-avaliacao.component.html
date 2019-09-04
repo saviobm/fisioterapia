@@ -656,7 +656,8 @@
       <div class="form-row">
           <div class="col-sm">
             <label class="fisioterapia-label">Aparelho Digestório</label><BR>
-            <mat-checkbox class="col-sm" *ngFor="let aparelhoDigestorio of listaAparelhosDigestorio; let i = index">{{ aparelhoDigestorio.titulo }}</mat-checkbox>
+            <mat-checkbox class="col-sm" [(ngModel)]="aparelhoDigestorio.selecionado" *ngFor="let aparelhoDigestorio of listaAparelhosDigestorio; let i = index">{{ aparelhoDigestorio.titulo }}</mat-checkbox><BR>
+            <input [ngModelOptions]="{standalone: true}" class="form-control form-control-sm" [(ngModel)]="avaliacao.descricaoAparelhoDigestorio" placeHolder="Descrição aparelho digestório">
           </div>
       </div>
     </div>
@@ -664,7 +665,8 @@
       <div class="form-row">
           <div class="col-sm">
             <label class="fisioterapia-label">Abdômem</label><BR>
-            <mat-checkbox class="col-sm" *ngFor="let abdomem of listaAbdomem; let i = index">{{ abdomem.titulo }}</mat-checkbox>
+            <mat-checkbox class="col-sm" [(ngModel)]="abdomem.selecionado" *ngFor="let abdomem of listaAbdomem; let i = index">{{ abdomem.titulo }}</mat-checkbox><BR>
+            <input [ngModelOptions]="{standalone: true}" class="form-control form-control-sm" [(ngModel)]="avaliacao.descricaoAbdomem" placeHolder="Descrição abdômem">
           </div>
       </div>
     </div>
@@ -672,7 +674,8 @@
       <div class="form-row">
           <div class="col-sm">
             <label class="fisioterapia-label">Aparelho Genitourinário</label><BR>
-            <mat-checkbox class="col-sm" *ngFor="let genitoUrinario of listaAparelhoGenitourinario; let i = index">{{ genitoUrinario.titulo }}</mat-checkbox>
+            <mat-checkbox class="col-sm" *ngFor="let genitoUrinario of listaAparelhoGenitourinario; let i = index">{{ genitoUrinario.titulo }}</mat-checkbox><BR>
+            <input [ngModelOptions]="{standalone: true}" class="form-control form-control-sm" [(ngModel)]="avaliacao.descricaoAparelhoGenitourinario" placeHolder="Descrição aparelho genitourinário">
           </div>
       </div>
     </div>

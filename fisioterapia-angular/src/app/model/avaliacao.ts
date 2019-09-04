@@ -54,6 +54,12 @@ export class Avaliacao {
   listaCoordenacao: Adm[] = [];
   listaEquilibrio: Adm[] = [];
   listaOsteotendinoso: Forca[] = [];
+  listaAparelhosDigestorio: Ck[] = [];
+  descricaoAparelhoDigestorio: string;
+  listaAbdomem: Ck[] = [];
+  descricaoAbdomem: string;
+  listaAparelhoGenitourinario: Ck[] = [];
+  descricaoAparelhoGenitourinario: string;
 
   constructor() { }
 

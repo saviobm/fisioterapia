@@ -851,7 +851,9 @@ export class CadastroAvaliacaoComponent implements OnInit {
                                                                                                 osteotendinoso.hiporeflexiaE.selecionado ||
                                                                                                 osteotendinoso.normoreflexiaD.selecionado ||
                                                                                                 osteotendinoso.normoreflexiaE.selecionado);
-
+    this.avaliacao.listaAparelhosDigestorio = this.listaAparelhosDigestorio.filter(aparelhoDigestorio => aparelhoDigestorio.selecionado);
+    this.avaliacao.listaAbdomem = this.listaAbdomem.filter(abdomem => abdomem.selecionado);
+    this.avaliacao.listaAparelhoGenitourinario = this.listaAparelhoGenitourinario.filter(aparelhoGenitourinario => aparelhoGenitourinario.selecionado);
     this.avaliacaoService.salvar(this.avaliacao).subscribe(avaliacao => {
       const msg = new Message();
       if (avaliacao.id) {
