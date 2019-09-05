@@ -548,7 +548,6 @@ export class CadastroAvaliacaoComponent implements OnInit {
     const ashworth0: Ashworth = new Ashworth();
     ashworth0.descricao = 'MS';
     ashworth0.descricaoColuna = 'branco';
-    lista.push(ashworth0);
 
     const ashworth1: Ashworth = new Ashworth();
     ashworth1.descricao = 'D';
