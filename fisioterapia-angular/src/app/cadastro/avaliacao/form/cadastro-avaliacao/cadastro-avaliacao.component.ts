@@ -435,19 +435,23 @@ export class CadastroAvaliacaoComponent implements OnInit {
     this.listaHabitosVicios = [
       {
         titulo: 'Tabagista',
-        sigla: ['TAB']
+        sigla: ['TAB'],
+        selecionado: false
       },
       {
         titulo: 'Ex-Tabagista',
-        sigla: ['EXTAB']
+        sigla: ['EXTAB'],
+        selecionado: false
       },
       {
         titulo: 'Etilista',
-        sigla: ['ELIT']
+        sigla: ['ELIT'],
+        selecionado: false
       },
       {
         titulo: 'Ex-Etilista',
-        sigla: ['EXELIT']
+        sigla: ['EXELIT'],
+        selecionado: false
       }
     ];
   }
@@ -548,44 +552,53 @@ export class CadastroAvaliacaoComponent implements OnInit {
     const ashworth0: Ashworth = new Ashworth();
     ashworth0.descricao = 'MS';
     ashworth0.descricaoColuna = 'branco';
+    ashworth0.selecionado = false;
 
     const ashworth1: Ashworth = new Ashworth();
     ashworth1.descricao = 'D';
     ashworth1.descricaoColuna = 'normal';
+    ashworth1.selecionado = false;
     lista.push(ashworth1);
     const ashworth2: Ashworth = new Ashworth();
     ashworth2.descricao = 'E';
     ashworth2.descricaoColuna = 'normal';
+    ashworth2.selecionado = false;
     lista.push(ashworth2);
 
     const ashworth3: Ashworth = new Ashworth();
     ashworth3.descricao = 'D';
     ashworth3.descricaoColuna = 'hipotônico';
+    ashworth3.selecionado = false;
     lista.push(ashworth3);
 
     const ashworth4: Ashworth = new Ashworth();
     ashworth4.descricao = 'E';
     ashworth4.descricaoColuna = 'hipotônico';
+    ashworth4.selecionado = false;
     lista.push(ashworth4);
 
     const ashworth5: Ashworth = new Ashworth();
     ashworth5.descricao = 'D';
     ashworth5.descricaoColuna = 'hipertônico';
+    ashworth5.selecionado = false;
     lista.push(ashworth5);
 
     const ashworth6: Ashworth = new Ashworth();
     ashworth6.descricao = 'E';
     ashworth6.descricaoColuna = 'hipertônico';
+    ashworth6.selecionado = false;
     lista.push(ashworth6);
 
     const ashworth7: Ashworth = new Ashworth();
     ashworth7.descricao = 'D';
     ashworth7.descricaoColuna = 'clônus';
+    ashworth7.selecionado = false;
     lista.push(ashworth7);
 
     const ashworth8: Ashworth = new Ashworth();
     ashworth8.descricao = 'E';
     ashworth8.descricaoColuna = 'clônus';
+    ashworth8.selecionado = false;
     lista.push(ashworth8);
     ashworth0.lista = lista;
 
@@ -830,8 +843,7 @@ export class CadastroAvaliacaoComponent implements OnInit {
           listaRetorno.push(item);
         }
       }
-      escalaAshworth.lista = listaRetorno;
-      return escalaAshworth;
+      return listaRetorno;
     });
     this.avaliacao.listaAmplitudeArticular = this.listaAmplitudeArticular.filter(amplitudeArticular => amplitudeArticular.selecionado);
     this.avaliacao.listaTipoEmatomaAA = this.listaTipoEmatomaAA.filter(tipoEmatomaAA => tipoEmatomaAA.selecionado);

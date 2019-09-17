@@ -404,7 +404,9 @@
           <tr mat-header-row *matHeaderRowDef="displayedColumnsAvaliacaoADM"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumnsAvaliacaoADM;"></tr>
         </table>
-
+        <div class="form-group">
+          <label class="fisioterapia-label">Tônus: ESCALA DE ASHWORTH</label><BR>
+        </div>
         <table mat-table [dataSource]="dataSourceEscalaAshworth" class="fisioterapia-table">
             <ng-container matColumnDef="branco">
                 <th mat-header-cell *matHeaderCellDef></th>
@@ -414,36 +416,36 @@
               <th mat-header-cell *matHeaderCellDef>normal</th>
               <td mat-cell *matCellDef="let row; let i = index">
                 <label class="fisioterapia-label">{{ row.lista[0].descricao }}</label>
-                <mat-checkbox class="col-sm" [ngModelOptions]="{standalone: true}" [(ngModel)]="row.lista[0].selecionado"></mat-checkbox>
+                <mat-checkbox class="col-sm" [ngModelOptions]="{standalone: true}" [value]="row.lista[0].selecionado" [(ngModel)]="row.lista[0].selecionado"></mat-checkbox>
                 <label class="fisioterapia-label">{{ row.lista[1].descricao }}</label>
-                <mat-checkbox class="col-sm" [ngModelOptions]="{standalone: true}" [(ngModel)]="row.lista[1].selecionado"></mat-checkbox>
+                <mat-checkbox class="col-sm" [ngModelOptions]="{standalone: true}" [value]="row.lista[1].selecionado" [(ngModel)]="row.lista[1].selecionado"></mat-checkbox>
               </td>
             </ng-container>
             <ng-container matColumnDef="hipotonico">
               <th mat-header-cell *matHeaderCellDef>hipotônico</th>
               <td mat-cell *matCellDef="let row; let i = index">
                 <label class="fisioterapia-label">{{ row.lista[2].descricao }}</label>
-                <mat-checkbox class="col-sm" [ngModelOptions]="{standalone: true}" [(ngModel)]="row.lista[2].selecionado"></mat-checkbox>
+                <mat-checkbox class="col-sm" [ngModelOptions]="{standalone: true}" [value]="row.lista[2].selecionado" [(ngModel)]="row.lista[2].selecionado"></mat-checkbox>
                 <label class="fisioterapia-label">{{ row.lista[3].descricao }}</label>
-                <mat-checkbox class="col-sm" [ngModelOptions]="{standalone: true}" [(ngModel)]="row.lista[3].selecionado"></mat-checkbox>
+                <mat-checkbox class="col-sm" [ngModelOptions]="{standalone: true}" [value]="row.lista[3].selecionado" [(ngModel)]="row.lista[3].selecionado"></mat-checkbox>
               </td>
             </ng-container>
             <ng-container matColumnDef="hipertonico">
               <th mat-header-cell *matHeaderCellDef>hipertônico</th>
               <td mat-cell *matCellDef="let row; let i = index">
                 <label class="fisioterapia-label">{{ row.lista[4].descricao }}</label>
-                <mat-checkbox class="col-sm" [ngModelOptions]="{standalone: true}" [(ngModel)]="row.lista[4].selecionado"></mat-checkbox>
+                <mat-checkbox class="col-sm" [ngModelOptions]="{standalone: true}" [value]="row.lista[4].selecionado" [(ngModel)]="row.lista[4].selecionado"></mat-checkbox>
                 <label class="fisioterapia-label">{{ row.lista[5].descricao }}</label>
-                <mat-checkbox class="col-sm" [ngModelOptions]="{standalone: true}" [(ngModel)]="row.lista[5].selecionado"></mat-checkbox>
+                <mat-checkbox class="col-sm" [ngModelOptions]="{standalone: true}" [value]="row.lista[5].selecionado" [(ngModel)]="row.lista[5].selecionado"></mat-checkbox>
               </td>
             </ng-container>
             <ng-container matColumnDef="clonus">
               <th mat-header-cell *matHeaderCellDef>clônus</th>
               <td mat-cell *matCellDef="let row; let i = index">
                 <label class="fisioterapia-label">{{ row.lista[6].descricao }}</label>
-                <mat-checkbox class="col-sm" [ngModelOptions]="{standalone: true}" [(ngModel)]="row.lista[6].selecionado"></mat-checkbox>
+                <mat-checkbox class="col-sm" [ngModelOptions]="{standalone: true}" [value]="row.lista[6].selecionado" [(ngModel)]="row.lista[6].selecionado"></mat-checkbox>
                 <label class="fisioterapia-label">{{ row.lista[7].descricao }}</label>
-                <mat-checkbox class="col-sm" [ngModelOptions]="{standalone: true}" [(ngModel)]="row.lista[7].selecionado"></mat-checkbox>
+                <mat-checkbox class="col-sm" [ngModelOptions]="{standalone: true}" [value]="row.lista[7].selecionado" [(ngModel)]="row.lista[7].selecionado"></mat-checkbox>
               </td>
             </ng-container>
             <tr mat-header-row *matHeaderRowDef="displayedColumnsAsworth"></tr>
