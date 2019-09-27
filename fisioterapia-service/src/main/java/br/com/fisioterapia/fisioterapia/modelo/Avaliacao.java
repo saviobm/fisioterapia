@@ -16,7 +16,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "avaliacao")
 public class Avaliacao extends Fisioterapia {
-
+	
 	/**
 	 * serialVersionUID.
 	 */
@@ -39,7 +39,7 @@ public class Avaliacao extends Fisioterapia {
 	private Patologia patologia;
 	
 	@Column(name = "desc_diag_fisioterapeutico")
-	private String descricaoDiagFisioterapeutico;
+	private String descricaoDignosticoFisioterapeutico;
 	
 	@Column(name = "cid")
 	private String cid;
@@ -67,16 +67,16 @@ public class Avaliacao extends Fisioterapia {
 	private String descricaoAmplitudeArticular;
 	
 	@Column(name = "desc_pele")
-	private String   descricaoPele;
+	private String descricaoPele;
 	
 	@Column(name = "desc_local")
-	private String descricaoLocal;
+	private String descricaoEdemaLocal;
 	  
 	@Column(name = "desc_Tipo")
-	private String descricaoTipo;
+	private String descricaoEdemaTipo;
 	  
 	@Column(name = "desc_grau")
-	private String descricaoGrau;
+	private String descricaoEdemaGrau;
 	  
 	@Column(name = "desc_sequelas")
 	private String descricaoSequelas;
@@ -99,6 +99,33 @@ public class Avaliacao extends Fisioterapia {
 	@Column(name = "desc_habitos_vicios")
 	private String descricaoHabitosVicios;
 	
+	@Column(name = "desc__aparelho_digestorio")
+	private String descricaoAparelhoDigestorio;
+	
+	@Column(name = "desc_abdomem")
+	private String descricaoAbdomem;
+	
+	@Column(name = "desc_aparelho_genitourinario")
+	private String descricaoAparelhoGenitourinario;
+	
+	@OneToMany(mappedBy = "avaliacao")
+	private List<HabitosVicios> listaHabitosVicios;
+	
+	@OneToMany(mappedBy = "avaliacao")
+	private List<SinaisVitais> listaSinaisVitais;
+	
+	@OneToMany(mappedBy = "avaliacao")
+	private List<NivelConsciencia> listaNivelConsciencia;
+	
+	@OneToMany(mappedBy = "avaliacao")
+	private List<EstadoEmocional> listaEstadoEmocional;
+	
+	@OneToMany(mappedBy = "avaliacao")
+	private List<SistemaRespiratorio> listaSistemaRespiratorio;
+	
+	@OneToMany(mappedBy = "avaliacao")
+	private List<Ritmo> listaRitmo;
+
 	@OneToMany(mappedBy = "avaliacao")
 	private List<Ponto> listaPontos;
 
@@ -159,17 +186,17 @@ public class Avaliacao extends Fisioterapia {
 	}
 
 	/**
-	 * @return the descricaoDiagFisioterapeutico
+	 * @return the descricaoDignosticoFisioterapeutico
 	 */
-	public String getDescricaoDiagFisioterapeutico() {
-		return descricaoDiagFisioterapeutico;
+	public String getDescricaoDignosticoFisioterapeutico() {
+		return descricaoDignosticoFisioterapeutico;
 	}
 
 	/**
-	 * @param descricaoDiagFisioterapeutico the descricaoDiagFisioterapeutico to set
+	 * @param descricaoDignosticoFisioterapeutico the descricaoDignosticoFisioterapeutico to set
 	 */
-	public void setDescricaoDiagFisioterapeutico(String descricaoDiagFisioterapeutico) {
-		this.descricaoDiagFisioterapeutico = descricaoDiagFisioterapeutico;
+	public void setDescricaoDignosticoFisioterapeutico(String descricaoDignosticoFisioterapeutico) {
+		this.descricaoDignosticoFisioterapeutico = descricaoDignosticoFisioterapeutico;
 	}
 
 	/**
@@ -299,45 +326,45 @@ public class Avaliacao extends Fisioterapia {
 	}
 
 	/**
-	 * @return the descricaoLocal
+	 * @return the descricaoEdemaLocal
 	 */
-	public String getDescricaoLocal() {
-		return descricaoLocal;
+	public String getDescricaoEdemaLocal() {
+		return descricaoEdemaLocal;
 	}
 
 	/**
-	 * @param descricaoLocal the descricaoLocal to set
+	 * @param descricaoEdemaLocal the descricaoEdemaLocal to set
 	 */
-	public void setDescricaoLocal(String descricaoLocal) {
-		this.descricaoLocal = descricaoLocal;
+	public void setDescricaoEdemaLocal(String descricaoEdemaLocal) {
+		this.descricaoEdemaLocal = descricaoEdemaLocal;
 	}
 
 	/**
-	 * @return the descricaoTipo
+	 * @return the descricaoEdemaTipo
 	 */
-	public String getDescricaoTipo() {
-		return descricaoTipo;
+	public String getDescricaoEdemaTipo() {
+		return descricaoEdemaTipo;
 	}
 
 	/**
-	 * @param descricaoTipo the descricaoTipo to set
+	 * @param descricaoEdemaTipo the descricaoEdemaTipo to set
 	 */
-	public void setDescricaoTipo(String descricaoTipo) {
-		this.descricaoTipo = descricaoTipo;
+	public void setDescricaoEdemaTipo(String descricaoEdemaTipo) {
+		this.descricaoEdemaTipo = descricaoEdemaTipo;
 	}
 
 	/**
-	 * @return the descricaoGrau
+	 * @return the descricaoEdemaGrau
 	 */
-	public String getDescricaoGrau() {
-		return descricaoGrau;
+	public String getDescricaoEdemaGrau() {
+		return descricaoEdemaGrau;
 	}
 
 	/**
-	 * @param descricaoGrau the descricaoGrau to set
+	 * @param descricaoEdemaGrau the descricaoEdemaGrau to set
 	 */
-	public void setDescricaoGrau(String descricaoGrau) {
-		this.descricaoGrau = descricaoGrau;
+	public void setDescricaoEdemaGrau(String descricaoEdemaGrau) {
+		this.descricaoEdemaGrau = descricaoEdemaGrau;
 	}
 
 	/**
@@ -436,6 +463,132 @@ public class Avaliacao extends Fisioterapia {
 	 */
 	public void setDescricaoHabitosVicios(String descricaoHabitosVicios) {
 		this.descricaoHabitosVicios = descricaoHabitosVicios;
+	}
+
+	/**
+	 * @return the descricaoAparelhoDigestorio
+	 */
+	public String getDescricaoAparelhoDigestorio() {
+		return descricaoAparelhoDigestorio;
+	}
+
+	/**
+	 * @param descricaoAparelhoDigestorio the descricaoAparelhoDigestorio to set
+	 */
+	public void setDescricaoAparelhoDigestorio(String descricaoAparelhoDigestorio) {
+		this.descricaoAparelhoDigestorio = descricaoAparelhoDigestorio;
+	}
+
+	/**
+	 * @return the descricaoAbdomem
+	 */
+	public String getDescricaoAbdomem() {
+		return descricaoAbdomem;
+	}
+
+	/**
+	 * @param descricaoAbdomem the descricaoAbdomem to set
+	 */
+	public void setDescricaoAbdomem(String descricaoAbdomem) {
+		this.descricaoAbdomem = descricaoAbdomem;
+	}
+
+	/**
+	 * @return the descricaoAparelhoGenitourinario
+	 */
+	public String getDescricaoAparelhoGenitourinario() {
+		return descricaoAparelhoGenitourinario;
+	}
+
+	/**
+	 * @param descricaoAparelhoGenitourinario the descricaoAparelhoGenitourinario to set
+	 */
+	public void setDescricaoAparelhoGenitourinario(String descricaoAparelhoGenitourinario) {
+		this.descricaoAparelhoGenitourinario = descricaoAparelhoGenitourinario;
+	}
+
+	/**
+	 * @return the listaHabitosVicios
+	 */
+	public List<HabitosVicios> getListaHabitosVicios() {
+		return listaHabitosVicios;
+	}
+
+	/**
+	 * @param listaHabitosVicios the listaHabitosVicios to set
+	 */
+	public void setListaHabitosVicios(List<HabitosVicios> listaHabitosVicios) {
+		this.listaHabitosVicios = listaHabitosVicios;
+	}
+
+	/**
+	 * @return the listaSinaisVitais
+	 */
+	public List<SinaisVitais> getListaSinaisVitais() {
+		return listaSinaisVitais;
+	}
+
+	/**
+	 * @param listaSinaisVitais the listaSinaisVitais to set
+	 */
+	public void setListaSinaisVitais(List<SinaisVitais> listaSinaisVitais) {
+		this.listaSinaisVitais = listaSinaisVitais;
+	}
+
+	/**
+	 * @return the listaNivelConsciencia
+	 */
+	public List<NivelConsciencia> getListaNivelConsciencia() {
+		return listaNivelConsciencia;
+	}
+
+	/**
+	 * @param listaNivelConsciencia the listaNivelConsciencia to set
+	 */
+	public void setListaNivelConsciencia(List<NivelConsciencia> listaNivelConsciencia) {
+		this.listaNivelConsciencia = listaNivelConsciencia;
+	}
+
+	/**
+	 * @return the listaEstadoEmocional
+	 */
+	public List<EstadoEmocional> getListaEstadoEmocional() {
+		return listaEstadoEmocional;
+	}
+
+	/**
+	 * @param listaEstadoEmocional the listaEstadoEmocional to set
+	 */
+	public void setListaEstadoEmocional(List<EstadoEmocional> listaEstadoEmocional) {
+		this.listaEstadoEmocional = listaEstadoEmocional;
+	}
+
+	/**
+	 * @return the listaSistemaRespiratorio
+	 */
+	public List<SistemaRespiratorio> getListaSistemaRespiratorio() {
+		return listaSistemaRespiratorio;
+	}
+
+	/**
+	 * @param listaSistemaRespiratorio the listaSistemaRespiratorio to set
+	 */
+	public void setListaSistemaRespiratorio(List<SistemaRespiratorio> listaSistemaRespiratorio) {
+		this.listaSistemaRespiratorio = listaSistemaRespiratorio;
+	}
+
+	/**
+	 * @return the listaRitmo
+	 */
+	public List<Ritmo> getListaRitmo() {
+		return listaRitmo;
+	}
+
+	/**
+	 * @param listaRitmo the listaRitmo to set
+	 */
+	public void setListaRitmo(List<Ritmo> listaRitmo) {
+		this.listaRitmo = listaRitmo;
 	}
 
 	/**

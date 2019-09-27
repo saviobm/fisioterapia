@@ -68,6 +68,9 @@ CREATE TABLE avaliacao (
 	desc_objetivos TEXT NULL,
 	desc_condutas TEXT NULL,
 	desc_habitos_vicios VARCHAR(300) NULL,	
+	desc__aparelho_digestorio VARCHAR(300) NULL,
+	desc_abdomem VARCHAR(300) NULL,	
+	desc_aparelho_genitourinario VARCHAR(300) NULL,
 	PRIMARY KEY (id)
 );
 
@@ -243,10 +246,58 @@ CREATE TABLE ponto (
 	PRIMARY KEY (id)
 );
 
+CREATE TABLE habitos_vicios (
+	id INT NOT NULL AUTO_INCREMENT,
+	sigla VARCHAR(20),	
+	titulo VARCHAR(50),
+	avaliacao_id INT(10) NOT NULL,
+	PRIMARY KEY (id)
+)
+
+CREATE TABLE sinais_vitais (
+	id INT NOT NULL AUTO_INCREMENT,
+	sigla VARCHAR(20),
+	descricao VARCHAR(300),
+	avaliacao_id INT(10) NOT NULL,
+	PRIMARY KEY (id)
+)
+
+CREATE TABLE nivel_consciencia (
+	id INT NOT NULL AUTO_INCREMENT,
+	sigla VARCHAR(20),	
+	avaliacao_id INT(10) NOT NULL,
+	titulo VARCHAR(50),
+	PRIMARY KEY (id)
+)
+
+
+CREATE TABLE estado_emocional (
+	id INT NOT NULL AUTO_INCREMENT,
+	sigla VARCHAR(20),	
+	avaliacao_id INT(10) NOT NULL,
+	titulo VARCHAR(50),
+	PRIMARY KEY (id)
+)
+
+CREATE TABLE sistema_respiratorio (
+	id INT NOT NULL AUTO_INCREMENT,
+	sigla VARCHAR(20),
+	descricao VARCHAR(300),
+	avaliacao_id INT(10) NOT NULL,
+	PRIMARY KEY (id)
+)
+
+CREATE TABLE ritmo (
+	id INT NOT NULL AUTO_INCREMENT,
+	sigla VARCHAR(20),	
+	avaliacao_id INT(10) NOT NULL,
+	titulo VARCHAR(50),
+	PRIMARY KEY (id)
+)
+
 ALTER TABLE avaliacao ADD CONSTRAINT paciente_fk0 FOREIGN KEY (paciente_id) REFERENCES paciente(id);
 ALTER TABLE avaliacao ADD CONSTRAINT patologia_fk0 FOREIGN KEY (patologia_id) REFERENCES patolodia(id);
 ALTER TABLE avaliacao ADD CONSTRAINT mini_mental_fk0 FOREIGN KEY (mini_mental_id) REFERENCES mini_mental(id);
-
 
 ALTER TABLE endereco ADD CONSTRAINT endereco_fk0 FOREIGN KEY (cidade_id) REFERENCES cidade(id);
 
@@ -258,3 +309,14 @@ ALTER TABLE avaliacao ADD CONSTRAINT avaliacao_fk0 FOREIGN KEY (paciente_id) REF
 
 ALTER TABLE ponto ADD CONSTRAINT ponto_fk0 FOREIGN KEY (avaliacao_id) REFERENCES ponto(id);
 
+ALTER TABLE habitos_vicios ADD CONSTRAINT habitos_vicios_fk0 FOREIGN KEY (avaliacao_id) REFERENCES habitos_vicios(id);
+
+ALTER TABLE sinais_vitais ADD CONSTRAINT sinais_vitais_fk0 FOREIGN KEY (avaliacao_id) REFERENCES sinais_vitais(id);
+
+ALTER TABLE nivel_consciencia ADD CONSTRAINT nivel_consciencia_fk0 FOREIGN KEY (avaliacao_id) REFERENCES nivel_consciencia(id);
+
+ALTER TABLE estado_emocional ADD CONSTRAINT estado_emocional_fk0 FOREIGN KEY (avaliacao_id) REFERENCES estado_emocional(id);
+
+ALTER TABLE sistema_respiratorio ADD CONSTRAINT sistema_respiratorio_fk0 FOREIGN KEY (avaliacao_id) REFERENCES sistema_respiratorio(id);
+
+ALTER TABLE ritmo ADD CONSTRAINT ritmo_fk0 FOREIGN KEY (avaliacao_id) REFERENCES ritmo(id);
