@@ -45,9 +45,9 @@ public class AvaliacaoService {
 			}
 		}
 		// Paciente 
-		if (avaliacaoDTO.getPacienteDTO() != null 
-				&& avaliacaoDTO.getPacienteDTO().getId() != null) {
-			Optional<Paciente> paciente = pacienteRepository.findById(avaliacaoDTO.getPacienteDTO().getId());
+		if (avaliacaoDTO.getPaciente() != null 
+				&& avaliacaoDTO.getPaciente().getId() != null) {
+			Optional<Paciente> paciente = pacienteRepository.findById(avaliacaoDTO.getPaciente().getId());
 			if (paciente.isPresent()) {
 				avaliacao.setPaciente(paciente.get());
 			}

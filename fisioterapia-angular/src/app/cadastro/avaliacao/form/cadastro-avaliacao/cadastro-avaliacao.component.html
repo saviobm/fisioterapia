@@ -195,11 +195,11 @@
         <label class="fisioterapia-label">Ausculta Pulmonar</label><BR>
       </div>
       <div class="form-row">
-        <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="auscultaPulmonar.selecionado" class="col-sm" *ngFor="let auscultaPulmonar of listaAuscultaPulmonar; let i = index">
+        <mat-checkbox [ngModelOptions]="{standalone: true}" value="auscultaPulmonar.descricao[0]" [(ngModel)]="auscultaPulmonar.selecionado" class="col-sm" *ngFor="let auscultaPulmonar of listaAuscultaPulmonar; let i = index">
           <table>
             <tr>
               <td>{{ auscultaPulmonar.titulo }}</td>
-              <td><input [ngModelOptions]="{standalone: true}" [(ngModel)]="auscultaPulmonar.descricao" class="form-control form-control-sm"></td>
+              <td><input [ngModelOptions]="{standalone: true}" value="auscultaPulmonar.descricao[0]" [(ngModel)]="auscultaPulmonar.descricao[0]" class="form-control form-control-sm"></td>
             </tr>
           </table>
         </mat-checkbox>
