@@ -1,5 +1,7 @@
 package br.com.fisioterapia.fisioterapia.modelo;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,7 +14,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "endereco")
-public class Endereco extends Fisioterapia {
+public class Endereco extends Fisioterapia implements Serializable {
 
 	/**
 	 * serialVersionUID.

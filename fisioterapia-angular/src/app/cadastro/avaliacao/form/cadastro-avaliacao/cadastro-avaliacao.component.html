@@ -63,7 +63,7 @@
       <div class="col-sm-4">
         <label class="fisioterapia-label">Diagnóstico Clínico</label>
         <div class="form-group">
-            <select class="form-control form-control-sm" required [ngModelOptions]="{standalone: true}" [(ngModel)]="avaliacao.patologia.id">
+            <select class="form-control form-control-sm" [ngModelOptions]="{standalone: true}" [(ngModel)]="avaliacao.patologia.id">
               <option [(value)]="patologia.id" *ngFor="let patologia of listaPatologia">{{ patologia.descricao }}</option>
             </select>
         </div>

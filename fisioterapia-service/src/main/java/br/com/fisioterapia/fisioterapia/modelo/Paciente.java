@@ -1,7 +1,9 @@
 package br.com.fisioterapia.fisioterapia.modelo;
 
+import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,12 +13,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
-
 @Entity
 @Table(name = "paciente")
-public class Paciente extends Fisioterapia {
+public class Paciente extends Fisioterapia implements Serializable {
 	
 	/**
 	 * serialVersionUID
@@ -49,8 +48,7 @@ public class Paciente extends Fisioterapia {
 	@Column(name = "cpf", length = 11, nullable = false)
 	private String cpf;
 	
-	@OneToMany(mappedBy = "paciente", fetch = FetchType.LAZY)
-	@Cascade(CascadeType.ALL)
+	@OneToMany(mappedBy = "paciente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Endereco> listaEndereco;
 	
 	@Column(name = "in_ativo")

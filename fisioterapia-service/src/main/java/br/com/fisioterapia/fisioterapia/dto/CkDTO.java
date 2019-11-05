@@ -9,11 +9,24 @@ public class CkDTO extends FisioterapiaDTO {
 	 */
 	private static final long serialVersionUID = 9180336853190198395L;
 	
+	private Long id;
 	private String titulo;  
 	private List<String> sigla;  
 	private List<String> descricao;
 	private Boolean selecionado;
-	
+
+	/**
+	 * @return the id
+	 */
+	public Long getId() {
+		return id;
+	}
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Long id) {
+		this.id = id;
+	}
 	/**
 	 * @return the titulo
 	 */

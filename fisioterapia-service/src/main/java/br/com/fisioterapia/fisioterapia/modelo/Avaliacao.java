@@ -3,6 +3,7 @@ package br.com.fisioterapia.fisioterapia.modelo;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -117,7 +118,7 @@ public class Avaliacao extends Fisioterapia {
 	@OneToMany(mappedBy = "avaliacao")
 	private List<NivelConsciencia> listaNivelConsciencia;
 	
-	@OneToMany(mappedBy = "avaliacao")
+	@OneToMany(mappedBy = "avaliacao", orphanRemoval = true, cascade = CascadeType.ALL)
 	private List<EstadoEmocional> listaEstadoEmocional;
 	
 	@OneToMany(mappedBy = "avaliacao")
